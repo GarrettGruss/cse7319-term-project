@@ -1,4 +1,4 @@
-Garrett Gruss | CS7319-795a Homework 2 Comparion | 9-5-2025
+Garrett Gruss | CS7319-795a Project Proposal | 9-5-2025
 # CSE 7319 - Software Architecture & Design Project Proposal
 
 **Project Option:** Option 1 - Microservices Architecture
