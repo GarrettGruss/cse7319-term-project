@@ -78,6 +78,23 @@
 
 ### 2. Architecture Diagrams
 
+
+**Simplified Activity Flow**
+```mermaid
+flowchart LR
+    Reddit[📱 Reddit Posts] --> Scraper[🤖 Scraper]
+    Scraper --> Database[(💾 Database)]
+    Database --> AI[🧠 AI Transform]
+    AI --> UI[👤 Human Review]
+    UI --> LinkedIn[💼 LinkedIn]
+    
+    style Reddit fill:#ff6b35
+    style LinkedIn fill:#0077b5
+    style Database fill:#4caf50
+    style AI fill:#9c27b0
+```
+
+**System Architecture**
 ```mermaid
 graph TB
     subgraph "Kubernetes Cluster"
@@ -104,6 +121,77 @@ graph TB
     
     RS --> Reddit
     CG --> LLM
+```
+
+**Detailed Activity Flow**
+```mermaid
+flowchart LR
+    subgraph "Data Sources"
+        R1[r/entrepreneur]
+        R2[r/ChatGPT]
+        R3[r/VibeCoding]
+        R4[r/programming]
+        R5[r/startups]
+    end
+    
+    subgraph "Data Ingestion"
+        RSS[Reddit Scraper Service]
+        FIL[Filter & Rank Posts]
+    end
+    
+    subgraph "Content Transformation"
+        AI[AI Content Generator]
+        TONE[Professional Tone Conversion]
+        HASH[Hashtag Generation]
+        CTA[Call-to-Action Creation]
+    end
+    
+    subgraph "Content Storage"
+        DB[(MongoDB)]
+        QUEUE[Content Queue]
+    end
+    
+    subgraph "Content Management"
+        UI[Streamlit UI]
+        REV[Human Review]
+        EDIT[Content Editing]
+    end
+    
+    subgraph "Publishing"
+        SCH[Scheduler]
+        LI[LinkedIn API]
+    end
+    
+    R1 --> RSS
+    R2 --> RSS
+    R3 --> RSS
+    R4 --> RSS
+    R5 --> RSS
+    
+    RSS --> |"Raw Posts<br/>Upvotes, Comments<br/>Engagement Metrics"| FIL
+    FIL --> |"Ranked Posts<br/>Quality Score<br/>Relevance Rating"| DB
+    
+    DB --> |"Post Data<br/>Metadata<br/>Engagement Stats"| AI
+    AI --> TONE
+    TONE --> HASH
+    HASH --> CTA
+    CTA --> |"LinkedIn-Ready Content<br/>Professional Format<br/>Optimized for Engagement"| QUEUE
+    
+    QUEUE --> DB
+    DB --> UI
+    UI --> REV
+    REV --> EDIT
+    EDIT --> |"Approved Content"| SCH
+    SCH --> LI
+    
+    style R1 fill:#ff6b35
+    style R2 fill:#ff6b35
+    style R3 fill:#ff6b35
+    style R4 fill:#ff6b35
+    style R5 fill:#ff6b35
+    style LI fill:#0077b5
+    style DB fill:#4caf50
+    style AI fill:#9c27b0
 ```
 
 ### 3. Prototype Screens
