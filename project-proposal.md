@@ -22,9 +22,9 @@
 
 **Initial Architecture (Monolithic Python Application)**
 - **Primary Language**: Python
-- **Database**: MongoDB (containerized within Kubernetes environment)
+- **Database**: MongoDB (containerized within Openshift environment)
 - **UI Framework**: Streamlit
-- **Deployment**: Kubernetes cluster
+- **Deployment**: Openshift cluster
 
 **Core Services**
 1. **Scraper Service**: Extracts top posts and engagement metrics from target subreddits, stores structured data in MongoDB
@@ -41,28 +41,57 @@
 
 **Project Duration**: September 5, 2025 - October 3, 2025 (4 weeks)
 
-**Week 1 (Sept 5-11): Business Logic Discovery**
-- Manually execute the complete content curation workflow end-to-end
-- Document each step: Reddit browsing, post selection criteria, content transformation process
-- Record decision-making patterns and quality filters used during manual curation
-- Define data requirements and business rules based on manual process observations
+```mermaid
+gantt
+    title LinkedIn Content Curation Platform Development Timeline
+    dateFormat YYYY-MM-DD
+    
+    Business Logic Discovery       :week1, 2025-09-05, 7d
+    Foundation & Core Services     :week2, 2025-09-12, 7d
+    Integration & UI Development   :week3, 2025-09-19, 7d
+    Optimization & Documentation   :week4, 2025-09-26, 8d
+```
 
-**Week 2 (Sept 12-18): Foundation & Core Services**
-- Set up Kubernetes environment and MongoDB deployment
-- Implement Reddit scraper service based on documented manual process
-- Develop content generation service with LLM integration using recorded transformation patterns
-- Create MongoDB schemas for posts and generated content
+**Detailed Task Breakdown:**
 
-**Week 3 (Sept 19-25): Integration & UI Development**
-- Build Streamlit UI incorporating manual workflow insights
-- Integrate all services and replicate documented end-to-end process
-- Test automated workflow against manual baseline for quality validation
+**Week 1: Business Logic Discovery (Sept 5-11)**
+- Manually browse target subreddits (r/entrepreneur, r/ChatGPT, r/VibeCoding, r/programming, r/startups)
+- Document post selection criteria based on upvotes, comments, and engagement patterns
+- Record the manual content transformation process from Reddit posts to LinkedIn format
+- Analyze decision-making patterns for professional tone, hashtag selection, and call-to-action creation
+- Define data schema requirements for posts, engagement metrics, and generated content
+- Establish quality filters and relevance scoring criteria
+- Create workflow documentation for automation reference
 
-**Week 4 (Sept 26-Oct 3): Optimization & Documentation**
-- Performance testing and workflow refinement
-- Complete project documentation including manual process findings
-- Final testing comparing automated vs manual results
-- Project presentation preparation with workflow evolution narrative
+**Week 2: Foundation & Core Services (Sept 12-18)**
+- Set up Openshift cluster environment and networking configuration
+- Deploy MongoDB as StatefulSet with persistent storage
+- Implement Reddit scraper service using PRAW library
+- Create data extraction logic for post metadata, engagement metrics, and content
+- Develop content generation service with LLM API integration (OpenAI/Anthropic)
+- Design MongoDB collections and indexes for posts and generated content
+- Implement content transformation algorithms based on documented manual patterns
+- Create service-to-service communication interfaces
+
+**Week 3: Integration & UI Development (Sept 19-25)**
+- Build Streamlit web application with content review interface
+- Develop post preview, editing, and approval workflows
+- Integrate Reddit scraper with content generation pipeline
+- Connect UI service to MongoDB for content retrieval and management
+- Implement automated workflow replicating documented manual process
+- Create content queue management and scheduling functionality
+- Test end-to-end workflow from Reddit scraping to LinkedIn-ready content
+- Validate automated results against manual baseline quality standards
+
+**Week 4: Optimization & Documentation (Sept 26-Oct 3)**
+- Conduct performance testing on all microservices under load
+- Optimize database queries and API response times
+- Refine content generation algorithms based on testing feedback
+- Complete comprehensive project documentation including architecture decisions
+- Document manual process findings and automation evolution
+- Perform final integration testing across all services
+- Prepare project presentation materials highlighting workflow transformation
+- Conduct final quality assurance comparing automated vs manual content output
 
 ## Project Design
 
@@ -97,7 +126,7 @@ flowchart LR
 **System Architecture**
 ```mermaid
 graph TB
-    subgraph "Kubernetes Cluster"
+    subgraph "Openshift Cluster"
         subgraph "Core Services"
             RS[Reddit Scraper Service]
             CG[Content Generation Service]
@@ -125,7 +154,7 @@ graph TB
 
 **Detailed Activity Flow**
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph "Data Sources"
         R1[r/entrepreneur]
         R2[r/ChatGPT]
@@ -202,23 +231,23 @@ flowchart LR
 ┌─────────────────────────────────────────────────────────┐
 │ Post Editor                               [Back] [Save] │
 ├─────────────────────────────────────────────────────────┤
-│ Original Reddit Post Preview:                          │
-│ r/entrepreneur • 1.2k upvotes • 89 comments            │
+│ Original Reddit Post Preview:                           │
+│ r/entrepreneur • 1.2k upvotes • 89 comments             │
 │ "Just raised our Series A - here's what I learned..."   │
 ├─────────────────────────────────────────────────────────┤
 │ Generated LinkedIn Post:                                │
 │ ┌─────────────────────────────────────────────────────┐ │
-│ │ 🚀 Key lessons from a successful Series A raise:   │ │
+│ │ 🚀 Key lessons from a successful Series A raise:    │ │
 │ │                                                     │ │
-│ │ • Timing is everything - market conditions matter  │ │
-│ │ • Your team story sells as much as your product    │ │
-│ │ • Due diligence prep can make or break the deal    │ │
+│ │ • Timing is everything - market conditions matter   │ │
+│ │ • Your team story sells as much as your product     │ │
+│ │ • Due diligence prep can make or break the deal     │ │
 │ │                                                     │ │
-│ │ What's been your experience with fundraising?      │ │
+│ │ What's been your experience with fundraising?       │ │
 │ │                                                     │ │
-│ │ #Startups #Fundraising #Entrepreneurship           │ │
+│ │ #Startups #Fundraising #Entrepreneurship            │ │
 │ └─────────────────────────────────────────────────────┘ │
-│ [🤖 Regenerate] [📅 Schedule for 2:00 PM] [📤 Post Now] │
+│ [🤖 Regenerate] [📅 Schedule for 2:00 PM] [📤 Post Now]│
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -229,21 +258,21 @@ flowchart LR
 - **Web Framework**: Streamlit (UI)
 - **Database**: MongoDB with PyMongo driver
 - **Container Platform**: Docker
-- **Orchestration**: Kubernetes
+- **Orchestration**: Openshift
 - **APIs**: 
   - Reddit API (PRAW library)
   - OpenAI/Anthropic API for content generation
-  - LinkedIn API for posting
 - **Development Tools**: 
   - Poetry for dependency management
   - pytest for testing
   - Black/Ruff for code formatting
+  - mypy for type checking
   - GitHub Actions for CI/CD
 
 ### Deployment
 - **Containerization**: Docker containers for each service
-- **Orchestration**: Kubernetes cluster deployment
-- **Database**: MongoDB deployed as StatefulSet in Kubernetes
+- **Orchestration**: Openshift cluster deployment
+- **Database**: MongoDB deployed as StatefulSet in Openshift
 - **Networking**: Service mesh for inter-service communication
 - **Monitoring**: Basic logging and health checks
 
