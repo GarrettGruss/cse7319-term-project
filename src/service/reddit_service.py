@@ -1,8 +1,8 @@
 import praw
 import os
 from random import randrange
-from typing import List, Optional, Dict, Any
-from ..model.models import RedditSubmission, RedditComment, PostSummary, CommentStructure
+from typing import List, Optional
+from model.models import RedditSubmission, RedditComment, PostSummary, CommentStructure
 
 
 class RedditService:
@@ -13,14 +13,11 @@ class RedditService:
         self.reddit = praw.Reddit(
             client_id=os.getenv("REDDIT_CLIENT_ID"),
             client_secret=os.getenv("REDDIT_CLIENT_SECRET"),
-            user_agent=os.getenv("REDDIT_USERNAME")
+            user_agent=os.getenv("REDDIT_USERNAME"),
         )
 
     def select_random_submission(
-        self,
-        subreddits: List[str],
-        limit: int = 10,
-        min_comments: int = 10
+        self, subreddits: List[str], limit: int = 10, min_comments: int = 10
     ) -> RedditSubmission:
         """
         Select a random submission from specified subreddits with minimum comment threshold
@@ -41,14 +38,16 @@ class RedditService:
 
         for submission in self.reddit.subreddit(sub).hot(limit=limit):
             if submission.num_comments > min_comments:
-                submissions_list.append(RedditSubmission(
-                    subreddit=sub,
-                    title=submission.title,
-                    score=submission.score,
-                    id=submission.id,
-                    comments=submission.num_comments,
-                    body=submission.selftext
-                ))
+                submissions_list.append(
+                    RedditSubmission(
+                        subreddit=sub,
+                        title=submission.title,
+                        score=submission.score,
+                        id=submission.id,
+                        comments=submission.num_comments,
+                        body=submission.selftext,
+                    )
+                )
 
         if len(submissions_list) > 0:
             return submissions_list[randrange(0, len(submissions_list))]
@@ -65,24 +64,26 @@ class RedditService:
         Returns:
             RedditComment: Comment data or None if invalid
         """
-        if not hasattr(comment, 'body'):
+        if not hasattr(comment, "body"):
             return None
 
         children_ids = []
-        if hasattr(comment, 'replies') and comment.replies:
+        if hasattr(comment, "replies") and comment.replies:
             for reply in comment.replies:
-                if hasattr(reply, 'body'):
+                if hasattr(reply, "body"):
                     children_ids.append(reply.id)
 
         return RedditComment(
             id=comment.id,
-            author=comment.author.name if comment.author else '[deleted]',
+            author=comment.author.name if comment.author else "[deleted]",
             body=comment.body,
             score=comment.score,
-            children=children_ids
+            children=children_ids,
         )
 
-    def extract_all_comments_recursively(self, comment, all_comments: List[RedditComment]) -> None:
+    def extract_all_comments_recursively(
+        self, comment, all_comments: List[RedditComment]
+    ) -> None:
         """
         Recursively extract all comments and their nested replies
 
@@ -90,18 +91,20 @@ class RedditService:
             comment: PRAW comment object
             all_comments: List to append extracted comments to
         """
-        if not hasattr(comment, 'body'):
+        if not hasattr(comment, "body"):
             return
 
         comment_data = self.extract_comment_recursively(comment)
         if comment_data:
             all_comments.append(comment_data)
 
-        if hasattr(comment, 'replies') and comment.replies:
+        if hasattr(comment, "replies") and comment.replies:
             for reply in comment.replies:
                 self.extract_all_comments_recursively(reply, all_comments)
 
-    def get_submission_with_comments(self, submission_id: str) -> tuple[RedditSubmission, List[RedditComment]]:
+    def get_submission_with_comments(
+        self, submission_id: str
+    ) -> tuple[RedditSubmission, List[RedditComment]]:
         """
         Get a submission and all its comments
 
@@ -120,7 +123,7 @@ class RedditService:
             score=submission.score,
             id=submission.id,
             comments=submission.num_comments,
-            body=submission.selftext
+            body=submission.selftext,
         )
 
         # Extract all comments
@@ -135,7 +138,7 @@ class RedditService:
         self,
         submission: RedditSubmission,
         comments: List[RedditComment],
-        top_n_comments: int = 10
+        top_n_comments: int = 10,
     ) -> PostSummary:
         """
         Generate a structured post summary with top comments
@@ -149,7 +152,9 @@ class RedditService:
             PostSummary: Structured summary for LLM processing
         """
         # Sort comments by score and get top N
-        sorted_comments = sorted(comments, key=lambda x: x.score, reverse=True)[:top_n_comments]
+        sorted_comments = sorted(comments, key=lambda x: x.score, reverse=True)[
+            :top_n_comments
+        ]
 
         # Create comment lookup
         comment_lookup = {comment.id: comment for comment in comments}
@@ -162,7 +167,9 @@ class RedditService:
                 children_structures = []
                 for child_id in comment_data.children:
                     if child_id in comment_lookup:
-                        child_structure = build_comment_structure(comment_lookup[child_id])
+                        child_structure = build_comment_structure(
+                            comment_lookup[child_id]
+                        )
                         children_structures.append(child_structure)
                 structure.children = children_structures
 
@@ -184,5 +191,5 @@ class RedditService:
         return PostSummary(
             post_title=submission.title,
             post_body=submission.body or "",
-            children=comment_structures
+            children=comment_structures,
         )

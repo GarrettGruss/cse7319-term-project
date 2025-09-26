@@ -1,7 +1,6 @@
 from typing import List, Optional, Dict, Any
-from ..service.reddit_service import RedditService
-from ..service.llm_service import LLMService
-from ..model.models import RedditSubmission, RedditComment, PostSummary, LLMResponse
+from service.reddit_service import RedditService
+from service.llm_service import LLMService
 
 
 class PostController:
@@ -20,7 +19,7 @@ class PostController:
         top_n_comments: int = 10,
         custom_prompt: Optional[str] = None,
         model: Optional[str] = None,
-        temperature: Optional[float] = None
+        temperature: Optional[float] = None,
     ) -> Dict[str, Any]:
         """
         Get a random Reddit post and generate LLM response
@@ -43,28 +42,34 @@ class PostController:
         # Default subreddits if none provided
         if subreddits is None:
             subreddits = [
-                'mcp', 'vibecoding', 'buildinpublic', 'aws',
-                'LlamaFarm', 'AgentsOfAI', 'ClaudeAI', 'Buildathon'
+                "mcp",
+                "vibecoding",
+                "buildinpublic",
+                "aws",
+                "LlamaFarm",
+                "AgentsOfAI",
+                "ClaudeAI",
+                "Buildathon",
             ]
 
         try:
             # Step 1: Get random submission
             submission = self.reddit_service.select_random_submission(
-                subreddits=subreddits,
-                limit=limit,
-                min_comments=min_comments
+                subreddits=subreddits, limit=limit, min_comments=min_comments
             )
 
             # Step 2: Get submission with all comments
-            submission_data, comments = self.reddit_service.get_submission_with_comments(
-                submission_id=submission.id
+            submission_data, comments = (
+                self.reddit_service.get_submission_with_comments(
+                    submission_id=submission.id
+                )
             )
 
             # Step 3: Generate structured post summary
             post_summary = self.reddit_service.generate_post_summary(
                 submission=submission_data,
                 comments=comments,
-                top_n_comments=top_n_comments
+                top_n_comments=top_n_comments,
             )
 
             # Step 4: Generate LLM response
@@ -72,7 +77,7 @@ class PostController:
                 post_summary=post_summary,
                 custom_prompt=custom_prompt,
                 model=model,
-                temperature=temperature
+                temperature=temperature,
             )
 
             # Return complete result
@@ -85,8 +90,8 @@ class PostController:
                     "total_comments": len(comments),
                     "top_comments_used": min(top_n_comments, len(comments)),
                     "subreddit_searched": submission_data.subreddit,
-                    "generation_timestamp": llm_response.timestamp
-                }
+                    "generation_timestamp": llm_response.timestamp,
+                },
             }
 
         except Exception as e:
@@ -101,7 +106,7 @@ class PostController:
         top_n_comments: int = 10,
         custom_prompt: Optional[str] = None,
         model: Optional[str] = None,
-        temperature: Optional[float] = None
+        temperature: Optional[float] = None,
     ) -> List[Dict[str, Any]]:
         """
         Generate multiple posts with LLM responses
@@ -129,11 +134,11 @@ class PostController:
                     top_n_comments=top_n_comments,
                     custom_prompt=custom_prompt,
                     model=model,
-                    temperature=temperature
+                    temperature=temperature,
                 )
                 results.append(result)
             except Exception as e:
-                print(f"Error generating post {i+1}: {e}")
+                print(f"Error generating post {i + 1}: {e}")
                 continue
 
         return results

@@ -3,13 +3,15 @@ import yaml
 from datetime import datetime
 from typing import Optional
 from langchain_google_genai import ChatGoogleGenerativeAI
-from ..model.models import PostSummary, LLMRequest, LLMResponse
+from model.models import PostSummary, LLMRequest, LLMResponse
 
 
 class LLMService:
     """Service for generating content using Large Language Models"""
 
-    def __init__(self, default_model: str = "gemini-2.5-pro", default_temperature: float = 0.7):
+    def __init__(
+        self, default_model: str = "gemini-2.5-pro", default_temperature: float = 0.7
+    ):
         """
         Initialize LLM service
 
@@ -27,7 +29,9 @@ class LLMService:
         if not api_key:
             raise ValueError("GEMINI_API_KEY environment variable not found")
 
-    def _create_llm_client(self, model: str, temperature: float) -> ChatGoogleGenerativeAI:
+    def _create_llm_client(
+        self, model: str, temperature: float
+    ) -> ChatGoogleGenerativeAI:
         """
         Create LLM client with specified parameters
 
@@ -40,9 +44,7 @@ class LLMService:
         """
         api_key = os.getenv("GEMINI_API_KEY")
         return ChatGoogleGenerativeAI(
-            model=model,
-            google_api_key=api_key,
-            temperature=temperature
+            model=model, google_api_key=api_key, temperature=temperature
         )
 
     def post_summary_to_yaml(self, post_summary: PostSummary) -> str:
@@ -57,14 +59,16 @@ class LLMService:
         """
         # Convert to dict first to ensure proper serialization
         summary_dict = post_summary.model_dump()
-        return yaml.dump(summary_dict, default_flow_style=False, sort_keys=False, allow_unicode=True)
+        return yaml.dump(
+            summary_dict, default_flow_style=False, sort_keys=False, allow_unicode=True
+        )
 
     def generate_linkedin_post(
         self,
         post_summary: PostSummary,
         custom_prompt: Optional[str] = None,
         model: Optional[str] = None,
-        temperature: Optional[float] = None
+        temperature: Optional[float] = None,
     ) -> LLMResponse:
         """
         Generate a LinkedIn post from a Reddit post summary
@@ -98,7 +102,7 @@ class LLMService:
             prompt=custom_prompt,
             context=yaml_content,
             model=model,
-            temperature=temperature
+            temperature=temperature,
         )
 
         return self.query_llm(llm_request)
@@ -129,7 +133,7 @@ class LLMService:
             return LLMResponse(
                 content=response.content,
                 model_used=llm_request.model,
-                timestamp=datetime.utcnow()
+                timestamp=datetime.utcnow(),
             )
 
         except Exception as e:
@@ -140,7 +144,7 @@ class LLMService:
         post_summary: PostSummary,
         prompt: str,
         model: Optional[str] = None,
-        temperature: Optional[float] = None
+        temperature: Optional[float] = None,
     ) -> LLMResponse:
         """
         Generate custom content with a specific prompt
@@ -158,7 +162,7 @@ class LLMService:
             post_summary=post_summary,
             custom_prompt=prompt,
             model=model,
-            temperature=temperature
+            temperature=temperature,
         )
 
     def batch_generate(
@@ -166,7 +170,7 @@ class LLMService:
         post_summaries: list[PostSummary],
         prompt: str,
         model: Optional[str] = None,
-        temperature: Optional[float] = None
+        temperature: Optional[float] = None,
     ) -> list[LLMResponse]:
         """
         Generate content for multiple post summaries
@@ -187,7 +191,7 @@ class LLMService:
                     post_summary=post_summary,
                     prompt=prompt,
                     model=model,
-                    temperature=temperature
+                    temperature=temperature,
                 )
                 responses.append(response)
             except Exception as e:
