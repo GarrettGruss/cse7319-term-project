@@ -1,0 +1,119 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reddit-linkedin-config
+  namespace: default
+data:
+  REDDIT_USERNAME: "your-reddit-username"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: reddit-linkedin-secrets
+  namespace: default
+type: Opaque
+stringData:
+  REDDIT_CLIENT_ID: "your-reddit-client-id"
+  REDDIT_CLIENT_SECRET: "your-reddit-client-secret"
+  GEMINI_API_KEY: "your-gemini-api-key"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reddit-linkedin-streamlit
+  namespace: default
+  labels:
+    app: reddit-linkedin-streamlit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reddit-linkedin-streamlit
+  template:
+    metadata:
+      labels:
+        app: reddit-linkedin-streamlit
+    spec:
+      containers:
+      - name: streamlit-app
+        image: python:3.11-slim
+        ports:
+        - containerPort: 8501
+        env:
+        - name: REDDIT_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: reddit-linkedin-config
+              key: REDDIT_USERNAME
+        - name: REDDIT_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: reddit-linkedin-secrets
+              key: REDDIT_CLIENT_ID
+        - name: REDDIT_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: reddit-linkedin-secrets
+              key: REDDIT_CLIENT_SECRET
+        - name: GEMINI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: reddit-linkedin-secrets
+              key: GEMINI_API_KEY
+        command: ["/bin/bash"]
+        args:
+          - -c
+          - |
+            pip install uv
+            uv sync
+            uv run streamlit run src/streamlit_app.py --server.port=8501 --server.address=0.0.0.0
+        workingDir: /app
+        volumeMounts:
+        - name: app-code
+          mountPath: /app
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8501
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8501
+          initialDelaySeconds: 30
+          periodSeconds: 10
+      volumes:
+      - name: app-code
+        emptyDir: {}
+      initContainers:
+      - name: git-clone
+        image: alpine/git
+        command: ['git', 'clone', 'https://github.com/your-username/cse7319-term-project.git', '/app']
+        volumeMounts:
+        - name: app-code
+          mountPath: /app
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reddit-linkedin-streamlit-service
+  namespace: default
+spec:
+  selector:
+    app: reddit-linkedin-streamlit
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8501
+  type: LoadBalancer
