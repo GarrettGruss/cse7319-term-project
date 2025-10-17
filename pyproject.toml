@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "cse7319-term-project"
 version = "0.1.0"
@@ -22,6 +26,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "hatchling>=1.27.0",
     "ipdb>=0.13.13",
     "ruff>=0.13.2",
 ]
