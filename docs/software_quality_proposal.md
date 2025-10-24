@@ -2,6 +2,7 @@
 # Project Title
 **Operational Profile-Based Software Quality Measurement for LinkedIn Content Curation Platform**
 
+Garrett Gruss
 # Abstract
 
 This project implements a comprehensive software quality measurement system for a microservices-based LinkedIn content curation platform. The system combines static code analysis (CI/CD metrics) with runtime operational metrics (Prometheus) and log-based defect tracking (Grafana Loki) to provide quantifiable quality assessment. Following Jeff Tian's Unified Markov Model (UMM) methodology, quality is characterized by computing usage-weighted defect rates across functional domains (Reddit scraping, content generation, and user interface services). The measurement system tracks code quality metrics (LOC, complexity, test coverage, linting violations, type coverage) via CI/CD pipelines, operational metrics (API latency, error rates, throughput, resource utilization) via Prometheus, and defect context via Grafana Loki log aggregation. System-wide quality score is calculated as Σ(Usage_Probability × Defect_Rate) per functional domain, enabling prioritization of quality improvements in high-usage components. The project delivers actionable quality insights through automated dashboards, configurable alerts, and reliability growth tracking across semantic-versioned releases.
