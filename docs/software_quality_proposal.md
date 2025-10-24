@@ -50,6 +50,20 @@ Operational quality metrics will be capturing using a combination of *Prometheus
 
 The system will be organized into three core functional domains, each with specific code quality and operational metrics. This breakdown can be used to construct an operational profile-based quality model following Jeff Tian's Unified Markov Model (UMM) approach. Each domain's Defect Rate and Usage Rates can be tracked by Prometheus for usage tracking, and Prometheus, Grafana Loki, and CI/CD for Defect Rates.
 
+```mermaid
+graph LR
+    RSS["<b>Reddit Scraper Service</b><br/><br/>Usage Rate: Posts/Hour<br/>Defect Rate: Failures/Total Scrapes"]
+    CGS["<b>Content Generation Service</b><br/><br/>Usage Rate: Generations/Hour<br/>Defect Rate: (Failed + Rejected)/Total"]
+    UIS["<b>Streamlit UI Service</b><br/><br/>Usage Rate: Sessions/Hour<br/>Defect Rate: Errors/Total Actions"]
+
+    RSS ~~~ CGS
+    CGS ~~~ UIS
+
+    style RSS fill:#ff6b6b,stroke:#c92a2a,stroke-width:2px,color:#000
+    style CGS fill:#4ecdc4,stroke:#0b7285,stroke-width:2px,color:#000
+    style UIS fill:#45b7d1,stroke:#1864ab,stroke-width:2px,color:#000
+```
+
 ## Operational Profile-Based Quality Model (Tian's UMM)
 
 Following Tian's methodology, system quality will be characterized by combining operational profiles (usage patterns) with defect rates across functional domains:
@@ -69,16 +83,6 @@ Where:
 3. **User Interface** - Human review and interaction
 4. **Database Operations** - Neo4j graph queries and persistence
 
-**Transition Model:**
-```
-User Request → Reddit Scraping → Database Write → Content Generation → Database Read → UI Display → Human Review → (Approve/Reject)
-```
-
-**Metrics Collection for UMM:**
-- **Usage Tracking**: Prometheus counters track operation frequency per domain
-- **Defect Tracking**: Error rates, failed operations, and exceptions per domain
-- **Transition Probabilities**: Derived from API endpoint call patterns and service-to-service communication metrics
-- **Reliability Calculation**: System reliability = Π (1 - Defect_Rate(state))^Usage_Count(state)
 
 ## Service Breakdown with UMM Quality Metrics
 
@@ -88,31 +92,16 @@ Reddit Scraper Service | LOC, Cyclomatic Complexity, Test Coverage, Maintainabil
 Content Generation Service | LOC, Cyclomatic Complexity, Test Coverage, Maintainability Index, Linting Violations, Type Coverage | LLM API Latency, Token Usage, Generation Success Rate, Cost per Generation, Content Approval Rate | **Usage Rate**: Generations/Hour, **Defect Rate**: (Failed + Rejected) / Total Generations
 Streamlit UI Service | LOC, Cyclomatic Complexity, Test Coverage, Maintainability Index, Linting Violations, Type Coverage | User Sessions, Response Time, Page Load Time, User Actions/Session, Error Rate | **Usage Rate**: Sessions/Hour, **Defect Rate**: UI Errors / Total User Actions
 
-**Transition Probabilities (measured via Prometheus):**
-- P(Scrape → Content Generation) = Content Generations / Successful Scrapes
-- P(Content Generation → UI Review) = UI Review Sessions / Generated Content
-- P(UI Review → Approval) = Approved Content / Total Reviews
-- P(UI Review → Rejection) = Rejected Content / Total Reviews
-
 # Operational Metrics
 
 Operational and Usage metrics will be tracked by release and separated by functional domain. This usage information will be used to calculate:
 1. **Failure rate** per functional domain (defect density)
 2. **Mean Time To Failure (MTTF)** per functional domain
-3. **Usage-weighted system quality** following Tian's UMM approach
-4. **Transition reliability** between operational states
 
 **Per-Domain Quality Calculation:**
 - **Domain Quality Score** = (Successful Operations / Total Operations) per time period
 - **System-Wide Quality Score** = Σ (Usage_Weight × Domain_Quality) across all domains
 - **Reliability Growth** = Track quality score improvements across releases
--   Performance metrics (response time, throughput, resource utilization) from Prometheus
--   API endpoint usage and error rates from Prometheus
--   Application-specific metrics (user sessions, external API latency, cache hit rates) from Prometheus
--   Database performance metrics (Neo4j Enterprise query time, transaction throughput, connection pool usage) from Neo4j built-in Prometheus endpoint
--   Log data and defect data from Grafana Loki
--   Uptime and availability monitoring from Prometheus Alertmanager
-
 
 # Metrics Stack Architecture
 
@@ -402,13 +391,6 @@ This section defines the response protocols and continuous improvement processes
 - Database Connection Pool Utilization 75-90%
 - UMM Quality Score 0.02-0.05 (2-5% defect rate)
 
-**Actions:**
-1. **Automated**: Prometheus Alertmanager sends notifications to on-call engineer
-2. **Triage**: Review Grafana dashboards and Loki logs to identify root cause
-3. **Mitigation**: Apply immediate fixes (scale resources, rollback deployment, disable feature)
-4. **Documentation**: Create incident report in issue tracker
-5. **Post-mortem**: Conduct root cause analysis within 48 hours
-
 ## UMM Quality Score Response Plan
 
 The UMM quality score (Σ(Usage_Probability × Defect_Rate)) provides usage-weighted quality assessment. When quality degrades, follow this prioritization framework:
@@ -471,79 +453,3 @@ Prioritize domains with highest Impact Score:
 - Re-calculate UMM quality score after fixes deployed
 - Track reliability growth: `(New_Quality_Score - Old_Quality_Score) / Old_Quality_Score × 100%`
 - Target: Reduce defect rate by 20% per iteration
-
-## Reliability Growth Tracking
-
-**Per-Release Metrics:**
-- Defect Rate (per 1000 operations) by functional domain
-- System-Wide UMM Quality Score
-- Transition Reliability between operational states
-- MTTF (Mean Time To Failure) per service
-
-**Continuous Improvement Actions:**
-1. **Monthly Quality Review Meeting**
-   - Review UMM quality score trends
-   - Identify services with increasing defect rates
-   - Allocate engineering resources to highest-impact improvements
-
-2. **Quarterly Quality Retrospective**
-   - Analyze correlation between code metrics (complexity, coverage) and operational defects
-   - Update quality thresholds based on historical data
-   - Refine UMM model with actual usage patterns
-
-3. **Automated Regression Detection**
-   - Alert when any domain's defect rate increases >2× baseline
-   - Automatically create issue tickets with relevant metrics
-   - Tag releases with quality score for easy rollback identification
-
-## Process Improvement Cycle
-
-**Weekly:**
-- Review critical/warning alerts from previous week
-- Update alert thresholds based on false positive rate
-- Document recurring issues and patterns
-
-**Sprint-based (Bi-weekly):**
-- Include quality debt stories in sprint planning
-- Prioritize technical debt based on UMM impact scores
-- Allocate 20% of sprint capacity to quality improvements
-
-**Per-Release:**
-- Generate quality report comparing current vs previous release
-- Update operational profile (usage probabilities) based on actual data
-- Recalibrate defect rate baselines
-
-**Quarterly:**
-- Conduct comprehensive quality assessment
-- Update quality strategy based on lessons learned
-- Refine measurement tools and dashboards
-
-## Escalation Path
-
-**Level 1: Developer** (All warnings, automated CI/CD failures)
-- Fix code quality issues before merge
-- Investigate operational warnings within 24 hours
-
-**Level 2: Team Lead** (Repeated violations, quality gate exceptions)
-- Approve quality threshold exceptions with justification
-- Review recurring defect patterns
-- Allocate resources for quality improvements
-
-**Level 3: Engineering Manager** (Critical alerts, >20% quality degradation)
-- Make go/no-go decisions on releases
-- Authorize emergency fixes and hotfixes
-- Coordinate cross-team quality initiatives
-
-**Level 4: VP Engineering** (System-wide outages, UMM score >10%)
-- Declare quality emergency
-- Halt feature development for stabilization
-- Approve major architecture changes
-
-## Success Metrics for Follow-up Actions
-
-**Effectiveness Indicators:**
-- Time to Resolution: Alert trigger → Issue resolved (Target: <2 hours for critical)
-- Recurrence Rate: Same defect type reappearing (Target: <5%)
-- Quality Score Improvement: Release-over-release improvement (Target: -10% defect rate)
-- Alert Accuracy: True positive alerts / Total alerts (Target: >80%)
-- Coverage of Root Causes: Issues with identified root cause (Target: >90%)
