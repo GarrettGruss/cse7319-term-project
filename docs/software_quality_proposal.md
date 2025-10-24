@@ -1,4 +1,45 @@
 
+# Project Title
+**Operational Profile-Based Software Quality Measurement for LinkedIn Content Curation Platform**
+
+# Abstract
+
+This project implements a comprehensive software quality measurement system for a microservices-based LinkedIn content curation platform. The system combines static code analysis (CI/CD metrics) with runtime operational metrics (Prometheus) and log-based defect tracking (Grafana Loki) to provide quantifiable quality assessment. Following Jeff Tian's Unified Markov Model (UMM) methodology, quality is characterized by computing usage-weighted defect rates across functional domains (Reddit scraping, content generation, and user interface services). The measurement system tracks code quality metrics (LOC, complexity, test coverage, linting violations, type coverage) via CI/CD pipelines, operational metrics (API latency, error rates, throughput, resource utilization) via Prometheus, and defect context via Grafana Loki log aggregation. System-wide quality score is calculated as Σ(Usage_Probability × Defect_Rate) per functional domain, enabling prioritization of quality improvements in high-usage components. The project delivers actionable quality insights through automated dashboards, configurable alerts, and reliability growth tracking across semantic-versioned releases.
+
+# Project Schedule
+
+```mermaid
+gantt
+    title Software Quality Measurement Project Timeline
+    dateFormat YYYY-MM-DD
+
+    section Course Milestones
+    Presentation Signup           :milestone, m1, 2025-10-10, 0d
+    Project Proposal Due          :milestone, m2, 2025-10-24, 0d
+    Literature Research Due       :milestone, m3, 2025-11-07, 0d
+    Project Progress Report Due   :milestone, m4, 2025-11-21, 0d
+    Exam                          :milestone, m5, 2025-11-26, 0d
+    Project Report Due            :milestone, m6, 2025-12-05, 0d
+    Project Presentation Due      :milestone, m7, 2025-12-05, 0d
+
+    section Project Implementation
+    Proposal Development          :done, p1, 2025-10-17, 7d
+    CI/CD Metrics Setup           :active, p2, 2025-10-25, 7d
+    Prometheus Deployment         :p3, 2025-11-01, 7d
+    Grafana Loki Integration      :p4, 2025-11-08, 7d
+    UMM Quality Model Implementation :p5, 2025-11-15, 7d
+    Dashboard & Alerting Config   :p6, 2025-11-22, 7d
+    Data Collection & Analysis    :p7, 2025-11-29, 7d
+    Final Report Writing          :p8, 2025-12-01, 5d
+    Presentation Preparation      :p9, 2025-12-03, 3d
+
+    section Deliverables
+    Literature Research           :crit, d1, 2025-10-31, 7d
+    Progress Report               :crit, d2, 2025-11-14, 7d
+    Quality Metrics Collection    :crit, d3, 2025-11-22, 7d
+    Final Analysis & Report       :crit, d4, 2025-11-28, 8d
+```
+
 # Overview
 
 Code quality metrics will be captured in CI/CD workflows using python quality-checking plugins: *Ruff, Mypy, Pytest, Radon, etc*.
@@ -315,3 +356,194 @@ The Prometheus service and Grafana Loki will passively monitor system performanc
 ### Logging & Monitoring
 - Log Data: **Grafana Loki**
 - Defect/Error Data: **Grafana**
+
+# Follow-up Actions & Process Improvement
+
+This section defines the response protocols and continuous improvement processes triggered by quality metrics thresholds and trend analysis.
+
+## Quality Thresholds & Alert Triggers
+
+### CI/CD Quality Gates
+
+**Blocking Conditions (Prevent Merge/Deploy):**
+- Test Coverage < 70% (per service)
+- Cyclomatic Complexity > 15 (any function)
+- Maintainability Index < 50 (any module)
+- Linting Violations > 50 (per service)
+- Type Coverage < 60% (per service)
+- Failed Tests > 0
+
+**Warning Conditions (Allow Merge with Review):**
+- Test Coverage 70-80%
+- Cyclomatic Complexity 10-15
+- Maintainability Index 50-65
+- Linting Violations 20-50
+
+**Actions:**
+1. **Automated**: CI/CD pipeline blocks merge request
+2. **Notification**: Alert developer via GitHub PR comment with specific violations
+3. **Required Action**: Developer must refactor code or justify exception
+4. **Review**: Team lead approval required for threshold exceptions
+
+### Operational Quality Alerts
+
+**Critical Alerts (Immediate Response Required):**
+- Error Rate > 5% (any service)
+- API Response Time P95 > 2000ms
+- Service Uptime < 99%
+- Database Connection Pool Utilization > 90%
+- Neo4j Query Time P95 > 500ms
+- System-Wide UMM Quality Score > 0.05 (5% defect rate)
+
+**Warning Alerts (Investigation Within 24 Hours):**
+- Error Rate 1-5%
+- API Response Time P95 1000-2000ms
+- Service Uptime 99-99.9%
+- Database Connection Pool Utilization 75-90%
+- UMM Quality Score 0.02-0.05 (2-5% defect rate)
+
+**Actions:**
+1. **Automated**: Prometheus Alertmanager sends notifications to on-call engineer
+2. **Triage**: Review Grafana dashboards and Loki logs to identify root cause
+3. **Mitigation**: Apply immediate fixes (scale resources, rollback deployment, disable feature)
+4. **Documentation**: Create incident report in issue tracker
+5. **Post-mortem**: Conduct root cause analysis within 48 hours
+
+## UMM Quality Score Response Plan
+
+The UMM quality score (Σ(Usage_Probability × Defect_Rate)) provides usage-weighted quality assessment. When quality degrades, follow this prioritization framework:
+
+### Quality Score Degradation Triggers
+
+**Severity Levels:**
+- **Critical**: UMM Score increases by >50% between releases
+- **Major**: UMM Score increases by 25-50% between releases
+- **Minor**: UMM Score increases by 10-25% between releases
+- **Informational**: UMM Score increases by <10% between releases
+
+### Prioritized Response Strategy
+
+**Step 1: Identify High-Impact Domains**
+```
+Impact Score = Usage_Probability × Defect_Rate × 1000
+```
+
+Prioritize domains with highest Impact Score:
+- Focus on services with >30% usage probability first
+- Example: If Reddit Scraper has 60% usage and 3% defect rate:
+  Impact = 0.60 × 0.03 × 1000 = 18 points
+
+**Step 2: Domain-Specific Actions**
+
+**Reddit Scraper Service:**
+- **Defect Types**: API failures, rate limiting, parsing errors
+- **Actions**:
+  - Implement exponential backoff for API retries
+  - Add request caching to reduce API calls
+  - Improve error handling for malformed posts
+  - Add integration tests for edge cases
+
+**Content Generation Service:**
+- **Defect Types**: LLM timeouts, token limit exceeded, poor quality output
+- **Actions**:
+  - Implement timeout handling with fallback strategies
+  - Add content validation before returning results
+  - Track rejection reasons to improve prompts
+  - Implement content quality scoring
+
+**Streamlit UI Service:**
+- **Defect Types**: Session errors, rendering failures, slow page loads
+- **Actions**:
+  - Optimize database queries
+  - Implement caching for frequently accessed data
+  - Add client-side validation
+  - Improve error messages for user clarity
+
+**Neo4j Database:**
+- **Defect Types**: Slow queries, connection timeouts, transaction failures
+- **Actions**:
+  - Add missing indexes on frequently queried properties
+  - Optimize Cypher queries with EXPLAIN/PROFILE
+  - Increase connection pool size
+  - Implement query result caching
+
+**Step 3: Measure Improvement**
+- Re-calculate UMM quality score after fixes deployed
+- Track reliability growth: `(New_Quality_Score - Old_Quality_Score) / Old_Quality_Score × 100%`
+- Target: Reduce defect rate by 20% per iteration
+
+## Reliability Growth Tracking
+
+**Per-Release Metrics:**
+- Defect Rate (per 1000 operations) by functional domain
+- System-Wide UMM Quality Score
+- Transition Reliability between operational states
+- MTTF (Mean Time To Failure) per service
+
+**Continuous Improvement Actions:**
+1. **Monthly Quality Review Meeting**
+   - Review UMM quality score trends
+   - Identify services with increasing defect rates
+   - Allocate engineering resources to highest-impact improvements
+
+2. **Quarterly Quality Retrospective**
+   - Analyze correlation between code metrics (complexity, coverage) and operational defects
+   - Update quality thresholds based on historical data
+   - Refine UMM model with actual usage patterns
+
+3. **Automated Regression Detection**
+   - Alert when any domain's defect rate increases >2× baseline
+   - Automatically create issue tickets with relevant metrics
+   - Tag releases with quality score for easy rollback identification
+
+## Process Improvement Cycle
+
+**Weekly:**
+- Review critical/warning alerts from previous week
+- Update alert thresholds based on false positive rate
+- Document recurring issues and patterns
+
+**Sprint-based (Bi-weekly):**
+- Include quality debt stories in sprint planning
+- Prioritize technical debt based on UMM impact scores
+- Allocate 20% of sprint capacity to quality improvements
+
+**Per-Release:**
+- Generate quality report comparing current vs previous release
+- Update operational profile (usage probabilities) based on actual data
+- Recalibrate defect rate baselines
+
+**Quarterly:**
+- Conduct comprehensive quality assessment
+- Update quality strategy based on lessons learned
+- Refine measurement tools and dashboards
+
+## Escalation Path
+
+**Level 1: Developer** (All warnings, automated CI/CD failures)
+- Fix code quality issues before merge
+- Investigate operational warnings within 24 hours
+
+**Level 2: Team Lead** (Repeated violations, quality gate exceptions)
+- Approve quality threshold exceptions with justification
+- Review recurring defect patterns
+- Allocate resources for quality improvements
+
+**Level 3: Engineering Manager** (Critical alerts, >20% quality degradation)
+- Make go/no-go decisions on releases
+- Authorize emergency fixes and hotfixes
+- Coordinate cross-team quality initiatives
+
+**Level 4: VP Engineering** (System-wide outages, UMM score >10%)
+- Declare quality emergency
+- Halt feature development for stabilization
+- Approve major architecture changes
+
+## Success Metrics for Follow-up Actions
+
+**Effectiveness Indicators:**
+- Time to Resolution: Alert trigger → Issue resolved (Target: <2 hours for critical)
+- Recurrence Rate: Same defect type reappearing (Target: <5%)
+- Quality Score Improvement: Release-over-release improvement (Target: -10% defect rate)
+- Alert Accuracy: True positive alerts / Total alerts (Target: >80%)
+- Coverage of Root Causes: Issues with identified root cause (Target: >90%)
