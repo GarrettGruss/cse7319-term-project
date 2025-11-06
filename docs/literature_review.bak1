@@ -38,11 +38,12 @@ coverage measurements.
 
 \subsection{Static Code Analysis Metrics}
 
-\textbf{How Open Source Projects Use Static Code Analysis
-	Tools in Continuous Integration Pipelines} \cite{zampetti2017static}
+\subsubsection{How Open Source Projects Use Static Code Analysis
+	Tools in Continuous Integration Pipelines}
 
-\subsubsection{Summary}
-This empirical study investigates how open-source
+\textbf{Citation:} \cite{zampetti2017static}
+
+\textbf{Summary:} This empirical study investigates how open-source
 projects integrate static code analysis tools into their continuous
 integration workflows. The researchers analyzed real-world CI
 configurations to understand what types of code quality issues cause
@@ -58,16 +59,15 @@ or failures, developers typically address the issues directly by
 fixing the code rather than suppressing warnings or adjusting tool
 configurations.
 
-\subsubsection{Analysis}
-This paper demonstrates the practical application
-of static analysis of internal metrics within CI/CD pipelines. The finding
+\textbf{Analysis:} This paper demonstrates the practical application
+of static analysis internal metrics within CI/CD pipelines. The finding
 that coding style violations constitute the majority of build failures
 indicates teams using these tools are attempting to enforce code
 maintainability. This illustrates a predictive relationship, by
 controlling internal metrics such as code style and structural consistency,
 teams aim to improve external metrics of maintainability.
 
-The paper validates that adding a quality gate within the build pipeline
+The paper validates that adding an quality gate within the build pipeline
 effectively enforces internal code style requirements. The developers'
 tendency to fix issues rather
 than suppress warnings demonstrates that when internal metrics are
@@ -78,10 +78,16 @@ selected metrics such as style violations and complexity checks.
 
 \subsection{Test Coverage Metrics}
 
-\textbf{Open Code Coverage Framework: A Consistent and
-	Flexible Framework for Measuring Test Coverage} \cite{sakamoto2010open}
+\subsubsection{Open Code Coverage Framework: A Consistent and
+	Flexible Framework for Measuring Test Coverage}
 
-\subsubsection{Summary}
+\textbf{Citation:} \cite{sakamoto2010open}
+
+\textbf{Summary:} This paper addresses a challenge in measuring test
+coverage and coverage criteria across different programming languages.
+The researches observed each language typically requires seperate tools
+with inconsistent
+
 This paper addresses a fundamental challenge in
 measuring test coverage across different programming languages and
 coverage criteria: the high cost and inconsistency of coverage
@@ -92,15 +98,15 @@ separate tools with inconsistent reporting formats and capabilities.
 They developed the Open Code Coverage Framework (OCCF), which
 abstracts common concepts across programming languages using abstract
 syntax trees (ASTs). By identifying structural commonalities at the
-AST level, the framework can support multiple languages with a single common solution. The authors demonstrated
+AST level, the framework can support multiple languages with a single common solution
+. The authors demonstrated
 that their approach reduced implementation requirements by
 approximately 90\% and cut development time for new coverage criteria
 by 80\% or more. The framework supports various coverage types
 including statement, branch, and path coverage while remaining
 extensible for custom criteria.
 
-\subsubsection{Analysis}
-This paper addresses a fundamental challenge in
+\textbf{Analysis:} This paper addresses a fundamental challenge in
 measurement theory: ensuring consistent and properly defined metrics
 across different contexts. Test coverage is an internal metric, and serves as a leading
 indicator for external quality attributes like reliability and defect
@@ -114,10 +120,11 @@ unreliable.
 
 \subsection{CI/CD Metrics Visualization}
 
-\textbf{A Roadmap for Using Continuous Integration Environments} \cite{yu2024roadmap}
+\subsubsection{A Roadmap for Using Continuous Integration Environments}
 
-\subsubsection{Summary}
-This study investigates how development
+\textbf{Citation:} \cite{yu2024roadmap}
+
+\textbf{Summary:} This study investigates how development
 teams can leverage CI environments to generate and visualize quality
 metrics. Through interviews with 22 participants across five
 industrial projects, the researchers identified that 86\% of
@@ -135,8 +142,7 @@ projects operated at intermediate maturity levels. Challenges
 identified include dashboard information overload and insufficient
 understanding of metrics meanings.
 
-\subsubsection{Analysis}
-This paper directly addresses the metrics usage
+\textbf{Analysis:} This paper directly addresses the metrics usage
 workflow: after measurement activities collect data, analysis and
 visualization are essential to make results actionable. The
 cataloging of 14 base and 10 derived metrics demonstrates the variety of
@@ -147,8 +153,8 @@ dashboard preference indicates that integrated visualization of
 multiple metrics is more valuable than isolated measurements. The
 identified challenges—information overload and insufficient
 understanding—highlight a pitfall, where the overcollection of metrics could
-dilute their importance. This suggests the value for an "Experience Factory"
-approach where organizations identify which metrics matter and how to
+dilute their import. This suggests the value for and "Experience Factory"
+approache where organizations identify which metrics matter and how to
 interpret them.
 
 \section{External Metrics}
@@ -162,12 +168,13 @@ metrics.
 
 \subsection{DevOps Research and Assessment (DORA) Metrics}
 
-\textbf{A Framework for Automating the Measurement of DORA Metrics} \cite{wilkes2023framework}
+\subsubsection{A Framework for Automating the Measurement of DORA Metrics}
 
-\subsubsection{Summary}
-The DORA metrics (Deployment Frequency, Lead Time
+\textbf{Citation:} \cite{wilkes2023framework}
+
+\textbf{Summary:} The DORA metrics (Deployment Frequency, Lead Time
 for Change, Time to Restore Service, and Change Failure Rate) have
-become industry-standard indicators of software delivery performance.
+become industry-standard indicators of software delivery Performance.
 This paper presents a framework
 that automatically extracts and calculates DORA metrics from project
 repositories without requiring specific CI/CD tools or cloud
@@ -183,14 +190,13 @@ metrics correlated with major historical events in projects,
 validating the metrics' ability to detect meaningful shifts in
 development performance.
 
-\subsubsection{Analysis}
-The DORA metrics represent external quality
+\textbf{Analysis:} The DORA metrics represent external quality
 attributes in the DevOps context, aligned with the Putnam/Myers
 framework's external metrics of time, quality, and productivity:
 
 \begin{itemize}
 	\item Deployment frequency and lead time reflect productivity and schedule performance
-	\item Change failure rate and time to restore service measure reliability.
+	\item change failure rate and time to restore service measure reliability.
 \end{itemize}
 
 The framework's project-agnostic design is significant because it enables
@@ -204,21 +210,21 @@ metric thresholds or tools actually improve external outcomes.
 
 \subsection{Requirements Traceability}
 
-\textbf{Continuous Integration and Delivery Traceability in
-	Industry: Needs and Practices} \cite{stahl2016continuous}
+\subsubsection{Continuous Integration and Delivery Traceability in
+	Industry: Needs and Practices}
 
-\subsubsection{Summary}
-The paper documents the Eiffel framework, developed within Ericsson to
+\textbf{Citation:} \cite{stahl2016continuous}
+
+\textbf{Summary:} The paper documents the Eiffel framework, developed within Ericsson to
 provide real-time traceability throughout CI/CD pipelines. The Eiffel approach defines a common
 protocol to embed traceability into
 the continuous integration infrastructure, allowing automatic
 capture of relationships between requirements, commits, builds, tests,
 and deployments as they occur. This enables immediate visibility into
-which requirements are affected by changes and what testing has
+which requirements are affected by change and what testing has
 been performed.
 
-\subsubsection{Analysis}
-Requirements traceability
+\textbf{Analysis:} Requirements traceability
 connects external requirements like customer needs and specified
 functionality to internal artifacts such as commits, builds, or tests. The Eiffel framework
 embeds automatic measurement directly into development
@@ -238,11 +244,12 @@ implemented and tested.
 
 \subsection{Hybrid Development Models}
 
-\textbf{Mathematical Model of the Software Development Process
-	with Hybrid Management Elements} \cite{semenov2025mathematical}
+\subsubsection{Mathematical Model of the Software Development Process
+	with Hybrid Management Elements}
 
-\subsubsection{Summary}
-This very recent paper develops a probabilistic
+\textbf{Citation:} \cite{semenov2025mathematical}
+
+\textbf{Summary:} This very recent paper develops a probabilistic
 model for hybrid software development lifecycles that combines
 traditional project management with agile and DevOps practices. The
 model integrates data from multiple sources including requirements
@@ -251,8 +258,7 @@ telemetry. Using Graphical Evaluation and Review Technique (GERT)
 network semantics and fuzzy uncertainty treatment, the model predicts
 completion timelines and rework requirements.
 
-\subsubsection{Analysis}
-This paper defines a methodology for
+\textbf{Analysis:} This paper defines a methodology for
 modelling the relationship
 between internal and external metrics. By
 combining data from requirements traceability, static code analysis, and
@@ -283,12 +289,12 @@ that inconsistent measurement produces unreliable correlations between
 internal and external metrics.
 
 \textbf{From Measurement to Control:} The papers demonstrate metrics
-usage workflow:
+usage workflow: 
 \begin{enumerate}
-	\item Automated collection
-	\item Dashboards/predictive models
-	\item Action/process improvements
-	\item Validation
+    \item Automated collection
+    \item Dashboards/predictive models
+    \item Action/process improvements
+    \item Validation
 \end{enumerate}
 
 This progression shows metrics evolving from
