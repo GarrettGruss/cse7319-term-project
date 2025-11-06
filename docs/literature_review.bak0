@@ -39,7 +39,7 @@ coverage measurements.
 \subsection{Static Code Analysis Metrics}
 
 \subsubsection{How Open Source Projects Use Static Code Analysis
-	Tools in Continuous Integration Pipelines}
+Tools in Continuous Integration Pipelines}
 
 \textbf{Citation:} \cite{zampetti2017static}
 
@@ -79,14 +79,14 @@ selected metrics such as style violations and complexity checks.
 \subsection{Test Coverage Metrics}
 
 \subsubsection{Open Code Coverage Framework: A Consistent and
-	Flexible Framework for Measuring Test Coverage}
+Flexible Framework for Measuring Test Coverage}
 
 \textbf{Citation:} \cite{sakamoto2010open}
 
 \textbf{Summary:} This paper addresses a challenge in measuring test
 coverage and coverage criteria across different programming languages.
 The researches observed each language typically requires seperate tools
-with inconsistent
+with inconsistent 
 
 This paper addresses a fundamental challenge in
 measuring test coverage across different programming languages and
@@ -116,7 +116,7 @@ enables uniform measurement of statement, branch, and path coverage
 across languages. This consistency is essential for establishing valid
 predictive models: if coverage is measured differently across
 components, correlations with external quality metrics become
-unreliable.
+unreliable. 
 
 \subsection{CI/CD Metrics Visualization}
 
@@ -174,7 +174,7 @@ metrics.
 
 \textbf{Summary:} The DORA metrics (Deployment Frequency, Lead Time
 for Change, Time to Restore Service, and Change Failure Rate) have
-become industry-standard indicators of software delivery Performance.
+become industry-standard indicators of software delivery Performance. 
 This paper presents a framework
 that automatically extracts and calculates DORA metrics from project
 repositories without requiring specific CI/CD tools or cloud
@@ -195,8 +195,8 @@ attributes in the DevOps context, aligned with the Putnam/Myers
 framework's external metrics of time, quality, and productivity:
 
 \begin{itemize}
-	\item Deployment frequency and lead time reflect productivity and schedule performance
-	\item change failure rate and time to restore service measure reliability.
+    \item Deployment frequency and lead time reflect productivity and schedule performance
+    \item change failure rate and time to restore service measure reliability.
 \end{itemize}
 
 The framework's project-agnostic design is significant because it enables
@@ -211,7 +211,7 @@ metric thresholds or tools actually improve external outcomes.
 \subsection{Requirements Traceability}
 
 \subsubsection{Continuous Integration and Delivery Traceability in
-	Industry: Needs and Practices}
+Industry: Needs and Practices}
 
 \textbf{Citation:} \cite{stahl2016continuous}
 
@@ -224,7 +224,7 @@ and deployments as they occur. This enables immediate visibility into
 which requirements are affected by change and what testing has
 been performed.
 
-\textbf{Analysis:} Requirements traceability
+\textbf{Analysis:} Requirements traceability 
 connects external requirements like customer needs and specified
 functionality to internal artifacts such as commits, builds, or tests. The Eiffel framework
 embeds automatic measurement directly into development
@@ -232,7 +232,7 @@ workflows, addressing the classic challenge that manual metrics
 collection is impractical in fast-paced development. This automation
 enables real-time tracking rather than periodic snapshots, making
 traceability a useful leading indicator: when a requirement changes,
-teams immediately know which code and tests are affected.
+teams immediately know which code and tests are affected. 
 
 From a
 measurement theory perspective, this automated approach produces more
@@ -245,7 +245,7 @@ implemented and tested.
 \subsection{Hybrid Development Models}
 
 \subsubsection{Mathematical Model of the Software Development Process
-	with Hybrid Management Elements}
+with Hybrid Management Elements}
 
 \textbf{Citation:} \cite{semenov2025mathematical}
 
