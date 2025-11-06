@@ -1,0 +1,407 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{hyperref}
+
+\doublespacing
+
+\title{Literature Review: Software Metrics in Continuous Integration
+and Continuous Delivery Pipelines}
+\author{CSE 7319 - Software Metrics and Quality}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This literature review examines recent research on software metrics
+applied to Continuous Integration and Continuous Delivery (CI/CD)
+pipelines, using the fundamental distinction between internal and
+external metrics as an organizing framework. Internal metrics—which
+depend only on program artifacts and are available earlier in
+development with finer granularity—provide controllable indicators of
+code quality, complexity, and test adequacy. External metrics—which
+reflect customer/user perspectives and system "-ilities" such as
+reliability, performance, and delivery efficiency—represent the
+ultimate quality goals but are measured later and are harder to
+control directly. The fundamental relationship is predictive: internal
+metrics serve as independent variables (leading indicators) that help
+predict and control external metrics (dependent variables or targets).
+
+CI/CD environments provide an ideal context for applying the
+Goal-Question-Metric (GQM) framework, where goals are defined in terms
+of external quality attributes, questions probe whether goals are
+being met, and metrics (both internal and external) provide
+quantitative answers. The selected papers demonstrate how modern
+DevOps practices enable automated collection, analysis, and
+visualization of both metric types, supporting the quality improvement
+paradigm through continuous feedback loops.
+
+The papers reviewed were published between 2016 and 2025, with
+emphasis on recent work from the past five years. All sources are
+peer-reviewed publications from IEEE, ACM, and other reputable academic venues.
+
+\section{Internal Metrics}
+
+Internal metrics depend solely on program artifacts and can be
+measured through static or dynamic analysis. As independent variables
+in the metrics relationship model, they serve as leading indicators
+and control mechanisms for achieving external quality goals. Classic
+categories include size metrics (LOC, function points), complexity
+metrics (cyclomatic complexity, Halstead measures, data/control flow),
+and structure metrics (coupling, cohesion). The papers reviewed here
+focus on how internal metrics are collected and applied within CI/CD
+pipelines, particularly static analysis quality checks and test
+coverage measurements.
+
+\subsection{Static Code Analysis Metrics}
+
+\subsubsection{How Open Source Projects Use Static Code Analysis
+Tools in Continuous Integration Pipelines}
+
+\textbf{Citation:} \cite{zampetti2017static}
+
+\textbf{Summary:} This empirical study investigates how open-source
+projects integrate static code analysis tools into their continuous
+integration workflows. The researchers analyzed real-world CI
+configurations to understand what types of code quality issues cause
+builds to fail versus generate warnings, and how developers respond
+to these signals. The study examined projects using tools like
+Checkstyle, PMD, and FindBugs integrated into CI systems like Travis
+CI and Jenkins. A key finding was that the vast majority of build
+failures triggered by static analysis concerned coding standard
+violations and style issues rather than actual bug detection. The
+researchers also found that when static analysis generates warnings
+or failures, developers typically address the issues directly by
+fixing the code rather than suppressing warnings or adjusting tool
+configurations. This suggests that when properly integrated, static
+analysis in CI pipelines can effectively enforce code quality standards.
+
+\textbf{Analysis:} This paper demonstrates the practical application
+of internal metrics (specifically presentation and structure
+complexity indicators from static analysis tools) as control
+mechanisms within CI/CD pipelines. The finding that coding standards
+violations dominate build failures reflects teams using these internal
+metrics to enforce maintainability—one of the key external quality
+attributes. This illustrates the predictive relationship: by
+controlling internal metrics (code style, structural consistency),
+teams aim to improve external metrics (maintainability effort,
+long-term productivity). The paper validates that automated quality
+gates can effectively enforce internal metric thresholds, embodying
+the measurement-to-action workflow emphasized in the quality
+improvement paradigm. The developers' tendency to fix issues rather
+than suppress warnings demonstrates that when internal metrics are
+properly integrated into workflows, they influence behavior and drive
+quality improvements. From a GQM perspective, these teams have defined
+maintainability goals, posed questions about code consistency, and
+selected metrics (style violations, complexity checks) that automated
+tools measure continuously.
+
+\subsection{Test Coverage Metrics}
+
+\subsubsection{Open Code Coverage Framework: A Consistent and
+Flexible Framework for Measuring Test Coverage}
+
+\textbf{Citation:} \cite{sakamoto2010open}
+
+\textbf{Summary:} This paper addresses a fundamental challenge in
+measuring test coverage across different programming languages and
+coverage criteria: the high cost and inconsistency of coverage
+measurement tools. The researchers observed that while test coverage
+is a critical quality indicator, each language typically requires
+separate tools with inconsistent reporting formats and capabilities.
+They developed the Open Code Coverage Framework (OCCF), which
+abstracts common concepts across programming languages using abstract
+syntax trees (ASTs). By identifying structural commonalities at the
+AST level, the framework can support multiple languages with
+significantly less implementation effort. The authors demonstrated
+that their approach reduced implementation requirements by
+approximately 90\% and cut development time for new coverage criteria
+by 80\% or more. The framework supports various coverage types
+including statement, branch, and path coverage while remaining
+extensible for custom criteria.
+
+\textbf{Analysis:} This paper addresses a fundamental challenge in
+measurement theory: ensuring consistent and properly defined metrics
+across different contexts. Test coverage is an internal metric (it
+depends only on code and test artifacts), and serves as a leading
+indicator for external quality attributes like reliability and defect
+density. However, the predictive relationship only holds when coverage
+is measured consistently using well-defined criteria. The framework's
+abstraction approach—using ASTs to identify structural commonalities—
+enables uniform measurement of statement, branch, and path coverage
+across languages. This consistency is essential for establishing valid
+predictive models: if coverage is measured differently across
+components, correlations with external quality metrics become
+unreliable. The significant reduction in implementation effort (90\%)
+demonstrates practical value, making comprehensive internal metrics
+collection feasible in heterogeneous environments. From an evaluation
+perspective, this framework is properly defined (clear criteria),
+properly used (consistent application), and produces useful results
+(validated coverage measurements), meeting the key criteria for
+effective software metrics.
+
+\section{External Metrics}
+
+External metrics reflect quality from the customer and user
+perspective, measuring the "-ilities" (reliability, usability,
+performance, security, maintainability) that determine system value.
+As dependent variables in the metrics relationship model, these are
+the ultimate targets—but they are measured late in the development
+cycle and are difficult to control directly. Instead, they must be
+predicted and influenced through careful management of internal
+metrics. In CI/CD contexts, external metrics span both traditional
+quality attributes (reliability, performance) and process efficiency
+measures (deployment frequency, lead time, change failure rate). The
+papers reviewed demonstrate approaches to measuring and improving
+these outcome-oriented metrics through automated data collection in
+DevOps pipelines.
+
+\subsection{DevOps Research and Assessment (DORA) Metrics}
+
+\subsubsection{A Framework for Automating the Measurement of DORA Metrics}
+
+\textbf{Citation:} \cite{wilkes2023framework}
+
+\textbf{Summary:} The DORA metrics (Deployment Frequency, Lead Time
+for Change, Time to Restore Service, and Change Failure Rate) have
+become industry-standard indicators of software delivery performance,
+but many organizations struggle to measure them consistently or
+resort to manual data collection. This paper presents a framework
+that automatically extracts and calculates DORA metrics from project
+repositories without requiring specific CI/CD tools or cloud
+platforms. The researchers validated their framework by analyzing 304
+popular open-source projects on GitHub, generating time-series data
+that revealed meaningful insights into project performance trends. A
+key contribution is the project-agnostic design: the framework can
+operate across diverse development lifecycles and deployment
+approaches. The analysis showed that significant changes in DORA
+metrics correlated with major historical events in projects,
+validating the metrics' ability to detect meaningful shifts in
+development performance. The authors recommend augmenting automated
+measurements with additional contextual data like bug criticality
+when available.
+
+\textbf{Analysis:} The DORA metrics represent external quality
+attributes in the DevOps context, mapping to classical metrics
+categories: deployment frequency and lead time reflect productivity
+and schedule performance, while change failure rate and time to
+restore service measure reliability. These align with the Putnam/Myers
+framework's external metrics (time, quality, productivity). The
+framework's project-agnostic design is significant because it enables
+consistent measurement across diverse environments, satisfying the
+"properly defined" and "properly used" evaluation criteria. Critically,
+this paper demonstrates that external metrics can be extracted
+automatically from development artifacts (commits, deployments,
+incidents), rather than requiring manual surveys or estimation—
+addressing the traditional challenge that external metrics are "hard
+to control" and "measured late." The time-series approach is essential
+for quality improvement: tracking metric trends over time enables
+teams to assess whether process changes (such as adopting new internal
+metric thresholds or tools) actually improve external outcomes. The
+correlation with historical project events validates that these
+measurements capture meaningful quality signals rather than arbitrary
+numbers, meeting the "useful results" criterion.
+
+\subsection{CI/CD Metrics Visualization}
+
+\subsubsection{A Roadmap for Using Continuous Integration Environments}
+
+\textbf{Citation:} \cite{yu2024roadmap}
+
+\textbf{Summary:} This recent study investigates how development
+teams can leverage CI environments to generate and visualize quality
+metrics. Through interviews with 22 participants across five
+industrial projects, the researchers identified that 86\% of
+participants found CI-generated data useful for quality attribute
+evaluation, and 73\% valued centralized dashboards for visualizing
+this data. The study cataloged 14 base metrics and 10 derived metrics
+spanning seven quality attributes including maintainability,
+security, performance, and reliability. Performance metrics showed
+the highest adoption at 82\% among participants. The paper provides
+concrete examples of metrics collection pipelines using Prometheus
+for data gathering and Grafana for visualization. The researchers
+also propose a three-level maturity model (elementary, intermediate,
+advanced) for CI environment evolution, finding that 60\% of studied
+projects operated at intermediate maturity levels. Challenges
+identified include dashboard information overload and insufficient
+understanding of metrics meanings.
+
+\textbf{Analysis:} This paper directly addresses the metrics usage
+workflow: after measurement activities collect data, analysis and
+visualization are essential to make results actionable. The study
+validates the GQM framework in practice: teams use CI-generated data
+to evaluate quality attributes (goals), with 86\% finding it useful
+for this purpose. The cataloging of 14 base and 10 derived metrics
+spanning seven quality attributes demonstrates the breadth of both
+internal (maintainability, security) and external (performance,
+reliability) metrics available in modern CI/CD systems. Performance
+metrics showing the highest adoption (82\%) reflects their direct
+connection to external user experience, while the centralized
+dashboard preference (73\%) confirms that integrated visualization of
+multiple metrics is more valuable than isolated measurements. The
+identified challenges—information overload and insufficient
+understanding—highlight a critical gap between data collection and
+effective use. This suggests the need for "Experience Factory"
+approaches where organizations learn which metrics matter and how to
+interpret them. The three-level maturity model recognizes that metrics
+programs evolve: elementary levels focus on basic measurement,
+intermediate levels on integration and automation, and advanced levels
+on predictive analytics and optimization—mirroring the progression
+from simple measurement toward decision support systems.
+
+\subsection{Requirements Traceability}
+
+\subsubsection{Continuous Integration and Delivery Traceability in
+Industry: Needs and Practices}
+
+\textbf{Citation:} \cite{stahl2016continuous}
+
+\textbf{Summary:} This paper addresses the challenge of maintaining
+requirements traceability in fast-paced CI/CD environments where
+continuous changes make traditional traceability approaches
+impractical. The authors note that while traceability has long been
+recognized as important for legal, certification, and quality
+assurance purposes, empirical studies of traceability practices in
+industry—especially regarding tooling and infrastructure—are limited.
+The paper documents the Eiffel framework, developed in industry to
+provide real-time traceability throughout CI/CD pipelines. Unlike
+traditional traceability matrices that are maintained manually or
+generated periodically, the Eiffel approach embeds traceability into
+the continuous integration infrastructure itself, automatically
+capturing relationships between requirements, commits, builds, tests,
+and deployments as they occur. This enables immediate visibility into
+which requirements are affected by any change and what testing has
+been performed.
+
+\textbf{Analysis:} Requirements traceability represents a hybrid
+metric that bridges internal and external quality measurement. It
+connects external requirements (customer needs, specified
+functionality) to internal artifacts (commits, builds, tests),
+enabling impact analysis and verification. The Eiffel framework
+demonstrates automated measurement embedded directly into development
+workflows—addressing the classic challenge that manual metrics
+collection is impractical in fast-paced development. This automation
+enables real-time tracking rather than periodic snapshots, making
+traceability a useful leading indicator: when a requirement changes,
+teams immediately know which code and tests are affected. The
+framework supports different stakeholder perspectives (developer vs.
+manager views), recognizing that effective metrics must answer
+specific questions for specific goals—the essence of GQM. From a
+measurement theory perspective, this automated approach produces more
+reliable data than manual maintenance because it captures actual
+relationships (commits linked to requirements) rather than documented
+intentions. The integration of traceability with CI/CD metrics (build
+status, test results, deployment records) enables holistic quality
+assessment: teams can track not just whether code builds successfully
+(internal metric) but whether specific requirements are fully
+implemented and tested (external validation).
+
+\subsection{Hybrid Development Models}
+
+\subsubsection{Mathematical Model of the Software Development Process
+with Hybrid Management Elements}
+
+\textbf{Citation:} \cite{semenov2025mathematical}
+
+\textbf{Summary:} This very recent paper develops a probabilistic
+model for hybrid software development lifecycles that combines
+traditional project management with agile and DevOps practices. The
+model integrates data from multiple sources including requirements
+traceability systems, static code analysis tools, and CI/CD pipeline
+telemetry. Using GERT (Graphical Evaluation and Review Technique)
+network semantics and fuzzy uncertainty treatment, the model predicts
+completion timelines and rework requirements. A particularly novel
+aspect is the incorporation of AI-assisted development into the
+model, allowing comparison of development scenarios with and without
+AI tooling. The validation demonstrated approximately a threefold
+reduction in expected rework cycles when AI assistance was enabled,
+along with earlier defect detection. The framework yields
+interpretable metrics for tuning quality gates and automation levels
+in Agile/DevOps settings.
+
+\textbf{Analysis:} This paper exemplifies the predictive relationship
+between internal and external metrics through formal modeling. By
+integrating data from requirements traceability (external
+specifications), static code analysis (internal quality metrics), and
+CI/CD telemetry (both internal build metrics and external delivery
+performance), the model establishes quantitative relationships between
+leading indicators and outcome variables. The probabilistic approach
+using GERT networks addresses the fundamental challenge in software
+metrics: external quality attributes like schedule and rework are not
+uniquely determined by internal metrics, but can be predicted with
+confidence intervals. The threefold reduction in rework cycles with AI
+assistance demonstrates how changes in development processes alter the
+relationships between metrics—requiring recalibration of predictive
+models as practices evolve. This aligns with the Quality Improvement
+Paradigm: measure baseline performance, introduce changes (AI tools),
+quantify impacts, and update understanding. The focus on tuning
+quality gates shows metrics used not just for assessment but for
+active control—deciding which internal metric thresholds to enforce
+based on their predicted impact on external outcomes. This represents
+the evolution from basic measurement toward integrated decision
+support, where multiple metric types combine to provide actionable
+guidance rather than isolated data points.
+
+\section{Conclusion}
+
+The reviewed papers demonstrate how fundamental software metrics
+principles apply in modern CI/CD environments. Several key themes
+connect the research to metrics theory:
+
+\textbf{Internal and External Metrics Integration:} The papers
+illustrate the predictive relationship between internal metrics
+(static analysis violations, test coverage, code complexity) and
+external quality outcomes (maintainability, reliability, delivery
+performance). CI/CD pipelines provide infrastructure for measuring
+both metric types automatically and establishing their correlations,
+as demonstrated in the DORA framework and Semenov's probabilistic
+model.
+
+\textbf{GQM Framework in Practice:} The Yu et al. study validates the
+Goal-Question-Metric approach: teams define quality attribute goals
+(performance, reliability, security), pose questions about current
+state, and select specific metrics to answer them. The challenge of
+metrics comprehension highlights that effective GQM requires not just
+data collection but clear understanding of what metrics mean and how
+they relate to goals.
+
+\textbf{Automation Enables Measurement Theory:} Manual collection
+violates the principle that metrics must be properly defined and
+consistently applied. The automated frameworks reviewed (DORA, Eiffel,
+OCCF) ensure uniform measurement across diverse contexts, enabling
+reliable predictive models. This addresses the classical challenge
+that inconsistent measurement produces unreliable correlations between
+internal and external metrics.
+
+\textbf{From Measurement to Control:} The papers demonstrate metrics
+usage workflow: measurement activities (automated collection) →
+analysis (dashboards, time-series visualization, predictive models) →
+action (quality gates, process improvements) → validation (experience
+factory learning). This progression shows metrics evolving from simple
+descriptive statistics toward active control mechanisms that guide
+development decisions.
+
+\textbf{Holistic Quality Assessment:} Integrating multiple metric
+types—internal code quality, test adequacy, requirements traceability,
+and external delivery performance—provides richer insights than
+isolated measurements. The Semenov model exemplifies this by
+synthesizing requirements, static analysis, and CI/CD data into
+unified predictions.
+
+These papers confirm that CI/CD environments realize the vision of
+comprehensive, automated metrics programs. They demonstrate that when
+properly implemented, metrics frameworks support continuous quality
+improvement by making both internal leading indicators and external
+outcome measures visible, actionable, and connected through validated
+predictive relationships.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
