@@ -125,7 +125,20 @@ participants found CI-generated data useful for quality attribute
 evaluation, and 73\% valued centralized dashboards for visualizing
 this data. The study cataloged 14 base metrics and 10 derived metrics
 spanning seven quality attributes including maintainability,
-security, performance, and reliability. Performance metrics showed
+security, performance, and reliability:
+
+\begin{itemize}
+	\item \textbf{Version Control Metrics}: No. of Commits
+	\item \textbf{Source Code Metrics}: Lines of Code, No. of Source Files
+	\item \textbf{Continuous Integration Metrics}: Time Stamps, No. of Builds
+	\item \textbf{Static Code Metrics}: Lines of Code, cyclomatic Complexity, Code Smells
+	\item \textbf{Artifacts Metrics}: No. of Release Versions, Release Version Tags
+	\item \textbf{Test Metrics}: Mean Recovery Time
+	\item \textbf{Performance Metrics}: No. of Service Requests, CPU/Memory Usage, No. of Transactions, No. of Vulnerabilities
+	\item \textbf{Issue Tracking Metrics}: No. of Tickets
+\end{itemize}
+
+Performance metrics showed
 the highest adoption at 82\% among participants. The paper provides
 concrete examples of metrics collection pipelines using Prometheus
 for data gathering and Grafana for visualization. The researchers
@@ -282,15 +295,9 @@ reliable predictive models. This addresses the classical challenge
 that inconsistent measurement produces unreliable correlations between
 internal and external metrics.
 
-\textbf{From Measurement to Control:} The papers demonstrate metrics
+\textbf{From Measurement to Control:} The papers demonstrate the following metrics
 usage workflow:
-\begin{enumerate}
-	\item Automated collection
-	\item Dashboards/predictive models
-	\item Action/process improvements
-	\item Validation
-\end{enumerate}
-
+\textbf{Automated collection → Dashboards/predictive models → Action/process improvements → Validation}.
 This progression shows metrics evolving from
 descriptive statistics into active controls that guide
 development.
