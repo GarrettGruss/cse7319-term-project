@@ -5,6 +5,7 @@
 \usepackage{cite}
 \usepackage{url}
 \usepackage{hyperref}
+\usepackage{tabularx}
 
 \doublespacing
 
@@ -126,9 +127,10 @@ this data. The study cataloged the following metrics that can be captured
 throughout a project's lifecycle:
 
 \begin{center}
-	\begin{tabular}{|c|c|}
+	\begin{tabularx}{\textwidth}{|X|X|}
 		\hline
-		Category                        & Metrics
+		Category                        & Metrics \\
+		\hline
 		\textbf{Version Control}        & No. of Commits                                                                         \\
 		\textbf{Source Code}            & Lines of Code, No. of Source Files                                                     \\
 		\textbf{Continuous Integration} & Time Stamps, No. of Builds                                                             \\
@@ -138,7 +140,7 @@ throughout a project's lifecycle:
 		\textbf{Performance}            & No. of Service Requests, CPU/Memory Usage, No. of Transactions, No. of Vulnerabilities \\
 		\textbf{Issue Tracking}         & No. of Tickets                                                                         \\
 		\hline
-	\end{tabular}
+	\end{tabularx}
 \end{center}
 
 Performance metrics showed
@@ -200,21 +202,22 @@ validating the metrics' ability to detect meaningful shifts in
 development performance.
 
 \begin{center}
-	\begin{tabular} { |c|c|c|c|c|}
-		Percentile  & Deployment Frequency & Lead Time for Changes & Mean Time to Recover & Change Failure Rate
+	\begin{tabularx}{\textwidth} { |X|X|X|X|X|}
 		\hline
-		Top 25\%    & 116.2                & 5.1                   & 26.5                 & 19.8\%
-		Middle 50\% & 26.2                 & 26.8                  & 97.9                 & 59.4\%
-		Bottom 25\% & 6.6                  & 140.6                 & 370.0                & 90.6\%
+		Percentile  & Deployment Frequency & Lead Time for Changes & Mean Time to Recover & Change Failure Rate \\
 		\hline
-	\end{tabular}
-	\begin{tablenotes}
+		Top 25\%    & 116.2                & 5.1                   & 26.5                 & 19.8\% \\
+		Middle 50\% & 26.2                 & 26.8                  & 97.9                 & 59.4\% \\
+		Bottom 25\% & 6.6                  & 140.6                 & 370.0                & 90.6\% \\
+		\hline
+	\end{tabularx}
+	\begin{itemize}
 		\small
 		\item Values are calculated as the mean of all projects within the percentile.
 		\item Deployment Frequency represents median deployments per year.
 		\item Lead time for changes represents median days between commit and deployment.
 		\item Mean Time to recover represents median days between failure and recovery.
-	\end{tablenotes}
+	\end{itemize}
 \end{center}
 
 \subsubsection{Analysis}
