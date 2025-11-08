@@ -35,6 +35,11 @@ K.~Sakamoto, H.~Washizaki, and Y.~Fukazawa, ``Open code coverage framework: A
   on Quality Software}.\hskip 1em plus 0.5em minus 0.4em\relax Zhangjiajie,
   China: IEEE, 2010, pp. 262--269.
 
+\bibitem{yu2024roadmap}
+L.~Yu, E.~Alégroth, P.~Chatzipetrou, and T.~Gorschek, ``A roadmap for using
+  continuous integration environments,'' \emph{Communications of the ACM},
+  vol.~67, no.~6, pp. 82--90, June 2024.
+
 \bibitem{wilkes2023framework}
 B.~Wilkes, A.~M.~P. Milani, and M.-A. Storey, ``A framework for automating the
   measurement of devops research and assessment (dora) metrics,'' in \emph{2023
@@ -42,21 +47,10 @@ B.~Wilkes, A.~M.~P. Milani, and M.-A. Storey, ``A framework for automating the
   (ICSME)}.\hskip 1em plus 0.5em minus 0.4em\relax Bogotá, Colombia: IEEE,
   2023, pp. 62--72.
 
-\bibitem{yu2024roadmap}
-L.~Yu, E.~Alégroth, P.~Chatzipetrou, and T.~Gorschek, ``A roadmap for using
-  continuous integration environments,'' \emph{Communications of the ACM},
-  vol.~67, no.~6, pp. 82--90, June 2024.
-
 \bibitem{stahl2016continuous}
 D.~Ståhl, K.~Hallén, and J.~Bosch, ``Continuous integration and delivery
   traceability in industry: Needs and practices,'' in \emph{2016 42nd Euromicro
   Conference on Software Engineering and Advanced Applications (SEAA)}.\hskip
   1em plus 0.5em minus 0.4em\relax Limassol, Cyprus: IEEE, 2016, pp. 68--72.
-
-\bibitem{semenov2025mathematical}
-S.~Semenov, V.~Tsukur, V.~Molokanova, M.~Muchacki, G.~Litawa, M.~Mozhaiev, and
-  I.~Petrovska, ``Mathematical model of the software development process with
-  hybrid management elements,'' \emph{Applied Sciences}, vol.~15, no.~21, p.
-  11667, 2025.
 
 \end{thebibliography}

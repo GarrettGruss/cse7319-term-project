@@ -55,7 +55,7 @@ failures were triggered by style issues rather than bug detection. The
 researchers also found that when static analysis generates warnings
 or failures, developers typically address the issues directly by
 fixing the code rather than suppressing warnings or adjusting tool
-configurations. 
+configurations.
 
 \subsubsection{Analysis}
 This paper demonstrates the practical application
@@ -126,19 +126,19 @@ this data. The study cataloged the following metrics that can be captured
 throughout a project's lifecycle:
 
 \begin{center}
-\begin{tabular}{|c|c|}
-	\hline
-	Category & Metrics
-	\textbf{Version Control} & No. of Commits\\
-	\textbf{Source Code} & Lines of Code, No. of Source Files\\
-	\textbf{Continuous Integration} & Time Stamps, No. of Builds\\
-	\textbf{Static Code} & Lines of Code, cyclomatic Complexity, Code Smells\\
-	\textbf{Artifacts} & No. of Release Versions, Release Version Tags\\
-	\textbf{Test} & Mean Recovery Time\\
-	\textbf{Performance} & No. of Service Requests, CPU/Memory Usage, No. of Transactions, No. of Vulnerabilities\\
-	\textbf{Issue Tracking} & No. of Tickets\\
-	\hline
-\end{tabular}
+	\begin{tabular}{|c|c|}
+		\hline
+		Category                        & Metrics
+		\textbf{Version Control}        & No. of Commits                                                                         \\
+		\textbf{Source Code}            & Lines of Code, No. of Source Files                                                     \\
+		\textbf{Continuous Integration} & Time Stamps, No. of Builds                                                             \\
+		\textbf{Static Code}            & Lines of Code, cyclomatic Complexity, Code Smells                                      \\
+		\textbf{Artifacts}              & No. of Release Versions, Release Version Tags                                          \\
+		\textbf{Test}                   & Mean Recovery Time                                                                     \\
+		\textbf{Performance}            & No. of Service Requests, CPU/Memory Usage, No. of Transactions, No. of Vulnerabilities \\
+		\textbf{Issue Tracking}         & No. of Tickets                                                                         \\
+		\hline
+	\end{tabular}
 \end{center}
 
 Performance metrics showed
@@ -201,20 +201,20 @@ development performance.
 
 \begin{center}
 	\begin{tabular} { |c|c|c|c|c|}
-		Percentile&Deployment Frequency&Lead Time for Changes&Mean Time to Recover&Change Failure Rate
+		Percentile  & Deployment Frequency & Lead Time for Changes & Mean Time to Recover & Change Failure Rate
 		\hline
-		Top 25\%&116.2&5.1&26.5&19.8\%
-		Middle 50\%&26.2&26.8&97.9&59.4\%
-		Bottom 25\%&6.6&140.6&370.0&90.6\%
+		Top 25\%    & 116.2                & 5.1                   & 26.5                 & 19.8\%
+		Middle 50\% & 26.2                 & 26.8                  & 97.9                 & 59.4\%
+		Bottom 25\% & 6.6                  & 140.6                 & 370.0                & 90.6\%
 		\hline
 	\end{tabular}
 	\begin{tablenotes}
-      \small
-      \item Values are calculated as the mean of all projects within the percentile.
-	  \item Deployment Frequency represents median deployments per year.
-	  \item Lead time for changes represents median days between commit and deployment.
-	  \item Mean Time to recover represents median days between failure and recovery.
-    \end{tablenotes}	
+		\small
+		\item Values are calculated as the mean of all projects within the percentile.
+		\item Deployment Frequency represents median deployments per year.
+		\item Lead time for changes represents median days between commit and deployment.
+		\item Mean Time to recover represents median days between failure and recovery.
+	\end{tablenotes}
 \end{center}
 
 \subsubsection{Analysis}
@@ -242,7 +242,7 @@ and schedule performance of any new software project.
 
 \subsubsection{Summary}
 The paper documents the Eiffel framework, developed within Ericsson to
-provide real-time traceability throughout CI/CD pipelines. 
+provide real-time traceability throughout CI/CD pipelines.
 The Eiffel approach defines a common protocol to model test events as a
 directed acyclic graph, enabling traceability to be directly embedded into
 the continuous integration infrastructure. This methodology allows automatic
@@ -307,46 +307,64 @@ logging mechanism ensures consistent measurement across builds.
 
 \section{Conclusion}
 
-The reviewed papers demonstrate how fundamental software metrics
-principles apply in modern CI/CD environments. Several key themes
-connect the research to metrics theory:
+The reviewed papers demonstrate how modern CI/CD environments enable
+comprehensive software quality measurement through three interconnected
+capabilities: automated metrics collection, event-based aggregation,
+and centralized visualization. Together, these capabilities transform
+software metrics from manual, periodic measurements into continuous,
+actionable intelligence.
 
-\textbf{Linking Internal and External Metrics:} The papers
-illustrate the predictive relationship between internal metrics
-and
-external quality outcomes. CI/CD pipelines provide infrastructure for measuring
-both metric types automatically and establishing their correlations,
-as demonstrated in the DORA framework and Zhuravchak's security
-regression tracking system.
+\textbf{Metrics Collection:} The papers identify diverse metrics
+collected automatically throughout the CI/CD pipeline. Internal metrics
+include code complexity and style violations (Checkstyle, PMD,
+FindBugs), test coverage at statement, branch, and path levels (OCCF),
+and lines of code measurements. External metrics encompass DORA's
+delivery performance indicators (Deployment Frequency, Lead Time for
+Changes, Mean Time to Recover, Change Failure Rate), security
+vulnerability counts by severity level (Trivy scans), and requirements
+traceability status. The research demonstrates that these metrics can
+be extracted automatically from version control systems, static
+analysis tools, test frameworks, container scanners, and deployment
+systems without manual intervention. This automated collection ensures
+measurement consistency across builds and enables continuous monitoring
+rather than periodic snapshots.
 
-\textbf{Automation Enables Measurement Theory:} The automated
-frameworks reviewed (DORA, Eiffel, OCCF) ensure uniform measurement
-across diverse contexts, enabling
-reliable predictive models. This addresses the classical challenge
-that inconsistent measurement produces unreliable correlations between
-internal and external metrics.
+\textbf{Metrics Aggregation:} Once collected, metrics must be
+aggregated and correlated to provide meaningful insights. The Eiffel
+framework exemplifies this capability by defining a common protocol for
+embedding traceability throughout CI/CD pipelines. Using JSON-based
+event messages organized as a directed acyclic graph, Eiffel enables
+automatic capture of relationships between requirements, commits,
+builds, tests, and deployments. Each event links to related events
+through unique identifiers, creating a comprehensive data model that
+connects internal code changes to external quality outcomes. This
+aggregation layer transforms isolated measurements into correlated
+time-series data, enabling teams to understand how code modifications
+propagate through the pipeline and affect multiple quality dimensions
+simultaneously.
 
-\textbf{From Measurement to Control:} The papers demonstrate the following metrics
-usage workflow:
-\textbf{Automated collection → Dashboards/predictive models → Action/process improvements → Validation}.
-This progression shows metrics evolving from
-descriptive statistics into active controls that guide
-development.
+\textbf{Metrics Visualization:} The final capability—visualization
+through dashboards—makes aggregated metrics actionable for development
+teams. The papers document successful implementations using Prometheus
+for data gathering combined with Grafana for interactive dashboards, as
+well as lightweight alternatives like Chart.js with GitHub Pages for
+security trend visualization. These dashboards centralize multiple
+metric types, providing unified views of code quality, test adequacy,
+delivery performance, and security posture. The research shows that 86\%
+of practitioners find CI-generated data useful for quality evaluation,
+and 73\% value centralized dashboards. However, challenges remain:
+information overload and insufficient understanding of metrics meanings
+can reduce effectiveness, suggesting the need for carefully designed
+visualizations that highlight actionable insights rather than raw data.
 
-\textbf{Holistic Quality Assessment:} Integrating multiple metric
-types—internal code quality, test adequacy, requirements traceability,
-and external delivery performance—provides richer insights than
-isolated measurements. The Zhuravchak framework exemplifies this by
-tracking how internal development activities (dependency updates,
-code changes) influence external security metrics through temporal
-analysis of vulnerability trends.
-
-These papers confirm that CI/CD environments enable the vision of
-comprehensive, automated metrics collection, aggregation, and display. They demonstrate that when
-properly implemented, metrics frameworks support continuous quality
-improvement by making both internal leading indicators and external
-outcome measures visible, actionable, and connected through validated
-predictive relationships.
+By integrating automated collection, protocol-based aggregation, and
+dashboard visualization, modern CI/CD environments realize the vision
+of continuous quality measurement. This three-layer architecture
+enables teams to track both internal leading indicators and external
+outcome measures, establish correlations between them, and respond to
+quality trends before they impact users—transforming metrics from
+descriptive statistics into active controls that guide continuous
+improvement.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
