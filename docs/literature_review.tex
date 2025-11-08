@@ -25,7 +25,7 @@ pipelines.
 
 \section{Internal Metrics}
 
-Internal metrics depend solely on program artifacts and can be
+Internal metrics depend on program artifacts and can be
 measured through static or dynamic analysis. As independent variables
 in the metrics relationship model, they serve as leading indicators
 and control mechanisms for achieving external quality goals. Classic
@@ -47,16 +47,15 @@ projects integrate static code analysis tools into their continuous
 integration workflows. The researchers analyzed real-world CI
 configurations to understand what types of code quality issues cause
 builds to fail versus generate warnings, and how developers respond
-to these signals. The study examined projects using tools like
+to these warnings or failures. The study examined projects using the following tools:
 Checkstyle, PMD, and FindBugs integrated into CI systems.
 
-A key finding was that the vast majority of build
-failures triggered by static analysis related to coding standard
-violations and style issues rather than bug detection. The
+A key finding was 97\% of build warnings and 6\% of build
+failures were triggered by style issues rather than bug detection. The
 researchers also found that when static analysis generates warnings
 or failures, developers typically address the issues directly by
 fixing the code rather than suppressing warnings or adjusting tool
-configurations.
+configurations. 
 
 \subsubsection{Analysis}
 This paper demonstrates the practical application
@@ -96,7 +95,7 @@ AST level, the framework can support multiple languages with a single common sol
 that their approach reduced implementation requirements by
 approximately 90\% and cut development time for new coverage criteria
 by 80\% or more. The framework supports various coverage types
-including statement, branch, and path coverage while remaining
+including statement, decision, branch, and path coverage while remaining
 extensible for custom criteria.
 
 \subsubsection{Analysis}
@@ -123,20 +122,24 @@ metrics. Through interviews with 22 participants across five
 industrial projects, the researchers identified that 86\% of
 participants found CI-generated data useful for quality attribute
 evaluation, and 73\% valued centralized dashboards for visualizing
-this data. The study cataloged 14 base metrics and 10 derived metrics
-spanning seven quality attributes including maintainability,
-security, performance, and reliability:
+this data. The study cataloged the following metrics that can be captured
+throughout a project's lifecycle:
 
-\begin{itemize}
-	\item \textbf{Version Control Metrics}: No. of Commits
-	\item \textbf{Source Code Metrics}: Lines of Code, No. of Source Files
-	\item \textbf{Continuous Integration Metrics}: Time Stamps, No. of Builds
-	\item \textbf{Static Code Metrics}: Lines of Code, cyclomatic Complexity, Code Smells
-	\item \textbf{Artifacts Metrics}: No. of Release Versions, Release Version Tags
-	\item \textbf{Test Metrics}: Mean Recovery Time
-	\item \textbf{Performance Metrics}: No. of Service Requests, CPU/Memory Usage, No. of Transactions, No. of Vulnerabilities
-	\item \textbf{Issue Tracking Metrics}: No. of Tickets
-\end{itemize}
+\begin{center}
+\begin{tabular}{|c|c|}
+	\hline
+	Category & Metrics
+	\textbf{Version Control} & No. of Commits\\
+	\textbf{Source Code} & Lines of Code, No. of Source Files\\
+	\textbf{Continuous Integration} & Time Stamps, No. of Builds\\
+	\textbf{Static Code} & Lines of Code, cyclomatic Complexity, Code Smells\\
+	\textbf{Artifacts} & No. of Release Versions, Release Version Tags\\
+	\textbf{Test} & Mean Recovery Time\\
+	\textbf{Performance} & No. of Service Requests, CPU/Memory Usage, No. of Transactions, No. of Vulnerabilities\\
+	\textbf{Issue Tracking} & No. of Tickets\\
+	\hline
+\end{tabular}
+\end{center}
 
 Performance metrics showed
 the highest adoption at 82\% among participants. The paper provides
@@ -178,8 +181,8 @@ metrics.
 \textbf{A Framework for Automating the Measurement of DORA Metrics} \cite{wilkes2023framework}
 
 \subsubsection{Summary}
-The DORA metrics (Deployment Frequency, Lead Time
-for Change, Time to Restore Service, and Change Failure Rate) have
+The DORA metrics of Deployment Frequency, Lead Time
+for Change, Mean Time to Recover, and Change Failure Rate, have
 become industry-standard indicators of software delivery performance.
 This paper presents a framework
 that automatically extracts and calculates DORA metrics from project
@@ -196,6 +199,24 @@ metrics correlated with major historical events in projects,
 validating the metrics' ability to detect meaningful shifts in
 development performance.
 
+\begin{center}
+	\begin{tabular} { |c|c|c|c|c|}
+		Percentile&Deployment Frequency&Lead Time for Changes&Mean Time to Recover&Change Failure Rate
+		\hline
+		Top 25\%&116.2&5.1&26.5&19.8\%
+		Middle 50\%&26.2&26.8&97.9&59.4\%
+		Bottom 25\%&6.6&140.6&370.0&90.6\%
+		\hline
+	\end{tabular}
+	\begin{tablenotes}
+      \small
+      \item Values are calculated as the mean of all projects within the percentile.
+	  \item Deployment Frequency represents median deployments per year.
+	  \item Lead time for changes represents median days between commit and deployment.
+	  \item Mean Time to recover represents median days between failure and recovery.
+    \end{tablenotes}	
+\end{center}
+
 \subsubsection{Analysis}
 The DORA metrics represent external quality
 attributes in the DevOps context, aligned with the Putnam/Myers
@@ -210,10 +231,9 @@ The framework's project-agnostic design is significant because it enables
 consistent measurement across diverse environments.
 This paper demonstrates that external metrics can be extracted
 automatically from development artifacts such as commits, deployments, and
-incidents. The time-series approach is essential
-for quality improvement: tracking metric trends over time enables
-teams to assess whether process changes such as adopting new internal
-metric thresholds or tools actually improve external outcomes.
+incidents. The findings of this study from the sampled github project
+provides an important baseline to compare the relative reliability, productivity,
+and schedule performance of any new software project.
 
 \subsection{Requirements Traceability}
 
@@ -222,13 +242,20 @@ metric thresholds or tools actually improve external outcomes.
 
 \subsubsection{Summary}
 The paper documents the Eiffel framework, developed within Ericsson to
-provide real-time traceability throughout CI/CD pipelines. The Eiffel approach defines a common
-protocol to embed traceability into
-the continuous integration infrastructure, allowing automatic
+provide real-time traceability throughout CI/CD pipelines. 
+The Eiffel approach defines a common protocol to model test events as a
+directed acyclic graph, enabling traceability to be directly embedded into
+the continuous integration infrastructure. This methodology allows automatic
 capture of relationships between requirements, commits, builds, tests,
 and deployments as they occur. This enables immediate visibility into
 which requirements are affected by changes and what testing has
 been performed.
+
+The payload of each Eiffel message is a JSON document containing
+links to other uniquely identified test events and information regarding the
+test event itself, such as test information, and test result (Pass/Fail/Warn).
+Each message is published to a common database, enabling aggregation, visualization,
+and analysis of test events.
 
 \subsubsection{Analysis}
 Requirements traceability
@@ -243,36 +270,40 @@ teams immediately know which code and tests are affected.
 
 From a
 measurement theory perspective, this automated approach produces more
-reliable data than manual maintenance because it captures actual
+reliable and centralized data than manual maintenance because it captures actual
 relationships, like commits linked to requirements, rather than documented
 intentions. The integration of traceability with CI/CD metrics enables
 teams to track if specific requirements are fully
-implemented and tested.
+implemented and tested, and reduces the labor overhead of collecting and aggregating
+test results.
 
-\subsection{Hybrid Development Models}
+\subsection{Security Metrics and Temporal Tracking}
 
-\textbf{Mathematical Model of the Software Development Process
-	with Hybrid Management Elements} \cite{semenov2025mathematical}
+\textbf{Security Regression Visualization in CI/CD Using Trivy
+	and GitHub Actions} \cite{zhuravchak2025security}
 
 \subsubsection{Summary}
-This very recent paper develops a probabilistic
-model for hybrid software development lifecycles that combines
-traditional project management with agile and DevOps practices. The
-model integrates data from multiple sources including requirements
-traceability systems, static code analysis tools, and CI/CD pipeline
-telemetry. Using Graphical Evaluation and Review Technique (GERT)
-network semantics and fuzzy uncertainty treatment, the model predicts
-completion timelines and rework requirements.
+This paper addresses a critical gap in DevSecOps practices: while
+vulnerability scanners like Trivy are widely integrated into CI/CD
+pipelines, they typically operate in a point-in-time manner,
+generating alerts without retaining historical context. The researchers
+propose a lightweight security regression tracking system that persists,
+visualizes, and analyzes vulnerability trends across multiple builds.
+
+The implementation combines three components: Trivy for container
+image scanning, GitHub Actions for automation, and Chart.js for
+visualization. At each build, the pipeline scans the Docker image,
+extracts vulnerability counts by severity level (Critical, High, Medium,
+Low), and appends results to a time-series CSV file. A static web
+dashboard hosted on GitHub Pages renders trend visualizations,
+enabling teams to assess whether their security posture is improving
+or degrading over time.
 
 \subsubsection{Analysis}
-This paper defines a methodology for
-modelling the relationship
-between internal and external metrics. By
-combining data from requirements traceability, static code analysis, and
-CI/CD telemetry, the model establishes relationships between
-leading indicators and outcome variables. The probabilistic approach
-using GERT enables the prediciton of external quality attributes like
-schedule and rework, from internal metrics.
+The approach demonstrates a time-based metrics relationship model by tracking
+how internal changes such as dependency updates, code modifications, and base
+image selection influence external security metrics. The automated
+logging mechanism ensures consistent measurement across builds.
 
 \section{Conclusion}
 
@@ -285,8 +316,8 @@ illustrate the predictive relationship between internal metrics
 and
 external quality outcomes. CI/CD pipelines provide infrastructure for measuring
 both metric types automatically and establishing their correlations,
-as demonstrated in the DORA framework and Semenov's probabilistic
-model.
+as demonstrated in the DORA framework and Zhuravchak's security
+regression tracking system.
 
 \textbf{Automation Enables Measurement Theory:} The automated
 frameworks reviewed (DORA, Eiffel, OCCF) ensure uniform measurement
@@ -305,9 +336,10 @@ development.
 \textbf{Holistic Quality Assessment:} Integrating multiple metric
 types—internal code quality, test adequacy, requirements traceability,
 and external delivery performance—provides richer insights than
-isolated measurements. The Semenov model exemplifies this by
-synthesizing requirements, static analysis, and CI/CD data into
-unified predictions.
+isolated measurements. The Zhuravchak framework exemplifies this by
+tracking how internal development activities (dependency updates,
+code changes) influence external security metrics through temporal
+analysis of vulnerability trends.
 
 These papers confirm that CI/CD environments enable the vision of
 comprehensive, automated metrics collection, aggregation, and display. They demonstrate that when
