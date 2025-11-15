@@ -1,3 +1,11 @@
+# Latex
+*.aux
+*.log
+*.out
+*.blg
+*.bak*
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
