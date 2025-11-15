@@ -11,10 +11,10 @@ receivers:
         #metrics:  #Optional - uncomment to enable specific metrics
         #  vcs.contributor.count:
         #    enabled: true
-    github_org: ${GITHUB_ORG}
-    search_query: "org:${GITHUB_ORG} is:private"
-    auth:
-      authenticator: bearertokenauth/github
+        github_org: ${GITHUB_ORG}
+        search_query: "org:${GITHUB_ORG} is:private"
+        auth:
+          authenticator: bearertokenauth/github
 
   github/pr-open:
     initial_delay: 1s
@@ -24,10 +24,10 @@ receivers:
         #metrics:  #Optional - uncomment to enable specific metrics
         #  vcs.contributor.count:
         #    enabled: true
-    github_org: ${GITHUB_ORG}
-    search_query: "org:${GITHUB_ORG} is:pr is:open"
-    auth:
-      authenticator: bearertokenauth/github
+        github_org: ${GITHUB_ORG}
+        search_query: "org:${GITHUB_ORG} is:pr is:open"
+        auth:
+          authenticator: bearertokenauth/github
 
 exporters:
   otlphttp/openobserve:
