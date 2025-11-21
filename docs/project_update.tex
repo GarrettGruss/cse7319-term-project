@@ -49,8 +49,8 @@
 
 Large organizations with hundreds of repositories require standardized and highly
 distributed metric collection solutions to identify risk and oversee portfolio management.
-The DevOps Research and Assessment (DORA) framework defines four standardized metrics to track
-across projects:
+The DevOps Research and Assessment (DORA) framework defines four standardized metrics
+\cite{forsgren2018accelerate, rueegger2024fully} to track across projects:
 
 \begin{itemize}
 	\item \textbf{Deployment Frequency}: Release cadence to production
@@ -85,17 +85,12 @@ The system deploys three components via Docker Compose:
 	\label{fig:architecture}
 \end{figure}
 
-\textbf{OpenTelemetry Collector} (otelcol-contrib) scrapes
+The OpenTelemetry Collector (otelcol-contrib) scrapes
 GitHub repositories every 60 seconds using the GitHub receiver.
 Authentication uses a developer's Personal Access Token (PAT) via bearer token extension.
-The collector exports metrics to OpenObserve via OTLP HTTP protocol.
-
-\textbf{OpenObserve} stores time-series metrics and provides SQL-based querying for dashboard visualization.
-Deployed on port 5080, it receives OTLP data at \texttt{/api/default/} endpoint.
-
-\textbf{Docker Networking} connects both services via bridge network (\texttt{otel-network}) with persistent storage (\texttt{openobserve-data} volume) for metric retention.
-
-The GitHub receiver supports flexible search queries (e.g., \texttt{org:<ORG>},
+The collector exports metrics to OpenObserve via OTLP HTTP protocol. The OpenObserve service stores time-series metrics and provides SQL-based querying for dashboard visualization.
+Deployed on port 5080, it receives OTLP metrics data at \texttt{/api/default/} endpoint. Docker Networking connects both services via bridge network (\texttt{otel-network}) with persistent
+storage (\texttt{openobserve-data} volume) for metric retention. The GitHub receiver supports flexible search queries (e.g., \texttt{org:<ORG>},
 \texttt{is:private}, \texttt{is:pr is:open}) enabling targeted collection across
 repositories and pull request states.
 
@@ -120,13 +115,20 @@ organizational outcomes including profitability, productivity, and market share.
 \subsection{Automated Metrics Collection}
 
 OpenTelemetry \cite{opentelemetry2021} provides vendor-neutral observability
-instrumentation.
-The GitHub receiver \cite{opentelemetry-github-receiver}, currently at alpha stability, scrapes VCS
-metrics via GitHub's GraphQL and REST APIs.
-Kalliamvakou et al.
+instrumentation. The GitHub receiver \cite{opentelemetry-github-receiver} scrapes
+VCS metrics via GitHub's GraphQL and REST APIs. Kalliamvakou et al.
 \cite{kalliamvakou2014promises} demonstrated the feasibility of deriving
 development process metrics from version control systems, though they identified
 challenges in data completeness and interpretation.
+
+Rüegger et al. \cite{rueegger2024fully} presented a fully automated solution for
+measuring DORA metrics from DevOps tooling at the individual microservice level.
+Their industrial case study of 37 microservices over four weeks demonstrated that
+automated DORA metrics provide significantly greater transparency than traditional
+survey-based approaches, revealing performance variations between individual systems
+that aggregate team metrics fail to capture.
+They emphasize that automated collection enables real-time insights and continuous
+improvement through data-driven decision-making on a fine-granular level.
 
 This project leverages the OpenTelemetry GitHub receiver to collect VCS metrics
 aligned with OpenTelemetry semantic conventions v1.37.0, ensuring standardized
@@ -141,16 +143,6 @@ The GitHub reciever also collects telemetry attributes that provide dimensional 
 filtering and aggregating metrics across repositories, organizations, and change states.
 All metrics conform to OpenTelemetry semantic conventions v1.37.0 for VCS telemetry.
 
-
-Change failure rate and time to restore service metrics have not yet been captured. Change failure rate
-requires GitHub Actions workflow status or incident issue correlation. Time to restore service requires access to
-deployment metrics from a production kubernetes cluster, which may not be feasible for this project.
-
-\textbf{Metrics Not Yet Captured:}
-\begin{itemize}
-	\item \textbf{Change Failure Rate}:
-	\item \textbf{Time to Restore Service}:
-\end{itemize}
 
 \begin{table}[htbp]
 	\centering
@@ -206,9 +198,25 @@ deployment metrics from a production kubernetes cluster, which may not be feasib
 	\end{tabular}
 \end{table}
 
+
+Change failure rate and time to restore service metrics have not yet been captured. Change failure rate
+requires GitHub Actions workflow status or incident issue correlation. Time to restore service requires access to
+deployment metrics from a production kubernetes cluster, which may not be feasible for this project.
+
+\textbf{Metrics Not Yet Captured:}
+\begin{itemize}
+	\item \textbf{Change Failure Rate}:
+	\item \textbf{Time to Restore Service}:
+\end{itemize}
+
 \subsection{Visualization and Analysis}
 
-OpenObserve dashboards visualize collected metrics through six panels:
+The OpenObserve dashboards visualize collected metrics through six panels. Repository activity metrics are described
+by the \textbf{repository count}, \textbf{top 10 repositories by change volume}, \textbf{reference count by repository}, and
+\textbf{repository list with organization and url} dashboards. DORA-Aligned time series metrics are described by
+the \textbf{Merge time trends over time} and \textbf{code churn trends over time} dashboards. SQL queries employ
+95th percentile aggregation to filter outliers and histogram-based temporal bucketing for trend analysis.
+
 
 \begin{figure}[htbp]
 	\centering
@@ -217,22 +225,27 @@ OpenObserve dashboards visualize collected metrics through six panels:
 	\label{fig:dashboard}
 \end{figure}
 
-\textbf{Repository Activity:}
-\begin{itemize}
-	\item Repository count (p95 aggregation)
-	\item Top 10 repositories by change volume (horizontal bar chart)
-	\item Reference (branch/tag) count by repository
-	\item Repository list with organization and URL
-\end{itemize}
+\section{Conclusion and Future Work}
 
-\textbf{DORA-Aligned Time Series:}
-\begin{itemize}
-	\item Merge time trends over time (p95, millisecond precision, repository breakdown)
-	\item Code churn (lines delta) trends over time (repository breakdown)
-\end{itemize}
+This project demonstrates the feasibility of automated DORA metrics collection using
+OpenTelemetry and GitHub's GraphQL API. The current implementation captures
+two of the four DORA metrics—Deployment Frequency and Lead Time for Changes.
 
-SQL queries employ 95th percentile aggregation to filter outliers and
-histogram-based temporal bucketing for trend analysis.
+
+Future work will focus on two primary objectives. First, extending the GitHub receiver
+configuration to scan multiple repositories within an organization, enabling portfolio-level
+visibility across distributed development teams. The OpenTelemetry GitHub receiver's
+search query capabilities support this scalability requirement
+with minimal configuration overhead through the \texttt{org:<ORG>} configuration tag.
+
+
+Second, investigating whether the remaining DORA metrics of Change Failure Rate and
+Time to Restore Service can be captured through this methodology. Change Failure Rate
+requires correlating deployment events with failure indicators, potentially achievable
+through GitHub Actions workflow status integration or issue tracking correlation.
+Time to Restore Service presents greater challenges, as it depends on production incident
+detection and resolution tracking, which may require integration with external monitoring
+systems or Kubernetes deployment metrics beyond GitHub's scope.
 
 
 \bibliographystyle{IEEEtran}
