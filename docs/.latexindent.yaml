@@ -1,0 +1,23 @@
+# latexindent configuration for line wrapping
+# Usage: latexindent -m -l project_update.tex -o project_update.tex
+
+modifyLineBreaks:
+  textWrapOptions:
+    columns: 100           # Maximum line length
+    when: after            # Wrap after reaching the limit
+
+  oneSentencePerLine:
+    manipulateSentences: 1 # Enable sentence manipulation
+    textWrapSentences: 1   # Wrap sentences to column limit
+
+# Preserve indentation in itemize/enumerate environments
+indentRules:
+  item: "  "
+
+# Don't modify these environments
+lookForAlignDelims:
+  tabular: 0
+  align: 0
+
+# Keep comments intact
+preserveBlankLines: 1

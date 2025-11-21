@@ -1,26 +1,13 @@
 # Documentation Compilation Guide
-
-This directory contains LaTeX documentation for the CSE 7319 term project, including the literature review and bibliography.
-
-## Files
-
-- `literature_review.tex` - Main LaTeX document
-- `references.bib` - BibTeX bibliography database
-- `literature_review.pdf` - Compiled PDF output
-
 ## Prerequisites
 
 You need a LaTeX distribution installed on your system:
 
 - **Linux/WSL**: `sudo apt-get install texlive-latex-base texlive-latex-extra texlive-bibtex-extra`
-- **macOS**: Install [MacTeX](https://www.tug.org/mactex/)
-- **Windows**: Install [MiKTeX](https://miktex.org/) or [TeX Live](https://www.tug.org/texlive/)
 
 ## Compilation Instructions
 
 ### Full Compilation (with Bibliography)
-
-When you've made changes to citations or the bibliography file, run the complete compilation cycle:
 
 ```bash
 cd docs
