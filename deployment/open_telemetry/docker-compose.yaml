@@ -1,11 +1,11 @@
-version: '3.8'
-
 services:
   openobserve:
     image: public.ecr.aws/zinclabs/openobserve:latest
     container_name: openobserve
     ports:
       - "5080:5080"
+    env_file:
+      - .env
     environment:
       - ZO_ROOT_USER_EMAIL=${ZO_ROOT_USER_EMAIL:-admin@example.com}
       - ZO_ROOT_USER_PASSWORD=${ZO_ROOT_USER_PASSWORD:-Complexpass#123}
@@ -21,11 +21,13 @@ services:
     command: ["--config=/otel-collector-config.yaml"]
     volumes:
       - ./otel-collector-config.yaml:/otel-collector-config.yaml
+    env_file:
+      - .env
     ports:
       - "4317:4317"
       - "4318:4318"
     environment:
-      - GITHUB_PAT=${GITHUB_PAT}
+      - GH_PAT=${GH_PAT}
       - GITHUB_ORG=${GITHUB_ORG}
       - OPENOBSERVE_ENDPOINT=${OPENOBSERVE_ENDPOINT:-http://openobserve:5080/api/default/}
       - OPENOBSERVE_TOKEN=${OPENOBSERVE_TOKEN}

@@ -1,23 +1,23 @@
 extensions:
   bearertokenauth/github:
-    token: ${GITHUB_PAT}
+    token: ${env:GH_PAT}
 
 receivers:
   github:
     initial_delay: 1s
-    collection_interval: 60s
+    collection_interval: 300s
     scrapers:
         scraper:
-            github_org: ${GITHUB_ORG}
-            search_query: "org:${GITHUB_ORG}
+            github_org: ${env:GITHUB_ORG}
+            search_query: "${env:GITHUB_ORG_TYPE}:${env:GITHUB_ORG}"
             auth:
                 authenticator: bearertokenauth/github
 
 exporters:
   otlphttp/openobserve:
-    endpoint: ${OPENOBSERVE_ENDPOINT}
+    endpoint: ${env:OPENOBSERVE_ENDPOINT}
     headers:
-      Authorization: Basic ${OPENOBSERVE_TOKEN}
+      Authorization: Basic ${env:OPENOBSERVE_TOKEN}
 
 service:
   extensions: [bearertokenauth/github]
