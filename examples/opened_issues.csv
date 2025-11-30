@@ -1,0 +1,70 @@
+,msg,hash,date_rel,date_abs
+0,ClearToolUsesEdit add option to select specific tools instead of having to exclude tools,#34145,18 minutes ago,2025-11-29
+1,Langchain-ollama error for strict parameter with gpt oss 20b cloud model,#34144,3 hours ago,2025-11-29
+2,ChatGoogleGenerativeAIError: 400 - contents is not specified,#34143,5 hours ago,2025-11-29
+3,ChatXAI: 400 error when AIMessage has tool_calls but no content,#34140,yesterday,2025-11-29
+4,Option to disable streaming for LLMToolSelectorMiddleware internal LLM calls,#34139,yesterday,2025-11-29
+5,HuggingFacePipeline lacks async_client when used with LangGraph Studio,#34134,yesterday,2025-11-29
+6,Missing tokens in logprobs when using ChatVertexAI with JSON schema response,#34133,yesterday,2025-11-29
+7,The SQL query agent can no longer display the model's thought process.,#34132,2 days ago,2025-11-27
+8,[Feature Request] Native Support for MCP Code Execution (Programmatic Tool Calling) & Lazy Result Loading,#34130,2 days ago,2025-11-27
+9,"""Forcing tool calls"" is not universal.",#34129,2 days ago,2025-11-27
+10,Reasoning data persists in message history post-agent creation (create_agent),#34124,2 days ago,2025-11-27
+11,openai_tools.parse_tool_call,#34123,2 days ago,2025-11-27
+12,TodoListMiddleware improvements to declutter context and keep it tidy and clean,#34109,3 days ago,2025-11-26
+13,State not preserving custom fields — only messages available in runtime.state,#34108,3 days ago,2025-11-26
+14,Structured output with OpenAI model from Ollama causes TypeError in langchain 1.1.0,#34107,3 days ago,2025-11-26
+15,Unable to connect to Lang Smith Server to the local dev (Urgent),#34103,4 days ago,2025-11-25
+16,Gemini 2.5 Flash truncates output when used with LangChain middlewares,#34100,4 days ago,2025-11-25
+17,To add `OutputFixingParser` or an alternate,#34098,5 days ago,2025-11-24
+18,`NotRequired` in TypedDict causes TypeError when converting to OpenAI function schema,#34085,5 days ago,2025-11-24
+19,ProviderStrategy fails with JSONDecodeError for Gemini on VertexAI,#34084,5 days ago,2025-11-24
+20,test: test_with_llm failing on master - missing on_llm_start/on_llm_end events,#34076,last week,2025-11-22
+21,TypeError in langchain_anthropic/middleware/bash.py,#34068,last week,2025-11-22
+22,"Add the ability to dynamically change return_direct inside the function, or some other way dynamically make a tool return direct or not.",#34066,last week,2025-11-22
+23,Feature Request: `to_message_state()` and `as_message_state()` helpers,#34061,last week,2025-11-22
+24,Add MySQL language text splitter support,#34058,last week,2025-11-22
+25,"Streaming mode returns incomplete LLMResult (missing llm_output), breaking Langfuse callbacks",#34057,last week,2025-11-22
+26,Add the Gemini 3 pro's `thought_signature` support in langchain-openai,#34056,last week,2025-11-22
+27,"Jinja2 loop.index0 blocked by RestrictedSandboxedEnvironment when using template_format=""jinja2""",#34052,last week,2025-11-22
+28,SummarizationMiddleware fails - list object has no attribute strip,#34050,last week,2025-11-22
+29,langchain-classic: pytest fails with a ValueError when building on nixpkgs,#34033,last week,2025-11-22
+30,Consider `model_settings` on `create_agent`,#34031,last week,2025-11-22
+31,Tool calls sometimes fail due to missing positional argument,#34029,last week,2025-11-22
+32,"HuggingFace models: ""reasoning"" field missing in AIMessageChunk",#34011,2 weeks ago,2025-11-15
+33,ChatGroq setting wrong toolcall flag in resulting API call.,#33995,2 weeks ago,2025-11-15
+34,Ollama Qwen model always reasoning,#33993,2 weeks ago,2025-11-15
+35,OllamaLLM base_url is ignored.,#33986,2 weeks ago,2025-11-15
+36,get_buffer_string cannot correctly output AI tool call message (it is still using the deprecated `function_call` field and should be updated to use `tool_calls` instead).,#33970,2 weeks ago,2025-11-15
+37,"I am invoking playwright MCP tools by using the create_agent，Browser session terminates immediately after browser_navigate execution, causing subsequent tool calls to fail.",#33966,2 weeks ago,2025-11-15
+38,Some models' ToolMessage content fields do not support arrays.,#33965,2 weeks ago,2025-11-15
+39,how langchain1.0 create_agent use PostgresSaver as checkpointer,#33962,2 weeks ago,2025-11-15
+40,"XAI Live Search API will be deprecated, use tools instead",#33961,2 weeks ago,2025-11-15
+41,"Make ModelRequest, ModelResponse, and AgentMiddleware generic over Context type",#33956,2 weeks ago,2025-11-15
+42,Could we get a regular tagged release of `langchain-classic` please?,#33937,2 weeks ago,2025-11-15
+43,importing init_chat_model on python3.14 gives a UserWarning,#33926,3 weeks ago,2025-11-08
+44,astream is not sending token in python 3.10,#33903,3 weeks ago,2025-11-08
+45,Support for Custom Metadata Hydrators in Text Splitters,#33898,3 weeks ago,2025-11-08
+46,Let middleware specify middleware,#33885,3 weeks ago,2025-11-08
+47,Capture raw provider response,#33884,3 weeks ago,2025-11-08
+48,Strip message ID to improve cache performance,#33883,3 weeks ago,2025-11-08
+49,Add AgentRuntime,#33880,3 weeks ago,2025-11-08
+50,Add subagent middleware,#33879,3 weeks ago,2025-11-08
+51,Only obtain the results of the tool call without further reasoning.,#33859,3 weeks ago,2025-11-08
+52,Handle prompts used by create_agent(),#33853,3 weeks ago,2025-11-08
+53,Chroma similarity search by image not working,#33851,3 weeks ago,2025-11-08
+54,Suggest replacing Python’s built-in XML parser with pygixml for major performance gains,#33847,3 weeks ago,2025-11-08
+55,KnowledgeBase in LangChain,#33841,3 weeks ago,2025-11-08
+56,"ValueError: {'message': ""Invalid parameter: messages with role 'tool' must be a response to a preceeding message with 'tool_calls'."", 'type': 'invalid_request_error', 'param': 'messages.[1].role', 'code': None}",#33838,3 weeks ago,2025-11-08
+57,create_agent did not remove the reasoning from the message list,#33834,3 weeks ago,2025-11-08
+58,Support sequential state propagation for batch tool calls,#33832,last month,2025-11-01
+59,Add R programming to langchain_text_splitters.Language,#33824,last month,2025-11-01
+60,Support Immediate Streaming for Server-Side Tool Invocations,#33810,last month,2025-11-01
+61,Support dynamic tool addition/removal after agent creation and in middleware,#33808,last month,2025-11-01
+62,Add PythonREPLTool (formerly in langchain_experimental) support for LangChain v1,#33800,last month,2025-11-01
+63,"`ChatPromptTemplate.from_messages()` doesn't support `(message class, template)` tuples",#33791,27 days ago,2025-11-02
+64,Agent re-attempts original tool call after HumanInTheLoopMiddleware edit decision,#33787,27 days ago,2025-11-02
+65,The issue with the list formatting string type caused the llm call to fail—the JSON in the request body was non-compliant.,#33758,last month,2025-11-01
+66,Support cache_control for ChatOpenAI,#33757,last month,2025-11-01
+67,Unable to inject tool call id into tool when using LLM with bound tools and structured outputs simultaneously,#33744,on Oct 30,2025-11-01
+68,Unified Structured Output and Tool-Calling Interface in BaseChatModel,#33743,on Oct 30,2025-11-01

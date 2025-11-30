@@ -1,0 +1,90 @@
+,msg,hash,date_rel,date_abs
+0,langchain-tests @1.0.2 uses `blockbuster` but fails to declare the dependency in pyproject.toml,#34110,2 days ago,2025-11-27
+1,ChatOpenAI封装本地vllm服务链式调用出错,#34067,3 days ago,2025-11-26
+2,DOC: <Issue related to /docs/tutorials/chatbot/> 文档代码错误,#34099,3 days ago,2025-11-26
+3,"When tools are bound in the `create_agent` function, the deepseek-reasoner model cannot return `reasoning_content`.",#34082,3 days ago,2025-11-26
+4,Add TOON (Token Oriented Object Notation) support,#34059,4 days ago,2025-11-25
+5,PydanticOutputParser formats error with ensure_ascii=True,#34005,last week,2025-11-22
+6,mistral alias to mistralai not computing the proper model name,#34007,last week,2025-11-22
+7,TypeError in `TestAnthropicStandard.test_with_structured_output[PersonB]`: `'ModelMetaclass' object is not a mapping`,#34069,last week,2025-11-22
+8,Errors regarding the use of the tool,#34045,last week,2025-11-22
+9,Add `ModelRetryMiddleware` for fine-grained control for LLM retries in agents created via `create_agent`,#33983,last week,2025-11-22
+10,Disable parallel tool calls in `create_agent()`,#34010,last week,2025-11-22
+11,Handoff Release?,#34016,last week,2025-11-22
+12,ImportError: InjectedState not found in langgraph.prebuilt when importing create_agent (LangChain 1.0.7),#34004,last week,2025-11-22
+13,"LangChain v1: create_agent returns only AIMessage when using` async for event in agent.astream`, no AIMessageChunk",#34017,last week,2025-11-22
+14,BaseChatOpenAI handles temperature removal only for lower case names of reasoning models,#34003,2 weeks ago,2025-11-15
+15,state is not being injected when using custom input schema on tool,#31688,2 weeks ago,2025-11-15
+16,runtime is not passed to tool function if the args_schema is defined with Pydantic BaseModel,#33646,2 weeks ago,2025-11-15
+17,create_agent 'name' always None,#33754,2 weeks ago,2025-11-15
+18,ModelRequest system_prompt wrong type,#34002,2 weeks ago,2025-11-15
+19,Anthropic structured output,#33977,2 weeks ago,2025-11-15
+20,A question from the official documentation of LangChainV1.0,#33990,2 weeks ago,2025-11-15
+21,"openai: `OpenAIEmbeddings` does not respect token limits, causes 400 BadRequest",#31227,2 weeks ago,2025-11-15
+22,langchain: ShellToolMiddleware breaks with HIL,#33684,2 weeks ago,2025-11-15
+23,"_generate_response_from_error() raises ResponseNotRead, masking original exceptions",#33514,2 weeks ago,2025-11-15
+24,Agent with Checkpointer Reuses Tool Results in Multi-Turn Conversations,#33936,2 weeks ago,2025-11-15
+25,"In asynchronous generators, yield causes tokens to fail to be sent properly in Python 3.10.",#33908,2 weeks ago,2025-11-15
+26,gemini api can‘t use await agent.ainvoke,#33849,2 weeks ago,2025-11-15
+27,"docs: Suggest expanding ""Why use LangChain?"" section in README",#33790,2 weeks ago,2025-11-15
+28,[v1-alpha] Audio content blocks not converted to provider-specific format for OpenAI,#33395,2 weeks ago,2025-11-15
+29,cannot initialize embedding model using langchain-ollama after update,#33138,2 weeks ago,2025-11-15
+30,"`ChatOpenAI` can now accept a callable for `api_key`, not just a string",#33051,2 weeks ago,2025-11-15
+31,reasoning parameter not working as expected in chatollama,#33041,2 weeks ago,2025-11-15
+32,pylance type checking error when importing tool decorator,#33019,2 weeks ago,2025-11-15
+33,AIMLAPI: support Function Calling,#33000,2 weeks ago,2025-11-15
+34,test(openai): increase max `test_base` max tokens,#32972,2 weeks ago,2025-11-15
+35,AI streaming works locally but responses are cut off in Vercel deployment,#32944,2 weeks ago,2025-11-15
+36,feat(deepseek): Strict-mode,#32670,2 weeks ago,2025-11-15
+37,docs: move `standard-tests` or add dedicated section in API ref,#32395,2 weeks ago,2025-11-15
+38,qwen3-14b Model Returns `None` Causing Validation Error,#31536,2 weeks ago,2025-11-15
+39,`ImportError: cannot import name 'is_data_content_block' from 'langchain_core.messages'`,#31085,2 weeks ago,2025-11-15
+40,Unable to extract tables with `partition_pdf()`,#31053,2 weeks ago,2025-11-15
+41,Bug caused by `create_react_agent` method and runnable `astream_events`,#30708,2 weeks ago,2025-11-15
+42,LangChain Batch Processing Order Mismatch and Duplicate Output Issue,#30335,2 weeks ago,2025-11-15
+43,test,#33953,2 weeks ago,2025-11-15
+44,`ModuleNotFoundError: No module named 'langchain.chains'`,#33933,2 weeks ago,2025-11-15
+45,[langchain-anthropic] Code execution tool result blocks missing from streaming responses,#33920,2 weeks ago,2025-11-15
+46,LangChain V1 Releases!,#32794,3 weeks ago,2025-11-08
+47,PIIMiddleware for credit_card not functioning as expected,#33924,3 weeks ago,2025-11-08
+48,what is expected behavior of SummarizationMiddleware when summarization is disabled?,#33701,3 weeks ago,2025-11-08
+49,"from langchain_openai import OpenAIEmbeddings embeddings=OpenAIEmbeddings(model=""text-embedding-3-large"", dimensions=256)",#33848,3 weeks ago,2025-11-08
+50,ImportError: '_DirectlyInjectedToolArg' from 'langchain_core.tools.base,#33872,3 weeks ago,2025-11-08
+51,Human in loop middleware's edit argument passing issue,#32988,3 weeks ago,2025-11-08
+52,The CI error Pydantic and Python versions are incompatible,#33860,3 weeks ago,2025-11-08
+53,`load()` does not apply `secrets_map` to plain string values,#31804,3 weeks ago,2025-11-08
+54,Re-entering a context manager from `set_config_context` raises `AttributeError` instead of `RuntimeError`,#30720,3 weeks ago,2025-11-08
+55,The current `create_agent` agent's `invoke()` response cannot include a `structured_response`.,#32951,3 weeks ago,2025-11-08
+56,agent.stream does not output in real-time like model.stream,#33667,3 weeks ago,2025-11-08
+57,[LangChain v1] Built-in Middleware for Recursion limit fallback,#33653,3 weeks ago,2025-11-08
+58,Consider adding support for Project CodeGuard rules in Guardrails,#33764,3 weeks ago,2025-11-08
+59,GraphRecursionError when adding multiple custom PIIMiddleware,#33740,3 weeks ago,2025-11-08
+60,HuggingFaceEndpoint: `max_new_tokens` not applied to the model,#32234,3 weeks ago,2025-11-08
+61,create_agent in 1.0.3 dependency issue with langgraph-prebuilt 1.0.2,#33804,3 weeks ago,2025-11-08
+62,tool_choice='any' inserted for Bedrock invocation when using create_agent with ChatLiteLLM,#33855,3 weeks ago,2025-11-08
+63,[LangGraph v1.0] Support Bedrock Anthropic prompt caching (cache_control) in create_agent system prompt,#33635,3 weeks ago,2025-11-08
+64,core(callbacks): context is not maintained when async callbacks get shielded,#31398,3 weeks ago,2025-11-08
+65,RunnableParallel input schema is empty if children runnable input schemas use TypedDict's,#24326,3 weeks ago,2025-11-08
+66,Pydantic validation error when using `retriever.invoke()`,#31334,3 weeks ago,2025-11-08
+67,cannot import AIMessage from langchain.messages,#33770,3 weeks ago,2025-11-08
+68,response.incomplete events are not handled in OpenAI Responses API streaming when stream_mode include 'messages',#33840,3 weeks ago,2025-11-08
+69,Modifying a node that uses `with_structured_output` deletes all the threads in LangGraph Studio,#33128,3 weeks ago,2025-11-08
+70,langchain_experimental.graph_transformers import LLMGraphTransformer raised No module named 'langchain.graphs' for langhcain version 1,#33702,3 weeks ago,2025-11-08
+71,Structured output not working with system prompt,#33688,3 weeks ago,2025-11-08
+72,Dependency Conflict: langgraph_supervisor incompatible with langgraph>=1.0.0,#33622,3 weeks ago,2025-11-08
+73,```RunnableConfig``` not passed into tools when using ```AgentExecutor```,#33080,3 weeks ago,2025-11-08
+74,Please update supervisor-py to be compatible with 1.0v release,#33204,3 weeks ago,2025-11-08
+75,deepagents 0.2.5与 langchain==1.0.2 版本兼容问题,#33858,3 weeks ago,2025-11-08
+76,Feature Request: Preserve System Messages in SummarizationMiddleware,#33856,3 weeks ago,2025-11-08
+77,"[docs] Expand ""Why use LangChain?"" section in README",#33783,3 weeks ago,2025-11-08
+78,`create_agent` generic state type hints update,#33732,3 weeks ago,2025-11-08
+79,Recover config in create_agent with Middleware,#33721,3 weeks ago,2025-11-08
+80,[LangChain v1] LLMToolSelectorMiddleware selects a tool that is not in the provided tool list. seems like the middleware is not receiving the correct tool list.,#33651,3 weeks ago,2025-11-08
+81,Mismatch of the structured output key between agent created with/without middleware,#33154,3 weeks ago,2025-11-08
+82,ModuleNotFoundError: No module named 'langchain.chains',#33822,last month,2025-11-01
+83,"when using human-in-the-loop, i find that the llm recall the same tool with original parameter if i had edited the tool parameter,why",#33784,last month,2025-11-01
+84,"Server-side tools (web_search, code_interpreter, etc) only emit after execution completes, not when model decides to call them",#33807,last month,2025-11-01
+85,Can we add If user want to convert text into token or not in openai embedding ?,#33774,28 days ago,2025-11-01
+86,TypeError in langchain-openai,#33705,on Oct 30,2025-11-01
+87,create_agent with tools fail as final LLM call does not happen and it errors out with UnboundLocalError,#33696,on Oct 30,2025-11-01
+88,Unify ChatOpenAI response_metadata structure between streaming and non-streaming outputs,#33717,on Oct 29,2025-11-01

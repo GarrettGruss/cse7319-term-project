@@ -1,0 +1,201 @@
+ 67 pull requests opened by 45 people
+fix(core): add re-entrancy guard to `RootListenersTracer` to prevent recursive listener invocations
+#33745 opened on Oct 30
+
+feat(core): automatically count and store meta for tool call count
+#33756 opened last month
+
+fix(langchain): set agent name on `AIMessage` responses when name parameter is provided
+#33778 opened 28 days ago
+
+fix(langchain): initialize variables in `_fetch_last_ai_and_tool_messages`
+#33785 opened 27 days ago
+
+fix(langchain): `init_chat_model` for Hugging Face models
+#33786 opened 27 days ago
+
+fix(langchain): ensure HITL middleware edit decisions persist in agent state
+#33789 opened 27 days ago
+
+fix(anthropic): handle runtime model fallback in caching middleware
+#33850 opened 3 weeks ago
+
+fix(anthropic): clean up `cache_control` in middleware to prevent fallback errors
+#33894 opened 3 weeks ago
+
+feat(langchain): add openrouter provider(#33643)
+#33902 opened 3 weeks ago
+
+fix: astream is not sending token in python 3.10
+#33907 opened 3 weeks ago
+
+feat: Support Sequential State Propagation for Batch Tool Calls
+#33911 opened 3 weeks ago
+
+fix(core): strip message IDs from cache keys using model_copy
+#33915 opened 3 weeks ago
+
+feat(core): Implement AgentRuntime with metadata and state tracking
+#33921 opened 3 weeks ago
+
+feat(core): Capture raw provider response
+#33922 opened 3 weeks ago
+
+feat(text-splitters): add R programming language support
+#33931 opened 3 weeks ago
+
+fix(core): Resolve 'FieldInfo is not JSON serializable' error in Pydantic v2
+#33932 opened 3 weeks ago
+
+fix(langchain-classic): fix init_chat_model for HuggingFace models
+#33943 opened 2 weeks ago
+
+feat(xai): Add comprehensive tests and docs for agentic tool calling API
+#33967 opened 2 weeks ago
+
+refactor(standard-tests): improve VCR config
+#33968 opened 2 weeks ago
+
+[WIP]: Fix MCP Playwright browser session termination issue by implementing stateful session management wrapper
+#33971 opened 2 weeks ago
+
+fix(core): `get_buffer_string` to support modern `tool_calls`
+#33984 opened 2 weeks ago
+
+refactor(core): improved typing (WIP)
+#33985 opened 2 weeks ago
+
+feat: add middleware dependency resolution
+#33987 opened 2 weeks ago
+
+fix(core): support (message class, template) tuples in ChatPromptTemplate.from_messages
+#33989 opened 2 weeks ago
+
+fix(langchain): incorrect HuggingFace initialization in `init_chat_model`
+#34000 opened 2 weeks ago
+
+feat(langchain): refactor context editing middleware
+#34008 opened 2 weeks ago
+
+feat(huggingface): expose reasoning_content in AIMessageChunk
+#34014 opened 2 weeks ago
+
+fix(anthropic): prevent crash with cache_control and empty message content
+#34025 opened last week
+
+feat(text-splitters): add MySQL language support to RecursiveCharacterTextSplitter
+#34028 opened last week
+
+fix(langchain): typing improvements for request types
+#34032 opened last week
+
+fix(langchain-classic): pass default to `config.getoption`
+#34034 opened last week
+
+fix(ollama): Respect scheme-less `base_url`
+#34042 opened last week
+
+feat(core): parallelize sync generate method for improved LLM throughput
+#34043 opened last week
+
+feat(langchain): Add Middleware for easier setting model_settings
+#34048 opened last week
+
+feat(openai): Include support for reasoning blocks when using openai compatible llm gateways
+#34049 opened last week
+
+feat(groq): Allow kwargs in with_structured_output to override tool_choice
+#34053 opened last week
+
+feat(core): Optional Support for Jinja2 Unrestricted
+#34054 opened last week
+
+fix(core): include llm_output in streaming LLMResult
+#34060 opened last week
+
+fix(core): undo jinja2 restrictions
+#34072 opened last week
+
+feat(core): enrich HTML `pretty_repr` for prompt templates and display partial variables
+#34073 opened last week
+
+fix(openai): add missing `tools` param to `ChatOpenAI` `with_structured_output`
+#34075 opened last week
+
+feat(text-splitters): add MySQL Language support for RecursiveCharacterTextSplitter Class with delimiter aware splitting
+#34077 opened last week
+
+fix(text-splitters): reverse preserved elements iterator in HTMLSemanticPreservingSplitter
+#34080 opened last week
+
+docs: enhance security guidance for LangChain application developers
+#34081 opened last week
+
+feat(core): add as_message_state and to_message_state utilities with tests
+#34089 opened 5 days ago
+
+fix(langchain): never exceed `keep` threshold in SummarizationMiddleware
+#34091 opened 5 days ago
+
+fix(deepseek): deepseek-reasoner model cannot return `reasoning_content` with tools
+#34092 opened 5 days ago
+
+fix(core): `NotRequired` in TypedDict causes TypeError when converting to OpenAI function schema
+#34093 opened 5 days ago
+
+feat(core): add to_message_state and as_message_state helpers for LCEL message normalization
+#34094 opened 5 days ago
+
+test(ollama): Add unit test for `ChatOllama` reasoning parameter
+#34095 opened 5 days ago
+
+test(core): add regression test for list-index $ref resolution (MCP-style schema)
+#34097 opened 5 days ago
+
+feat: Add extra_content field to ToolCall for provider-specific metadata
+#34111 opened 3 days ago
+
+fix(core): Raise informative error for reserved 'config' tool argument
+#34112 opened 3 days ago
+
+feat(anthropic): auto append relevant beta headers
+#34113 opened 3 days ago
+
+fix(ollama): pop unsupported 'strict' argument in `ChatOllama`
+#34114 opened 3 days ago
+
+feat(anthropic,model-profiles): add `effort` support
+#34116 opened 3 days ago
+
+feat(anthropic): auto append relevant beta headers for computer use
+#34117 opened 3 days ago
+
+feat(anthropic): document and test fine grained tool streaming
+#34118 opened 3 days ago
+
+feat(anthropic): tool search support
+#34119 opened 3 days ago
+
+feat(core,anthropic): `extras` on `BaseTool`
+#34120 opened 3 days ago
+
+fix(core): fix for `exclude_inputs` `POST` (WIP)
+#34121 opened 3 days ago
+
+fix(fireworks): models used in tests & naming schema
+#34125 opened 2 days ago
+
+fix(openai): normalize tool_choice inputs across providers (fix #34129)
+#34135 opened yesterday
+
+fix(openai): Fixing error that comes up using the Responses API with built-in tools and custom tools
+#34136 opened yesterday
+
+fix(langchain_v1): add types to human_in_the_loop middleware
+#34137 opened yesterday
+
+fix(core): avoid concatenating streaming ids in merge
+#34138 opened yesterday
+
+fix(mistralai): enforce max_concurrent_requests
+#34142 opened 20 hours ago

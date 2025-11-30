@@ -1,0 +1,123 @@
+ 41 releases published by 1 person
+langchain-core==1.0.2 langchain-core==1.0.2
+on Oct 29
+
+langchain==1.0.3 langchain==1.0.3
+on Oct 29
+
+langchain-anthropic==1.0.1 langchain-anthropic==1.0.1
+on Oct 30
+
+langchain-model-profiles==0.0.1 langchain-model-profiles==0.0.1
+last month
+
+langchain-model-profiles==0.0.2 langchain-model-profiles==0.0.2
+last month
+
+langchain-openai==1.0.2 langchain-openai==1.0.2
+last month
+
+langchain-core==1.0.3 langchain-core==1.0.3
+last month
+
+langchain-tests==1.0.1 langchain-tests==1.0.1
+last month
+
+langchain-model-profiles==0.0.3 langchain-model-profiles==0.0.3
+last month
+
+langchain-huggingface==1.0.1 langchain-huggingface==1.0.1
+last month
+
+langchain==1.0.4 langchain==1.0.4
+3 weeks ago
+
+langchain-anthropic==1.0.2 langchain-anthropic==1.0.2
+3 weeks ago
+
+langchain-core==1.0.4 langchain-core==1.0.4
+3 weeks ago
+
+langchain==1.0.5 langchain==1.0.5
+3 weeks ago
+
+langchain-model-profiles==0.0.4 langchain-model-profiles==0.0.4
+3 weeks ago
+
+langchain-anthropic==1.0.3 langchain-anthropic==1.0.3
+2 weeks ago
+
+langchain-nomic==1.0.1 langchain-nomic==1.0.1
+2 weeks ago
+
+langchain-deepseek==1.0.1 langchain-deepseek==1.0.1
+2 weeks ago
+
+langchain-groq==1.0.1 langchain-groq==1.0.1
+2 weeks ago
+
+langchain-core==1.0.5 langchain-core==1.0.5
+2 weeks ago
+
+langchain==1.0.6 langchain==1.0.6
+2 weeks ago
+
+langchain-anthropic==1.0.4 langchain-anthropic==1.0.4
+2 weeks ago
+
+langchain==1.0.7 langchain==1.0.7
+2 weeks ago
+
+langchain-openai==1.0.3 langchain-openai==1.0.3
+2 weeks ago
+
+langchain-anthropic==1.1.0 langchain-anthropic==1.1.0
+2 weeks ago
+
+langchain-core==1.0.6 langchain-core==1.0.6
+last week
+
+langchain==1.0.8 langchain==1.0.8
+last week
+
+langchain-core==1.0.7 langchain-core==1.0.7
+last week
+
+langchain-core==0.3.80 langchain-core==0.3.80
+last week
+
+langchain-core==1.1.0 langchain-core==1.1.0
+last week
+
+langchain-model-profiles==0.0.5 langchain-model-profiles==0.0.5
+last week
+
+langchain-tests==1.0.2 langchain-tests==1.0.2
+last week
+
+langchain-fireworks==1.1.0 langchain-fireworks==1.1.0
+5 days ago
+
+langchain-anthropic==1.2.0 langchain-anthropic==1.2.0
+5 days ago
+
+langchain-huggingface==1.1.0 langchain-huggingface==1.1.0
+5 days ago
+
+langchain-mistralai==1.1.0 langchain-mistralai==1.1.0
+5 days ago
+
+langchain-openai==1.1.0 langchain-openai==1.1.0
+5 days ago
+
+langchain-groq==1.1.0 langchain-groq==1.1.0
+5 days ago
+
+langchain-perplexity==1.1.0 langchain-perplexity==1.1.0
+5 days ago
+
+langchain-xai==1.1.0 langchain-xai==1.1.0
+5 days ago
+
+langchain==1.1.0 langchain==1.1.0
+5 days ago

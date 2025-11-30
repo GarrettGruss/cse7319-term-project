@@ -1,0 +1,537 @@
+ 179 pull requests merged by 36 people
+docs(core): update docstrings in `RunnableConfig`, `dereference_refs`
+#34131 merged 2 days ago
+
+chore(infra): update agent files, remove top-level pyproject
+#34128 merged 2 days ago
+
+fix(model-profiles): update docs link
+#34127 merged 2 days ago
+
+chore(infra): updated allowed scopes in PR lint configuration
+#34115 merged 3 days ago
+
+docs(anthropic,core,langchain): updates
+#34106 merged 4 days ago
+
+style(core,langchain,qdrant): fix some docstrings for refs
+#34105 merged 4 days ago
+
+chore(infra): update PR template, agent files
+#34104 merged 4 days ago
+
+chore(deps): bump actions/checkout from 5 to 6
+#34083 merged 5 days ago
+
+fix(core): handle missing `StructuredPrompt` schema
+#34096 merged 5 days ago
+
+release(langchain): 1.1
+#34090 merged 5 days ago
+
+release: (integration packages): 1.1
+#34088 merged 5 days ago
+
+feat(langchain): support `SystemMessage` in `create_agent`'s `system_prompt`
+#34055 merged 5 days ago
+
+release: (integration packages) 1.1
+#34087 merged 5 days ago
+
+release(fireworks): 1.1
+#34086 merged 5 days ago
+
+fix(core): `ensure_ascii=False` in `PydanticOutputParser` exception formatting
+#34006 merged last week
+
+fix(openai): make GPT-5 temperature validation case-insensitive
+#34012 merged last week
+
+chore(infra): bump actions/github-script from 6 to 8
+#33991 merged last week
+
+fix(infra,core): nits
+#34079 merged last week
+
+fix(core): Decouple provider prefix from model name in init_chat_mode…
+#34046 merged last week
+
+style(core,langchain-classic,openai): fix griffe warnings
+#34074 merged last week
+
+release(standard-tests): 1.0.2
+#34071 merged last week
+
+chore(fireworks): update tested models
+#34070 merged last week
+
+fix: don't reorder tool calls in HITL middleware
+#34023 merged last week
+
+chore(docs): fix a few refs syntax errors
+#34044 merged last week
+
+release(model-profiles): 0.0.5
+#34064 merged last week
+
+release(core): 1.1.0
+#34063 merged last week
+
+feat(model-profiles): distribute data across packages
+#34024 merged last week
+
+feat(model-profiles): convert to auto-generated .py files
+#34062 merged last week
+
+chore: add more robust test for runtime injection w/ explicit `args_schema`
+#34051 merged last week
+
+feat: `ModelRetryMiddleware`
+#34027 merged last week
+
+chore(infra): properly disable testing for 0.3 against latest packages
+#34041 merged last week
+
+chore(infra): disable integration tests temporarily when releasing v0.3
+#34040 merged last week
+
+release(core): 0.3.80
+#34039 merged last week
+
+fix(core): fix validation for input variables in f-string templates, restrict functionality supported by jinja2, mustache templates
+#34038 merged last week
+
+release(core): 1.0.7
+#34036 merged last week
+
+fix(core): fix validation for input variables in f-string templates, restrict functionality supported by jinja2, mustache templates (GHSA-6qv9-48xg-fc7f)
+#34035 merged last week
+
+fix: deprecate `setattr` on `ModelCallRequest`
+#34022 merged last week
+
+chore(openai): skip Azure text completions tests
+#34021 merged last week
+
+release: langchain 1.0.8
+#34019 merged last week
+
+chore: temporarily skip openai integration tests
+#34020 merged last week
+
+release: langchain-core 1.0.6
+#34018 merged last week
+
+chore: Support tool runtime injection when custom args schema is prov…
+#33999 merged 2 weeks ago
+
+release(anthropic): 1.1
+#33997 merged 2 weeks ago
+
+feat(anthropic): support native structured output feature and strict tool calling
+#33980 merged 2 weeks ago
+
+feat(core): add proxy support for mermaid png rendering
+#32400 merged 2 weeks ago
+
+style(langchain): fix some middleware ref syntax
+#33988 merged 2 weeks ago
+
+release(openai): 1.0.3
+#33981 merged 2 weeks ago
+
+refactor(openai): embedding utils and calculations
+#33982 merged 2 weeks ago
+
+fix(openai): Respect 300k token limit for embeddings API requests
+#33668 merged 2 weeks ago
+
+release: langchain 1.0.7
+#33979 merged 2 weeks ago
+
+fix: resumable shell, works w/ interrupts
+#33978 merged 2 weeks ago
+
+feat(langchain): reference model profiles for provider strategy
+#33974 merged 2 weeks ago
+
+chore: increase coverage for shell, filesystem, and summarization middleware
+#33928 merged 2 weeks ago
+
+fix: cherry picking fixes for langchain + langchain-anthropic releases
+#33975 merged 2 weeks ago
+
+fix(anthropic): execute bash + file tools via tool node
+#33960 merged 2 weeks ago
+
+release(core): 1.0.5
+#33973 merged 2 weeks ago
+
+fix: shell tools of all sorts
+#33972 merged 2 weeks ago
+
+fix: adding missing async hooks
+#33957 merged 2 weeks ago
+
+docs: Fix doc links
+#33964 merged 2 weeks ago
+
+fix(core): don't mask exceptions
+#33959 merged 2 weeks ago
+
+docs(core): add clarity to base token counting methods
+#33958 merged 2 weeks ago
+
+fix: add filesystem middleware in init
+#33955 merged 2 weeks ago
+
+chore(core,infra): nits
+#33954 merged 2 weeks ago
+
+chore(langchain): update deps
+#33951 merged 2 weeks ago
+
+feat(infra): add automatic issue labeling
+#33952 merged 2 weeks ago
+
+fix(groq): bump min ver for `core` dep
+#33949 merged 2 weeks ago
+
+release(nomic): 1.0.1
+#33948 merged 2 weeks ago
+
+release(groq): 1.0.1
+#33947 merged 2 weeks ago
+
+release(deepseek): 1.0.1
+#33946 merged 2 weeks ago
+
+fix(langchain, openai): backward compat for response_format
+#33945 merged 2 weeks ago
+
+fix(langchain, openai): fix create_agent / response_format for Responses API
+#33939 merged 2 weeks ago
+
+chore(core): fix some ruff TC rules
+#33929 merged 2 weeks ago
+
+chore(cli,standard-tests,text-splitters): fix some ruff TC rules
+#33934 merged 2 weeks ago
+
+release(anthropic): 1.0.3
+#33935 merged 2 weeks ago
+
+feat(anthropic): support code_execution_20250825
+#33925 merged 2 weeks ago
+
+feat: refactor tests
+#33927 merged 3 weeks ago
+
+chore: update `README.md` files
+#33919 merged 3 weeks ago
+
+feat(langchain): support async summarization in SummarizationMiddleware
+#33918 merged 3 weeks ago
+
+test(core): add comprehensive tests for groq block translator
+#33906 merged 3 weeks ago
+
+release(model-profiles): 0.0.4
+#33917 merged 3 weeks ago
+
+chore(infra): add note to pr linting workflow
+#33916 merged 3 weeks ago
+
+test(groq,openai): add retries for flaky tests
+#33914 merged 3 weeks ago
+
+revert(core): "applied `secrets_map` in `load` to plain string values"
+#33913 merged 3 weeks ago
+
+feat(langchain): (SummarizationMiddleware) support use of model context windows when triggering summarization
+#33825 merged 3 weeks ago
+
+feat(deepseek): support `strict` beta structured output
+#32727 merged 3 weeks ago
+
+chore: fix URL underlining in `README.md`
+#33905 merged 3 weeks ago
+
+fix(chroma): resolve OpenCLIP + Chroma image embedding test regression
+#33899 merged 3 weeks ago
+
+chore(langchain): pass on reference docstrings (middleware)
+#33904 merged 3 weeks ago
+
+fix(groq): handle tool calls with no args
+#33896 merged 3 weeks ago
+
+docs(langchain): correct IBM provider link in `chat_models` docstring
+#33897 merged 3 weeks ago
+
+fix(standard-tests): fix semantic typo in if statement
+#33890 merged 3 weeks ago
+
+release(langchain): 1.0.5
+#33893 merged 3 weeks ago
+
+fix(core): applied `secrets_map` in `load` to plain string values
+#33678 merged 3 weeks ago
+
+feat(groq): add prompt caching token usage details
+#33708 merged 3 weeks ago
+
+release(anthropic): 1.0.2
+#33888 merged 3 weeks ago
+
+revert: Support for SystemMessage in create_agent
+#33889 merged 3 weeks ago
+
+chore(infra): expand PR labeling
+#33887 merged 3 weeks ago
+
+release(core): 1.0.4
+#33886 merged 3 weeks ago
+
+feat(core): support draw subgraph using pygraphviz
+#32966 merged 3 weeks ago
+
+fix(core): Fix tool name check in name_dict for PydanticToolsParser
+#33479 merged 3 weeks ago
+
+fix: bump up default recursion limit
+#33881 merged 3 weeks ago
+
+fix(core): Filter empty content blocks from formatted prompts
+#32519 merged 3 weeks ago
+
+fix(huggingface): pass llm params to `ChatHuggingFace`
+#32368 merged 3 weeks ago
+
+chore(langchain): Support for SystemMessage in create_agent
+#33640 merged 3 weeks ago
+
+fix(core): context preservation in shielded async callbacks
+#32163 merged 3 weeks ago
+
+fix(core): `RunnablePick` may not return a dict if keys is a string
+#31321 merged 3 weeks ago
+
+fix(core): fix `Runnable` parallel schema being empty when children runnable input schemas use `TypedDict`
+#28196 merged 3 weeks ago
+
+refactor(langchain): use `create_importer` for `HypotheticalDocumentEmbedder`
+#32078 merged 3 weeks ago
+
+fix(chroma): pydantic validation error when using `retriever.invoke()`
+#31377 merged 3 weeks ago
+
+fix(langchain): Update langchain-core dependency version
+#33775 merged 3 weeks ago
+
+feat(perplexity): Created Dedicated Output Parser to Support Reasoning Model Output for perplexity
+#33670 merged 3 weeks ago
+
+feat: The response.incomplete event is not handled when using stream_mode=['messages']
+#33871 merged 3 weeks ago
+
+docs: expand "Why use LangChain?" section in README
+#33846 merged 3 weeks ago
+
+style: some cleanup
+#33857 merged 3 weeks ago
+
+chore: attribute package change versions
+#33854 merged 3 weeks ago
+
+fix: don't trace conditional edges and no todos in input state
+#33842 merged 3 weeks ago
+
+chore: update `README.md` with `deepagents`
+#33843 merged 3 weeks ago
+
+fix(core): handle missing dependency version information
+#33844 merged 3 weeks ago
+
+release: langchain v1.0.4
+#33839 merged 3 weeks ago
+
+fix: only increment thread count on successful executions
+#33837 merged 3 weeks ago
+
+fix: more robust tool call limit middleware
+#33817 merged 3 weeks ago
+
+chore(infra): remove unused `pr-title-labeler.yml`
+#33831 merged last month
+
+chore(infra): drop `langchain_v1` pr lint
+#33830 merged last month
+
+fix(langchain): remove `Tigris`
+#33829 merged last month
+
+chore: correct `langchain-community` references
+#33827 merged last month
+
+chore(core): add ruff rule `PLR2004`
+#33706 merged last month
+
+chore(core): clean pyproject formatting
+#33821 merged last month
+
+docs(model-profiles): fix typo
+#33820 merged last month
+
+chore(infra): remova unused `poetry_setup` action
+#33819 merged last month
+
+chore: update issue template xref url
+#33818 merged last month
+
+style(standard-tests): refs pass
+#33814 merged last month
+
+style: refs pass
+#33813 merged last month
+
+Revert 33805 fix last plz
+#33806 merged last month
+
+fix(docs): redirects
+#33805 merged last month
+
+fix(docs): fine tune redirects
+#33802 merged last month
+
+release(huggingface): 1.0.1
+#33803 merged last month
+
+fix(huggingface): add `stream_usage` support for `ChatHuggingFace` invoke/stream
+#32708 merged last month
+
+fix(core): add no colors check
+#33780 merged last month
+
+chore(docs): Add redirect for multi-modal
+#33801 merged last month
+
+fix(docs): Make redirects more specific for integrations
+#33799 merged last month
+
+release(model-profiles): 0.0.3
+#33798 merged last month
+
+fix(model-profiles): fix pdf_inputs field
+#33797 merged last month
+
+fix(docs): Fix regex in redirects
+#33795 merged last month
+
+feat(langchain): add `model-profiles` as optional dependency
+#33794 merged last month
+
+test(anthropic): add vcr to `test_search_result_tool_message`
+#33793 merged last month
+
+docs: add Code of Conduct link to README
+#33782 merged last month
+
+release(standard-tests): 1.0.1
+#33792 merged last month
+
+release(core): 1.0.3
+#33768 merged last month
+
+fix(standard-tests): update multimodal tests
+#33781 merged 28 days ago
+
+style: misc refs work
+#33771 merged last month
+
+release(openai): 1.0.2
+#33769 merged last month
+
+release(model-profiles): 0.0.2
+#33767 merged last month
+
+chore(docs): add api reference redirects
+#33765 merged last month
+
+feat(model-profiles): support more providers
+#33766 merged last month
+
+fix(docs): get redirects to build
+#33763 merged last month
+
+fix(model-profiles): add typing-extensions as explicit dep
+#33762 merged last month
+
+fix(model-profiles): remove langchain-core as a dependency
+#33761 merged last month
+
+docs(core): improve tools module docstrings
+#33755 merged last month
+
+fix(infra): fix release workflow for new packages
+#33760 merged last month
+
+fix(infra): fix release workflow for new packages
+#33759 merged last month
+
+feat(core): mint langchain-model-profiles and add profile property to `BaseChatModel`
+#33728 merged last month
+
+revert: "chore: skip anthropic tests while waiting on new anthropic release"
+#33753 merged on Oct 30
+
+release(anthropic): 1.0.1
+#33752 merged on Oct 30
+
+chore: use model IDs, latest anthropic models
+#33747 merged on Oct 30
+
+fix(anthropic): clean up tests, update default model to use ID
+#33751 merged on Oct 30
+
+test(openai): mark tests flaky
+#33750 merged on Oct 30
+
+chore(langchain): fix `lint_imports` paths
+#33749 merged on Oct 30
+
+fix(langchain): use `system_prompt` in integration tests
+#33748 merged on Oct 30
+
+fix(openai): replace pytest.warns(None) with warnings.catch_warnings in ChatOpenAI test to resolve TypeError . Resolves issue #33705
+#33741 merged on Oct 30
+
+chore: skip anthropic tests while waiting on new anthropic release
+#33739 merged on Oct 29
+
+chore: don't pick up alphas for testing
+#33738 merged on Oct 29
+
+chore: remove mentions of sonnet 3.5
+#33737 merged on Oct 29
+
+fix(langchain_v1): remove `thread_model_call_count` and `run_model_call_count` from tool node test
+#33725 merged on Oct 29
+
+release: core 1.0.2 and langchain 1.0.3
+#33736 merged on Oct 29
+
+fix(langchain_v1): removed unsed functions in tool_call_limit middleware
+#33735 merged on Oct 29
+
+fix: filter out injected args from tracing
+#33729 merged on Oct 29
+
+fix(docs): redirects
+#33734 merged on Oct 29
+
+fix(openai): update model used in test
+#33733 merged on Oct 29
+
+style: more refs fixes
+#33730 merged on Oct 29

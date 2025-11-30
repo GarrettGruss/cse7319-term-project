@@ -1,0 +1,359 @@
+ 119 Unresolved conversations
+Sometimes conversations happen on old items that aren't yet closed. Here is a list of all the Issues and Pull Requests with unresolved conversations.
+
+chore(langchain): cleanup ruff config
+#32810 commented on 3 days ago • new comments
+
+openai: AzureChatOpenAI doesn't accept reasoning parameter
+#32714 commented on 2 weeks ago • new comments
+
+Add RunnableConfig Access in Agent Middleware Functions
+#33726 commented on 2 weeks ago • new comments
+
+"No call message found for call_*" with gpt-oss-20b in LangGraph
+#33895 commented on 2 weeks ago • new comments
+
+`create_agent` `system_prompt` should support `SystemMessage` (enable caching)
+#33630 commented on 2 weeks ago • new comments
+
+fix(core): prevent inherited docstrings for class-based tools
+#33540 commented on 3 weeks ago • new comments
+
+fix(core): add tool_call_id to on_tool_error event data
+#33731 commented on 5 days ago • new comments
+
+Please add ability to simultaneously have tool calls and structured output in the response from ChatOpenAI/AzureChatOpenAI
+#33687 commented on 2 weeks ago • new comments
+
+[BUG or Unclear Doc] New Create Agent 1.0 : Structured Output Incompatible when using tools
+#33863 commented on 2 weeks ago • new comments
+
+fix(openai): Improve vLLM API compatibility and error messages
+#33662 commented on last week • new comments
+
+chat_ollama ResourceWarning: unclosed socket.socket
+#32998 commented on 2 weeks ago • new comments
+
+Document ingestion into VectorDB does not complete when running inside Celery task
+#33246 commented on 2 weeks ago • new comments
+
+Reasoning tokens not passing through from OpenRouter to `ChatOpenAI`
+#32981 commented on 2 weeks ago • new comments
+
+openai: `bind_tools` not callable after `with_structured_output`
+#28848 commented on 2 weeks ago • new comments
+
+openai: `thinking_block` field returned by Claude model ignored by `ChatOpenAI().invoke()`
+#30530 commented on last week • new comments
+
+fix(core): fix callback manager merge mixing handlers (#32028)
+#33617 commented on last month • new comments
+
+`EvaluationResult.feedback_config` silently drops unknown or partial dict fields without error
+#31802 commented on 2 weeks ago • new comments
+
+Anthropic Model Errors with System Messages only in Tool-Calling Flows
+#31657 commented on 2 weeks ago • new comments
+
+langchain-openai 无法读取到 qwen3 think 的过程 希望 支持 qwen3 像 支持 deepseek一样（initChatModel）
+#33672 commented on 2 weeks ago • new comments
+
+core: `missing_required_parameter` when using LangGraph to pass multimodal data to models
+#31505 commented on 2 weeks ago • new comments
+
+fix(langchain_v1): ShellToolMiddleware session lost on HIL resume
+#33723 commented on 3 weeks ago • new comments
+
+Unable to retrieve raw LLM response on JSON parsing error during structured output with retries; subsequent retries are extremely slow
+#32977 commented on 2 weeks ago • new comments
+
+`trim_messages` and `ChatAnthropic` token counter with tools
+#29637 commented on 2 weeks ago • new comments
+
+`set_llm_cache` does not apply when using `create_react_agent` from LangGraph prebuilt agents
+#31949 commented on 2 weeks ago • new comments
+
+Support structured output with Pydantic models in `langchain-huggingface`
+#32197 commented on 2 weeks ago • new comments
+
+core: inconsistent behavior for `BaseTool` subclasses that return `list` from `_run`/`_arun`
+#30578 commented on 2 weeks ago • new comments
+
+fix(core): implement ChatPromptTemplate.save() method (#32637)
+#33631 commented on 3 weeks ago • new comments
+
+Access enable_thinking flag for langchain_huggingface models
+#33592 commented on 2 weeks ago • new comments
+
+create_agent Does Not Handle invalid_tool_calls from JSON Parsing Errors (langchain alpha v1)
+#33504 commented on 5 days ago • new comments
+
+json_schema `_retrieve_ref` fails to process list element with dict lookup method
+#32012 commented on 5 days ago • new comments
+
+fix(core): remove extraneous title fields from nested schema for pydantic v2 tool calling
+#32255 commented on 3 weeks ago • new comments
+
+fix(huggingface): (WIP) add Pydantic structured output support (Issue #32197)
+#33141 commented on 2 weeks ago • new comments
+
+Missing model field `huggingface_endpoint.py`
+#29521 commented on 2 weeks ago • new comments
+
+`ChatPromptTemplate` `save()` not implemented
+#32637 commented on 3 weeks ago • new comments
+
+Enable Log Probabilities When Using Structured Outputs in OpenAI Models
+#29668 commented on 2 weeks ago • new comments
+
+`HTMLSemanticPreservingSplitter` `elements_to_preserve` replacement order issue
+#31568 commented on last week • new comments
+
+HuggingFaceEndpointEmbeddings fails with self-hosted inference server and huggingface-hub==0.28.1
+#29787 commented on 2 weeks ago • new comments
+
+Stream does not work with `ChatMistralAI` and `with_structured_output`
+#29860 commented on 2 weeks ago • new comments
+
+`ChatHuggingface` is reaching out to huggingface when using local `HuggingFaceEndpoint`
+#30333 commented on 2 weeks ago • new comments
+
+core: incorrect token count (`usage_metadata`) in streaming mode
+#30429 commented on 2 weeks ago • new comments
+
+`MistrailAIEmbeddings` 400 errors on documents of length over 27000
+#30524 commented on 2 weeks ago • new comments
+
+core: leak when using object member in a `RunnableSequence`
+#30667 commented on 2 weeks ago • new comments
+
+anthropic: `on_llm_new_token` gets list of dicts instead of string for Anthropic models
+#30703 commented on 2 weeks ago • new comments
+
+`langchain_chroma.Chroma` used with `chromadb.AsyncHttpClient`?
+#30704 commented on 2 weeks ago • new comments
+
+`Graph.draw_png()` silently returns `None` with invalid node types, causing unexpected crash on usage
+#30719 commented on 2 weeks ago • new comments
+
+Standardize & Abstract Prompt/Context Caching
+#30875 commented on 2 weeks ago • new comments
+
+Add Perplexity cost tracking
+#31647 commented on 2 weeks ago • new comments
+
+Allow passing only a subset of the state in the ToolRuntime
+#33727 commented on 2 weeks ago • new comments
+
+`llm.ainvoke` is traced differently than `llm.invoke` (won't be traced)
+#30870 commented on 2 weeks ago • new comments
+
+AnthropicPromptCachingMiddleware breaks model fallback mechanism with incompatible cache_control parameter
+#33709 commented on 2 weeks ago • new comments
+
+`AIMessage` not allowed as `structured_output`
+#30885 commented on 2 weeks ago • new comments
+
+openai: intermittent `LengthFinishReasonError` in `AzureChatOpenAI`
+#30924 commented on 2 weeks ago • new comments
+
+`create_tool_calling_agent` doesn't invoke tools for Bedrock llama/Mistral but works with Anthropic
+#30978 commented on 2 weeks ago • new comments
+
+[LangChain-Core v1]Did the openai:convert_to-openai_data-block function miss the processing of video? And other providers' converters also do not handle videos
+#33652 commented on 2 weeks ago • new comments
+
+core: `_configure_hooks` variable accumulates with each call to `get_usage_metadata_callback`
+#32300 commented on 2 weeks ago • new comments
+
+ChromaDB document deletion not working
+#4880 commented on 2 weeks ago • new comments
+
+fix(core): fix Pydantic v1 support in tools/runnable
+#33698 commented on 2 weeks ago • new comments
+
+KeyError '*' in parse_result when using `with_structured_output` on ChatAnthropic
+#27260 commented on 2 weeks ago • new comments
+
+Cannot inspect schema when working with special type annotations
+#27510 commented on 2 weeks ago • new comments
+
+`init_chat_model` doesn't work with huggingface models
+#28226 commented on 2 weeks ago • new comments
+
+The batch method from ChatModels and all the Runnables does not really support the OpenAI batch API.
+#28508 commented on 2 weeks ago • new comments
+
+fix(openai): "No call message found" bug with gpt-oss-120b when using responses API
+#33450 commented on last week • new comments
+
+ChatHuggingFace does not include tools in prompt with local HuggingFacePipeline
+#29033 commented on 2 weeks ago • new comments
+
+fix(ollama): resolve `OutputParserException` when using Ollama
+#33140 commented on last week • new comments
+
+feat(openai): add optional aiohttp backend support for improved concurrency
+#33084 commented on last week • new comments
+
+feat(core): can use now approximate alias inplace of count_tokens_approximately, any of it works now
+#33045 commented on last week • new comments
+
+fix(openai): add support for reasoning content in OpenAI chat responses from OpenRouter
+#32982 commented on last week • new comments
+
+feat(core)!: raise exception if `type` value is different in dicts to merge
+#32888 commented on 5 days ago • new comments
+
+refactor(langchain): refactor optional imports logic
+#32813 commented on 3 weeks ago • new comments
+
+Offset by 1 bug on RecursiveJsonSplitter::split_json() function
+#29153 commented on 2 weeks ago • new comments
+
+VLLMOpenAI api issues
+#29323 commented on 2 weeks ago • new comments
+
+feat(core): deprecate problematic `dict()` method
+#31685 commented on 5 days ago • new comments
+
+refactor(core): fix some missing generic types
+#31658 commented on 3 days ago • new comments
+
+feat(huggingface): batching in huggingface pipeline
+#31533 commented on last week • new comments
+
+fix(core): trace tools called in metadata
+#30631 commented on 3 weeks ago • new comments
+
+core: Fixed inspecting schema issue when working with InjectedToolArg annotations
+#28435 commented on 3 weeks ago • new comments
+
+`aadd_texts() got multiple values for keyword argument 'ids'`
+#32283 commented on 2 weeks ago • new comments
+
+LangChain-OpenAI raises error due to null choices when using vLLM OpenAI-compatible API
+#32252 commented on 2 weeks ago • new comments
+
+`@chain` decorator argument type is not fully compatible with `RunnableLambda`
+#32223 commented on 2 weeks ago • new comments
+
+QdrantVectorStore cannot be used in a truly async form, no alternative is provided
+#32195 commented on 2 weeks ago • new comments
+
+Reasoning model with structured output
+#32120 commented on 2 weeks ago • new comments
+
+core: `BaseCallbackManager.merge()` mixes `handlers` and `inheritable_handlers` in a confusing way
+#32028 commented on 2 weeks ago • new comments
+
+Tool artifact not in `on_tool_end` event when using `astream_events`
+#32020 commented on 2 weeks ago • new comments
+
+Failed to used non-argument tool call or MCP in stream mode
+#32016 commented on 2 weeks ago • new comments
+
+`get_template_variables` Incorrectly Parses Nested Variables in mustache Format
+#31976 commented on 2 weeks ago • new comments
+
+String Evaluation with labelled criteria Scoring is wrong
+#31870 commented on 2 weeks ago • new comments
+
+bug in tool schema generation - missing field description for fields with pydantic model type
+#31808 commented on 2 weeks ago • new comments
+
+core: RunnablePick may not return a dict if keys is a string
+#31309 commented on 2 weeks ago • new comments
+
+Perplexity uncomplete usage metadata parsing
+#31729 commented on 2 weeks ago • new comments
+
+False Number of Tokens
+#31351 commented on 2 weeks ago • new comments
+
+openai: `use_responses_api=True` gives error with `AzureChatOpenAI`
+#31653 commented on 2 weeks ago • new comments
+
+MCP Tools Returns Data in ToolMessage but Not Passed in AIMessage for llama-3-3-70b-instruct Model
+#32884 commented on 2 weeks ago • new comments
+
+`handle_event` raises `IndexError` when handler raises `NotImplementedError`
+#31576 commented on 2 weeks ago • new comments
+
+`.with_structured_output()` causes `tool_choice` 422 error with Azure-hosted Deepseek V3
+#31512 commented on 2 weeks ago • new comments
+
+core: documentation of `@tool` decorator lists an incorrect requirement
+#31405 commented on 2 weeks ago • new comments
+
+Add way to pass tokenizer template values to models
+#31470 commented on 2 weeks ago • new comments
+
+Different defaults for `ChatOpenAI` and `OpenAI`
+#31437 commented on 2 weeks ago • new comments
+
+[langchain Agent]: Errors in tool calling from Playwright MCP
+#33869 commented on 2 weeks ago • new comments
+
+langchain 1.0.0: add tool_call_id to on_tool_error event's data
+#33597 commented on 2 weeks ago • new comments
+
+Interrupt resume raises AttributeError when pending interrupt value is a dict in pending_interrupts（langchain>=1.0.0a14， redis checkpointer）
+#33556 commented on 2 weeks ago • new comments
+
+Warn when passing in block types not supported by a model
+#33402 commented on 2 weeks ago • new comments
+
+Unit test has a link to a non-commercial license, can that be changed?
+#33392 commented on 2 weeks ago • new comments
+
+`trim_messages` returning invalid messages history
+#33245 commented on 2 weeks ago • new comments
+
+`create_agent()` fails with `RunnableWithFallbacks` when using middleware
+#33129 commented on 2 weeks ago • new comments
+
+langchain_ollama not able to do structured outputs for gpt-oss
+#33116 commented on 2 weeks ago • new comments
+
+Receive BadRequest 400 when invoking GPT-OSS-20B
+#32999 commented on 2 weeks ago • new comments
+
+Default react agent from create_react_agent(...) loses tool argument descriptions
+#31070 commented on 2 weeks ago • new comments
+
+Custom Mistral model returns `"content": null` for a tool call, failing Pydantic mapping
+#31121 commented on 2 weeks ago • new comments
+
+Support configuring `init_chat_model` via `context_schema`
+#32954 commented on 2 weeks ago • new comments
+
+`trim_messages` devx request
+#32942 commented on 2 weeks ago • new comments
+
+Harmony: bad request on gpt-oss-120b and tool calls with `create_react_agent`
+#32885 commented on 2 weeks ago • new comments
+
+Error passing prompt to `create_react_agent()`
+#31256 commented on 2 weeks ago • new comments
+
+`convert_to_openai_messages` does not handle the `ChatOpenAI` `response/v1` format
+#32679 commented on 2 weeks ago • new comments
+
+Chunks after `batch_size` treated as non-existant
+#32612 commented on 2 weeks ago • new comments
+
+`invalid_tool_calls` when using stream
+#32562 commented on 2 weeks ago • new comments
+
+AzureChatOpenAI creates a new `httpx` client on each instantiation
+#32489 commented on 2 weeks ago • new comments
+
+Perplexity Reasoning model with `structuredOutput` causes `JsonOutputParser` error
+#32465 commented on 2 weeks ago • new comments
+
+OpenAIAssistantRunnable `ainvoke` calls `_get_response` instead of `_aget_response`
+#32398 commented on 2 weeks ago • new comments
+
+text-splitters: remove `sentence-transformers` dependency
+#32336 commented on 2 weeks ago • new comments
