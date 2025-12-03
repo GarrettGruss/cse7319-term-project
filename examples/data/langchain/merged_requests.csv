@@ -161,20 +161,20 @@
 159,fix(infra): fix release workflow for new packages,#33759,last month,2025-11-01
 160,feat(core): mint langchain-model-profiles and add profile property to `BaseChatModel`,#33728,last month,2025-11-01
 161,"revert: ""chore: skip anthropic tests while waiting on new anthropic release""",#33753,on Oct 30,2025-11-01
-162,release(anthropic): 1.0.1,#33752,on Oct 30,2025-11-01
-163,"chore: use model IDs, latest anthropic models",#33747,on Oct 30,2025-11-01
-164,"fix(anthropic): clean up tests, update default model to use ID",#33751,on Oct 30,2025-11-01
-165,test(openai): mark tests flaky,#33750,on Oct 30,2025-11-01
-166,chore(langchain): fix `lint_imports` paths,#33749,on Oct 30,2025-11-01
-167,fix(langchain): use `system_prompt` in integration tests,#33748,on Oct 30,2025-11-01
-168,fix(openai): replace pytest.warns(None) with warnings.catch_warnings in ChatOpenAI test to resolve TypeError . Resolves issue #33705,#33741,on Oct 30,2025-11-01
-169,chore: skip anthropic tests while waiting on new anthropic release,#33739,on Oct 29,2025-11-01
-170,chore: don't pick up alphas for testing,#33738,on Oct 29,2025-11-01
-171,chore: remove mentions of sonnet 3.5,#33737,on Oct 29,2025-11-01
-172,fix(langchain_v1): remove `thread_model_call_count` and `run_model_call_count` from tool node test,#33725,on Oct 29,2025-11-01
-173,release: core 1.0.2 and langchain 1.0.3,#33736,on Oct 29,2025-11-01
-174,fix(langchain_v1): removed unsed functions in tool_call_limit middleware,#33735,on Oct 29,2025-11-01
-175,fix: filter out injected args from tracing,#33729,on Oct 29,2025-11-01
-176,fix(docs): redirects,#33734,on Oct 29,2025-11-01
-177,fix(openai): update model used in test,#33733,on Oct 29,2025-11-01
-178,style: more refs fixes,#33730,on Oct 29,2025-11-01
+162,release(anthropic): 1.0.1,#33752,on Oct 30,2025-10-30
+163,"chore: use model IDs, latest anthropic models",#33747,on Oct 30,2025-10-30
+164,"fix(anthropic): clean up tests, update default model to use ID",#33751,on Oct 30,2025-10-30
+165,test(openai): mark tests flaky,#33750,on Oct 30,2025-10-30
+166,chore(langchain): fix `lint_imports` paths,#33749,on Oct 30,2025-10-30
+167,fix(langchain): use `system_prompt` in integration tests,#33748,on Oct 30,2025-10-30
+168,fix(openai): replace pytest.warns(None) with warnings.catch_warnings in ChatOpenAI test to resolve TypeError . Resolves issue #33705,#33741,on Oct 30,2025-10-30
+169,chore: skip anthropic tests while waiting on new anthropic release,#33739,on Oct 29,2025-10-29
+170,chore: don't pick up alphas for testing,#33738,on Oct 29,2025-10-29
+171,chore: remove mentions of sonnet 3.5,#33737,on Oct 29,2025-10-29
+172,fix(langchain_v1): remove `thread_model_call_count` and `run_model_call_count` from tool node test,#33725,on Oct 29,2025-10-29
+173,release: core 1.0.2 and langchain 1.0.3,#33736,on Oct 29,2025-10-29
+174,fix(langchain_v1): removed unsed functions in tool_call_limit middleware,#33735,on Oct 29,2025-10-29
+175,fix: filter out injected args from tracing,#33729,on Oct 29,2025-10-29
+176,fix(docs): redirects,#33734,on Oct 29,2025-10-29
+177,fix(openai): update model used in test,#33733,on Oct 29,2025-10-29
+178,style: more refs fixes,#33730,on Oct 29,2025-10-29

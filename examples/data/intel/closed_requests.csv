@@ -1,0 +1,74 @@
+,msg,hash,date_rel,date_abs
+0,Install GPU driver 101.8247 on Windows runners,#5563,17 hours ago,2025-12-02
+1,[PT 2.10] Triton pin update in PyTorch,#5407,yesterday,2025-12-02
+2,Reland upstream commit `49b7472`,#5578,yesterday,2025-12-02
+3,TODO in the softmax example,#5579,4 days ago,2025-11-28
+4,[Pytorch upstream] Wrong n_spills in combinedKernel when generate_native_code=True,#5544,4 days ago,2025-11-28
+5,[Tutorial 06] Fix performance regression introduced by commit #3c154c8,#5553,5 days ago,2025-11-27
+6,[SGLANG] w8a8_block_fp8_matmul_triton triton kernels performance regressed in pytorch-triton-xpu==3.5.0 compared to 3.4.0 keeping same torch 2.9.0+xpu,#5518,5 days ago,2025-11-27
+7,[perf] Tensor descriptors have poor performance when strides are not tl.constexpr,#5410,5 days ago,2025-11-27
+8,Reland upstream commit `4734af3`,#5464,last week,2025-11-25
+9,[Proton] Enable build on windows,#5538,last week,2025-11-25
+10,[tutorials] Performance degradation in tutorial 6 [FP8] after 13th of August,#4967,last week,2025-11-25
+11,"Imported target ""MPI::MPI_C"" includes non-existent path",#5448,2 weeks ago,2025-11-18
+12,Update Cutlass to v0.5,#5513,2 weeks ago,2025-11-18
+13,[WIN] `torch.compile` for XPU using MSVC will fail with AssertionError,#4465,2 weeks ago,2025-11-18
+14,Test SPIRVRunner segfault with DLE 2025.3,#5458,2 weeks ago,2025-11-18
+15,Some tests are missing from reports,#5515,2 weeks ago,2025-11-18
+16,triton-kernel are not running for rolling PVC,#5507,2 weeks ago,2025-11-18
+17,PTI 0.13.1 (part of DLE 2025.2) displays warnings which breaks `test_subprocess.py/test_print`,#4998,2 weeks ago,2025-11-18
+18,Lower tt.load and tt.store cacheModifier and volatile attributes,#5471,2 weeks ago,2025-11-18
+19,[NFI] XPUBackend refactoring to facilitate arch-specific implementations,#5497,2 weeks ago,2025-11-18
+20,FlashAttention tutorial requires relaxed verification in advanced path (`perf_attn`),#2098,2 weeks ago,2025-11-18
+21,[Triton Benchmarks] New benchmarks enabling and tracking,#4828,2 weeks ago,2025-11-18
+22,[E2E Accuracy] Enhancements,#2165,2 weeks ago,2025-11-18
+23,[tensor-descriptor]: Translate existing test/benchmarks using block pointers to use tensor descriptors,#4133,2 weeks ago,2025-11-18
+24,[GEMM StreamK] Investigate and optimize performance,#2368,2 weeks ago,2025-11-18
+25,[ktransformers] Initial enabling,#3743,2 weeks ago,2025-11-18
+26,Add onednn to gemm benchmarks,#3014,2 weeks ago,2025-11-18
+27,Tensor encoding assumptions in advanced path,#1925,2 weeks ago,2025-11-18
+28,"What's version of Intel triton? or ""No module named 'triton.ops'""",#2279,2 weeks ago,2025-11-18
+29,Prevent auto-merge when UT fail,#4429,2 weeks ago,2025-11-18
+30,[Attention Performance] FlashAttention2 backward get to 80%~90% of XeTLA,#2159,2 weeks ago,2025-11-18
+31,Flash attention code requires more work to make it robust for use in models.,#3781,2 weeks ago,2025-11-18
+32,SPIR-V Reproducer: Support data types - float8e5 and float8e4nv,#2666,2 weeks ago,2025-11-18
+33,SPIRVRunner: Investigate and handle multi-kernel execution (benchmark- gemm_streamk_benchmark.py),#2831,2 weeks ago,2025-11-18
+34,"Enhance E2E accuracy dashboard - add table with breakdown by driver, suite, mode, workload, mode and precision",#1340,2 weeks ago,2025-11-18
+35,[FlagGems] Initial enabling and its integration into the test scripts,#3620,2 weeks ago,2025-11-18
+36,[sycl-free-inference-for-llms] integrate triton gemm/attention in pytorch for xpu,#2196,2 weeks ago,2025-11-18
+37,[sycl-free-inference-for-llms] Port and evaluate LLama3-8B and Granite-8B,#2170,2 weeks ago,2025-11-18
+38,[sycl-free-inference-for-llms] flashattention kernel get up to ~100tflops,#2195,2 weeks ago,2025-11-18
+39,Single script to collect and check all env info similar to PyTorch torch/utils/collect_env.py,#1817,2 weeks ago,2025-11-18
+40,[Advanced(block-ptr) Path] add print for block pointer,#2158,2 weeks ago,2025-11-18
+41,"Verify Triton Wheel Package which supports the NV, AMD and Intel XPU.",#321,2 weeks ago,2025-11-18
+42,Create library with performant kernel,#1686,2 weeks ago,2025-11-18
+43,Dev environment based on `conda-forge`,#1552,2 weeks ago,2025-11-18
+44,[L0 SDK][Win] Improve installation user experience,#3386,2 weeks ago,2025-11-18
+45,[Dependencies] Enforce checks on the PyTorch SYCL runtime / Rolling Driver (IGC and Level Zero) versions in the runtime,#1914,2 weeks ago,2025-11-18
+46,[TEST] test_line_info.py::test_line_info_ir_source[ttir] re-run failure due to cache,#5444,2 weeks ago,2025-11-18
+47,performance of pointwise is slow on BMG,#5198,2 weeks ago,2025-11-18
+48,[Inductor][UT] `argparse.ArgumentError: argument --shard-id: conflicting option string: --shard-id` error,#5486,2 weeks ago,2025-11-18
+49,[BUILD] Cache LLVM binaries in CI,#5482,2 weeks ago,2025-11-18
+50,[pytorch upstream] maxpool bwd triton kernel has bad performance on BMG,#5124,3 weeks ago,2025-11-11
+51,batchnorm bwd is slow on BMG,#5197,3 weeks ago,2025-11-11
+52,Some benchmarks are broken with DLE 2025.3,#5470,3 weeks ago,2025-11-11
+53,[VLLM] Add benchmark for unified attention,#5257,3 weeks ago,2025-11-11
+54,[CI] capture-hw-details.sh: igc64.dll version retrieval is unreliable,#5440,3 weeks ago,2025-11-11
+55,[PROTON][PTI] Avoid using L0 system headers if using a custom L0 build version,#5463,3 weeks ago,2025-11-11
+56,Compatibility section of Readme is outdated,#5372,3 weeks ago,2025-11-11
+57,triton 3.3 has a bit longer host overhead compare to 3.2,#3907,3 weeks ago,2025-11-11
+58,PYTEST_MAX_PROCESSES is ignored for triton-kernels suite,#5437,last month,2025-11-04
+59,[BLOCK IO] Refactor the block IO lowering for load operation with linear layout infrastructure to support general arbitaray layout.,#5441,last month,2025-11-04
+60,Tensor-likes are not close: test_mxfp8_mxfp4_matmul on PVC with Kobuk,#5428,last month,2025-11-04
+61,[pytorch upstream] Layernorm bwd has register spill on BMG,#5274,last month,2025-11-04
+62,Use precise divide and sqrt builtin,#5419,last month,2025-11-04
+63,[pytorch upstream] softmax on BMG is slow,#5133,last month,2025-11-04
+64,[test_mxfp8_mxfp4_matmul] The kernels compilation time is too long,#4062,last month,2025-11-04
+65,"[Pytorch upstream] ""div_rn"" get ""nan"" result.",#5306,last month,2025-11-04
+66,"[Pytorch upstream] perf regression with triton ""div_rn"" and ""sqrt_rn""",#5314,last month,2025-11-04
+67,Update README,#5420,last month,2025-11-04
+68,[perf regression] Softmax perf regression after triton config changed,#5367,last month,2025-11-04
+69,Reland upstream commit `60605d8`,#5269,last month,2025-11-04
+70,[Helion]: Develop new optimization to detect unnecessary boundaryCheck on load operations,#5335,last month,2025-11-04
+71,Triton kernel `test_matmul.py` regression from new driver,#5325,last month,2025-11-04
+72,Binary kernel for Inductor static kernel launcher.,#5388,last month,2025-11-04

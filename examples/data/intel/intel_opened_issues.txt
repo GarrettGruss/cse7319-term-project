@@ -1,0 +1,126 @@
+ 42 issues opened by 19 people
+Reland upstream commit `31281bc`
+#5588 opened yesterday
+
+[VLLM][unified attention] Incorrect compiler behavior with vllm tiling
+#5581 opened 4 days ago
+
+`tl.inline_asm_elementwise` returns wrong results on Intel GPU
+#5580 opened 4 days ago
+
+Triton update introduced "unknown extension 'SPV_KHR_bfloat16'"
+#5574 opened 4 days ago
+
+[BMG][FlexAttn] Unbelievably high perf with DLE 2025.3
+#5572 opened 5 days ago
+
+[PyTorch Upstream][regression] RuntimeError: ZE_RESULT_ERROR_MODULE_BUILD_FAILURE in generated Triton kernel
+#5561 opened 5 days ago
+
+Enable Proton "sampling" mode for XPU
+#5557 opened last week
+
+[qantize] do we have a method about 2bit quantize on intel?
+#5554 opened last week
+
+[Proton] Enable `max_bps` function for Intel GPU
+#5550 opened last week
+
+[VLLM][unified attention] Verification fails after changing 3D load to 2D load but passes on Nvidia
+#5549 opened last week
+
+[VLLM][unified attention] Updating VLLM pin leads to verification issues for the upstream code
+#5547 opened last week
+
+[Perf][vllm] Investigate poor HW utilization for unified attention
+#5546 opened last week
+
+[TESTS] Remove collect-tests step before pytest calls in triton-test.sh
+#5545 opened last week
+
+[2Dblock] implement specialized kernels
+#5537 opened last week
+
+[helion] IGC: Internal Compiler Error: Segmentation violation
+#5536 opened last week
+
+[LAUNCHER] [vllm-xpu-kerners] make_launcher is incompatible with tensor views derived from CPU pinned memory.
+#5534 opened last week
+
+[SGLANG] fused_moe_kernel triton kernels performance regressed in pytorch-triton-xpu==3.5.0 compared to 3.4.0 keeping same torch 2.9.0+xpu
+#5531 opened 2 weeks ago
+
+[LAUNCHER] Align the binary load flow for native binary, SPIRVRunner and driver.c
+#5529 opened 2 weeks ago
+
+BMG C91 triggers error "sycl_arch not recognized: 0"
+#5528 opened 2 weeks ago
+
+Reland upstream commit `9b75018`
+#5527 opened 2 weeks ago
+
+[flex-attention] Fluctuations in results for individual shapes
+#5519 opened 2 weeks ago
+
+[benchmarks] Add ability to print HW efficiency as part of a report
+#5514 opened 2 weeks ago
+
+users set ```ONEAPI_DEVICE_SELECTOR=level_zero:gpu```, all triton kernels will crash
+#5511 opened 2 weeks ago
+
+CI: implement check if any report has total of 0 tests
+#5508 opened 2 weeks ago
+
+[ElementWIse and Reductions] Generic performance improvements
+#5496 opened 2 weeks ago
+
+[Backend] Experimental features
+#5495 opened 2 weeks ago
+
+[DOC] Documentation and release notes
+#5494 opened 2 weeks ago
+
+[Doc] Write readme section on Tensor Descriptor usage
+#5492 opened 2 weeks ago
+
+[Inductor][UT] `test/inductor/test_analysis.py::TestAnalysisXPU::test_augment_trace_against_flop_counter_maxat1_xpu_float16` is broken on LTS2
+#5491 opened 2 weeks ago
+
+[Windows] Support generate binary kernel for Inductor static kernel launcher
+#5490 opened 2 weeks ago
+
+[BMG] `Triton GEMM + PostOp (add matrix) kernel benchmark int8` failure
+#5481 opened 3 weeks ago
+
+Fix E2E performance workflow when running on BMG
+#5478 opened 3 weeks ago
+
+[RemoveLayoutConversion] Refine cost model
+#5476 opened 3 weeks ago
+
+Errors from running tutorial programs
+#5473 opened 3 weeks ago
+
+[tt.load]: Handle load attributes such as volatile and cacheModifier for predicated loads
+#5467 opened 3 weeks ago
+
+Update DLE up to 2025.3.1
+#5452 opened 3 weeks ago
+
+[PROTON] Fix flaky `test_api.py::test_state`
+#5447 opened last month
+
+Proton tests on MTL: XPU device count is zero
+#5445 opened last month
+
+[BLOCK IO] To enable the block IO lowering for all layouts other than DotOp and DPAS.
+#5443 opened last month
+
+[BLOCK IO] Clean up the code to unify the block IO lowering for both both tensor descritpor (block ptr) and teonsr of pointers.
+#5442 opened last month
+
+Enable Flex Attention bwd shapes with `D_HEAD_qk==128`
+#5436 opened last month
+
+triton-kernels are stuck on A770 Linux
+#5418 opened last month

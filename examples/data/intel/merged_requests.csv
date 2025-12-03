@@ -1,0 +1,105 @@
+,msg,hash,date_rel,date_abs
+0,Merge OpenAI Triton commit `dcad270`,#5598,1 hour ago,2025-12-02
+1,[BENCHMARKS] Don't use Level Zero v2 loader,#5592,8 hours ago,2025-12-02
+2,Merge OpenAI Triton commit `e4e68d1`,#5597,9 hours ago,2025-12-02
+3,Remove `test_routing.py` from xe2 triton_kernels.txt,#5596,10 hours ago,2025-12-02
+4,Merge OpenAI Triton commit `acd8104`,#5591,yesterday,2025-12-02
+5,Merge OpenAI Triton commit `29009f1`,#5587,yesterday,2025-12-02
+6,"Reapply ""[LAYOUTS] Make CTALayout an honest-to-goodness LinearLayout (#8770)""",#5582,yesterday,2025-12-02
+7,Fix performance regression (#5559),#5567,2 days ago,2025-11-30
+8,Fix issue #5544 that the double GRF mode is not used when build native binary. (#5560),#5576,2 days ago,2025-11-30
+9,Enable launcher benchmarks in CI for XPU,#5568,3 days ago,2025-11-29
+10,Merge OpenAI Triton commit `e7fb841`,#5577,4 days ago,2025-11-28
+11,Fix issue #5544 that the double GRF mode is not used when build native binary.,#5560,5 days ago,2025-11-27
+12,Merge OpenAI Triton commit `b116579`,#5575,5 days ago,2025-11-27
+13,Merge OpenAI Triton commit `fa5f79a`,#5573,5 days ago,2025-11-27
+14,Merge OpenAI Triton commit `0a4cbff`,#5570,5 days ago,2025-11-27
+15,[TEST] Mark expected failures as xfail,#5571,5 days ago,2025-11-27
+16,Merge OpenAI Triton commit `449e014`,#5569,5 days ago,2025-11-27
+17,Update `spirv-llvm-translator.conf`,#5566,5 days ago,2025-11-27
+18,Ignore markdown files to save CI time,#5526,5 days ago,2025-11-27
+19,[Prefetch] Prefetch lowering code cleanup,#5535,5 days ago,2025-11-27
+20,[intel] improve pitch and width constexpr folding,#5489,5 days ago,2025-11-27
+21,[LoadStoreOpToLLVM] Fix issue of generating invalid 2D block IO operations with pitch < width.,#5555,5 days ago,2025-11-27
+22,Merge OpenAI Triton commit `4327b5b`,#5565,5 days ago,2025-11-27
+23,Fix performance regression,#5559,5 days ago,2025-11-27
+24,Add a new optimization to version loops containing loads using block ptrs with unknown strides,#5532,last week,2025-11-25
+25,Fix AxisInfo handling of PoisonOp producing MemDesc (#8489),#5501,last week,2025-11-25
+26,Merge OpenAI Triton commit `a5b948c`,#5556,last week,2025-11-25
+27,[Proton] Enable build on windows,#5533,last week,2025-11-25
+28,Merge OpenAI Triton commit `c33b2d9`,#5552,last week,2025-11-25
+29,[Proton] Make sure `max_bps` doesn't crash a viewer,#5551,last week,2025-11-25
+30,[DOCS] Change links from LTS -> LTS2 driver,#5548,last week,2025-11-25
+31,[DOCS] Update `Operating systems` in README.md,#5543,last week,2025-11-25
+32,Bump actions/checkout from 5 to 6,#5540,last week,2025-11-25
+33,[E2E] Align env with torch-xpu-ops; uninstall `fbgemm_gpu_nightly-cpu`,#5523,2 weeks ago,2025-11-18
+34,Bump to version 3.6.0 (#5520),#5525,2 weeks ago,2025-11-18
+35,Adapt code to use `uv` as a package manager (#5521),#5530,2 weeks ago,2025-11-18
+36,[BENCHMARKS] Update Cutlass to v0.5,#5510,2 weeks ago,2025-11-18
+37,Update `spirv-llvm-translator.conf`,#5524,2 weeks ago,2025-11-18
+38,Merge OpenAI Triton commit `9b75018`,#5522,2 weeks ago,2025-11-18
+39,Bump to version 3.6.0,#5520,2 weeks ago,2025-11-18
+40,Adapt code to use `uv` as a package manager,#5521,2 weeks ago,2025-11-18
+41,Cherry-picks for release branch 3.6.x,#5517,2 weeks ago,2025-11-18
+42,[benchmarks] Add options to print SW efficiency,#5493,2 weeks ago,2025-11-18
+43,Update README.md: DLE version,#5516,2 weeks ago,2025-11-18
+44,"Revert ""Use DLE 2025.2 for SPIRVRunner test to unblock CI (#5459)""",#5488,2 weeks ago,2025-11-18
+45,Merge OpenAI Triton commit `618ec40`,#5512,2 weeks ago,2025-11-18
+46,"Revert ""Add test name filtering and Python debug options to the test script (#5435)""",#5506,2 weeks ago,2025-11-18
+47,Update PyTorch and torch-xpu-ops pins,#5503,2 weeks ago,2025-11-18
+48,Fix `test_subprocess.py/test_print` by installing and using dev PTI and enable PTI build on windows,#5406,2 weeks ago,2025-11-18
+49,Pass nonTemporal flag when lowering tt.store instruction,#5472,2 weeks ago,2025-11-18
+50,Update `spirv-llvm-translator.conf`,#5499,2 weeks ago,2025-11-18
+51,[LoadStoreOpToLLVM] Transpose 2d load.,#4870,2 weeks ago,2025-11-18
+52,[NFI]: XPUBackend refactoring to facilitate arch-specific implementations,#5329,2 weeks ago,2025-11-18
+53,Merge OpenAI Triton commit `318fa9c`,#5498,2 weeks ago,2025-11-18
+54,Use pinned re-actors/alls-green to ensure job status,#5456,2 weeks ago,2025-11-18
+55,Disable cache in test_line_info.py::test_line_info_ir_source,#5446,2 weeks ago,2025-11-18
+56,[NFI]: Reorganize lowering code for tt.load/tt.store,#5483,2 weeks ago,2025-11-18
+57,Merge OpenAI Triton commit `b3cf593`,#5487,2 weeks ago,2025-11-18
+58,[Inductor][UT] Make sure `pytest-skip` is not in use,#5485,2 weeks ago,2025-11-18
+59,[BUILD] Cache LLVM binaries in CI,#5479,2 weeks ago,2025-11-18
+60,Merge OpenAI Triton commit `c186592`,#5480,2 weeks ago,2025-11-18
+61,[RemoveLayoutConversion] Increase convert layout cost,#5477,3 weeks ago,2025-11-11
+62,Adapt benchmarks for DLE 2025.3 by removing `-fpreview-breaking-changes`,#5474,3 weeks ago,2025-11-11
+63,[benchmarks][vllm] Unified Attention benchmark (paged attention),#5348,3 weeks ago,2025-11-11
+64,Merge OpenAI Triton commit `3c2e6f8`,#5475,3 weeks ago,2025-11-11
+65,Merge OpenAI Triton commit `9f21c06`,#5469,3 weeks ago,2025-11-11
+66,[PROTON][UT] Skip `test_api.py::test_state` temporary,#5468,3 weeks ago,2025-11-11
+67,Pass volatile and nonTemporal flag when lowering tt.load instruction,#5465,3 weeks ago,2025-11-11
+68,Update PyTorch and torch-xpu-ops pins,#5413,3 weeks ago,2025-11-11
+69,Merge OpenAI Triton commit `40dd0c4`,#5466,3 weeks ago,2025-11-11
+70,capture-hw-details.sh: get igc64.dll version from the currenlty loaded graphics driver,#5439,3 weeks ago,2025-11-11
+71,Enable `triton.testing.get_dram_gbps` for XPU,#5455,3 weeks ago,2025-11-11
+72,[PROTON][PTI] Avoid using L0 system headers if using a custom L0 build version,#5462,3 weeks ago,2025-11-11
+73,[E2E] Fix HUGGING_FACE_HUB_TOKEN usage for e2e perf,#5461,3 weeks ago,2025-11-11
+74,Merge OpenAI Triton commit `4734af3`,#5460,3 weeks ago,2025-11-11
+75,Add test name filtering and Python debug options to the test script,#5435,3 weeks ago,2025-11-11
+76,Use DLE 2025.2 for SPIRVRunner test to unblock CI,#5459,3 weeks ago,2025-11-11
+77,Merge OpenAI Triton commit `00cf53f`,#5424,3 weeks ago,2025-11-11
+78,[CI] Reuse Python provisioning code,#5457,3 weeks ago,2025-11-11
+79,[Proton][UT] Print data in case of AssertionError to get more data and make a fix,#5450,3 weeks ago,2025-11-11
+80,[XPU] Get `mem_clock_rate` and `sm_clock_rate` in KHz instead of MHz to align with other backends,#5454,3 weeks ago,2025-11-11
+81,"Set timeout for ""Report environment details""",#5451,3 weeks ago,2025-11-11
+82,Use broader A770 name when selecting max_procs,#5449,3 weeks ago,2025-11-11
+83,Use PYTEST_MAX_PROCESSES for parallel jobs number,#5438,last month,2025-11-04
+84,[LoadStoreOpToLLVM] Improve the 2D block IO lowering for DPAS and DotOp layout.,#5425,last month,2025-11-04
+85,[CI][FlexAttn] Run FlexAttention backward,#5433,last month,2025-11-04
+86,Update README with fresh OS and drivers,#5427,last month,2025-11-04
+87,Use OCL builtin for precise divide and sqrt,#5432,last month,2025-11-04
+88,Rename GRF mode values,#5430,last month,2025-11-04
+89,[TEST] Update `triton_kernels` skiplist,#5431,last month,2025-11-04
+90,Extend list of small GPUs for run_triton_kernels_tests,#5426,last month,2025-11-04
+91,[TEST_DEBUG] Enable test device assert,#5395,last month,2025-11-04
+92,[TEST] Update `triton_kernels` skiplist,#5429,last month,2025-11-04
+93,Remove unnecessary masks,#5384,last month,2025-11-04
+94,Do not run benchmark for batch_size >= 16 on b580,#5423,last month,2025-11-04
+95,[LoadStoreOpToLLVM] Improve the block io 2d load lowering for the case that maskConstancyVer < tileHeight.,#5416,last month,2025-11-04
+96,Bump actions/download-artifact from 5 to 6,#5422,last month,2025-11-04
+97,Bump actions/upload-artifact from 4 to 5,#5421,last month,2025-11-04
+98,[mxfp] Reland remove col-major assert for mx weight,#5285,last month,2025-11-04
+99,Set GRF_mode==large for mxfp8 matmul tests,#5417,last month,2025-11-04
+100,Rely on `-cl-fp32-correctly-rounded-divide-sqrt` for precise divide and sqrt,#5415,last month,2025-11-04
+101,[Helion]: Remove boundaryChecks on load operation using a block ptr/te…,#5363,last month,2025-11-04
+102,Add a new stage to generate `zebin` to align CUDA stages in triton.compile,#5189,last month,2025-11-04
+103,[TEST] Mark `test_num_ctas_pre_sm90` with `xfail`,#5414,last month,2025-11-04

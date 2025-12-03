@@ -85,6 +85,6 @@
 83,"when using human-in-the-loop, i find that the llm recall the same tool with original parameter if i had edited the tool parameter,why",#33784,last month,2025-11-01
 84,"Server-side tools (web_search, code_interpreter, etc) only emit after execution completes, not when model decides to call them",#33807,last month,2025-11-01
 85,Can we add If user want to convert text into token or not in openai embedding ?,#33774,28 days ago,2025-11-01
-86,TypeError in langchain-openai,#33705,on Oct 30,2025-11-01
-87,create_agent with tools fail as final LLM call does not happen and it errors out with UnboundLocalError,#33696,on Oct 30,2025-11-01
-88,Unify ChatOpenAI response_metadata structure between streaming and non-streaming outputs,#33717,on Oct 29,2025-11-01
+86,TypeError in langchain-openai,#33705,on Oct 30,2025-10-30
+87,create_agent with tools fail as final LLM call does not happen and it errors out with UnboundLocalError,#33696,on Oct 30,2025-10-30
+88,Unify ChatOpenAI response_metadata structure between streaming and non-streaming outputs,#33717,on Oct 29,2025-10-29

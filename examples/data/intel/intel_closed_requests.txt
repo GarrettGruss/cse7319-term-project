@@ -1,0 +1,219 @@
+ 73 issues closed by 17 people
+Install GPU driver 101.8247 on Windows runners
+#5563 closed 17 hours ago
+
+[PT 2.10] Triton pin update in PyTorch
+#5407 closed yesterday
+
+Reland upstream commit `49b7472`
+#5578 closed yesterday
+
+TODO in the softmax example
+#5579 closed 4 days ago
+
+[Pytorch upstream] Wrong n_spills in combinedKernel when generate_native_code=True
+#5544 closed 4 days ago
+
+[Tutorial 06] Fix performance regression introduced by commit #3c154c8
+#5553 closed 5 days ago
+
+[SGLANG] w8a8_block_fp8_matmul_triton triton kernels performance regressed in pytorch-triton-xpu==3.5.0 compared to 3.4.0 keeping same torch 2.9.0+xpu
+#5518 closed 5 days ago
+
+[perf] Tensor descriptors have poor performance when strides are not tl.constexpr
+#5410 closed 5 days ago
+
+Reland upstream commit `4734af3`
+#5464 closed last week
+
+[Proton] Enable build on windows
+#5538 closed last week
+
+[tutorials] Performance degradation in tutorial 6 [FP8] after 13th of August
+#4967 closed last week
+
+Imported target "MPI::MPI_C" includes non-existent path
+#5448 closed 2 weeks ago
+
+Update Cutlass to v0.5
+#5513 closed 2 weeks ago
+
+[WIN] `torch.compile` for XPU using MSVC will fail with AssertionError
+#4465 closed 2 weeks ago
+
+Test SPIRVRunner segfault with DLE 2025.3
+#5458 closed 2 weeks ago
+
+Some tests are missing from reports
+#5515 closed 2 weeks ago
+
+triton-kernel are not running for rolling PVC
+#5507 closed 2 weeks ago
+
+PTI 0.13.1 (part of DLE 2025.2) displays warnings which breaks `test_subprocess.py/test_print`
+#4998 closed 2 weeks ago
+
+Lower tt.load and tt.store cacheModifier and volatile attributes
+#5471 closed 2 weeks ago
+
+[NFI] XPUBackend refactoring to facilitate arch-specific implementations
+#5497 closed 2 weeks ago
+
+FlashAttention tutorial requires relaxed verification in advanced path (`perf_attn`)
+#2098 closed 2 weeks ago
+
+[Triton Benchmarks] New benchmarks enabling and tracking
+#4828 closed 2 weeks ago
+
+[E2E Accuracy] Enhancements
+#2165 closed 2 weeks ago
+
+[tensor-descriptor]: Translate existing test/benchmarks using block pointers to use tensor descriptors
+#4133 closed 2 weeks ago
+
+[GEMM StreamK] Investigate and optimize performance
+#2368 closed 2 weeks ago
+
+[ktransformers] Initial enabling
+#3743 closed 2 weeks ago
+
+Add onednn to gemm benchmarks
+#3014 closed 2 weeks ago
+
+Tensor encoding assumptions in advanced path
+#1925 closed 2 weeks ago
+
+What's version of Intel triton? or "No module named 'triton.ops'"
+#2279 closed 2 weeks ago
+
+Prevent auto-merge when UT fail
+#4429 closed 2 weeks ago
+
+[Attention Performance] FlashAttention2 backward get to 80%~90% of XeTLA
+#2159 closed 2 weeks ago
+
+Flash attention code requires more work to make it robust for use in models.
+#3781 closed 2 weeks ago
+
+SPIR-V Reproducer: Support data types - float8e5 and float8e4nv
+#2666 closed 2 weeks ago
+
+SPIRVRunner: Investigate and handle multi-kernel execution (benchmark- gemm_streamk_benchmark.py)
+#2831 closed 2 weeks ago
+
+Enhance E2E accuracy dashboard - add table with breakdown by driver, suite, mode, workload, mode and precision
+#1340 closed 2 weeks ago
+
+[FlagGems] Initial enabling and its integration into the test scripts
+#3620 closed 2 weeks ago
+
+[sycl-free-inference-for-llms] integrate triton gemm/attention in pytorch for xpu
+#2196 closed 2 weeks ago
+
+[sycl-free-inference-for-llms] Port and evaluate LLama3-8B and Granite-8B
+#2170 closed 2 weeks ago
+
+[sycl-free-inference-for-llms] flashattention kernel get up to ~100tflops
+#2195 closed 2 weeks ago
+
+Single script to collect and check all env info similar to PyTorch torch/utils/collect_env.py
+#1817 closed 2 weeks ago
+
+[Advanced(block-ptr) Path] add print for block pointer
+#2158 closed 2 weeks ago
+
+Verify Triton Wheel Package which supports the NV, AMD and Intel XPU.
+#321 closed 2 weeks ago
+
+Create library with performant kernel
+#1686 closed 2 weeks ago
+
+Dev environment based on `conda-forge`
+#1552 closed 2 weeks ago
+
+[L0 SDK][Win] Improve installation user experience
+#3386 closed 2 weeks ago
+
+[Dependencies] Enforce checks on the PyTorch SYCL runtime / Rolling Driver (IGC and Level Zero) versions in the runtime
+#1914 closed 2 weeks ago
+
+[TEST] test_line_info.py::test_line_info_ir_source[ttir] re-run failure due to cache
+#5444 closed 2 weeks ago
+
+performance of pointwise is slow on BMG
+#5198 closed 2 weeks ago
+
+[Inductor][UT] `argparse.ArgumentError: argument --shard-id: conflicting option string: --shard-id` error
+#5486 closed 2 weeks ago
+
+[BUILD] Cache LLVM binaries in CI
+#5482 closed 2 weeks ago
+
+[pytorch upstream] maxpool bwd triton kernel has bad performance on BMG
+#5124 closed 3 weeks ago
+
+batchnorm bwd is slow on BMG
+#5197 closed 3 weeks ago
+
+Some benchmarks are broken with DLE 2025.3
+#5470 closed 3 weeks ago
+
+[VLLM] Add benchmark for unified attention
+#5257 closed 3 weeks ago
+
+[CI] capture-hw-details.sh: igc64.dll version retrieval is unreliable
+#5440 closed 3 weeks ago
+
+[PROTON][PTI] Avoid using L0 system headers if using a custom L0 build version
+#5463 closed 3 weeks ago
+
+Compatibility section of Readme is outdated
+#5372 closed 3 weeks ago
+
+triton 3.3 has a bit longer host overhead compare to 3.2
+#3907 closed 3 weeks ago
+
+PYTEST_MAX_PROCESSES is ignored for triton-kernels suite
+#5437 closed last month
+
+[BLOCK IO] Refactor the block IO lowering for load operation with linear layout infrastructure to support general arbitaray layout.
+#5441 closed last month
+
+Tensor-likes are not close: test_mxfp8_mxfp4_matmul on PVC with Kobuk
+#5428 closed last month
+
+[pytorch upstream] Layernorm bwd has register spill on BMG
+#5274 closed last month
+
+Use precise divide and sqrt builtin
+#5419 closed last month
+
+[pytorch upstream] softmax on BMG is slow
+#5133 closed last month
+
+[test_mxfp8_mxfp4_matmul] The kernels compilation time is too long
+#4062 closed last month
+
+[Pytorch upstream] "div_rn" get "nan" result.
+#5306 closed last month
+
+[Pytorch upstream] perf regression with triton "div_rn" and "sqrt_rn"
+#5314 closed last month
+
+Update README
+#5420 closed last month
+
+[perf regression] Softmax perf regression after triton config changed
+#5367 closed last month
+
+Reland upstream commit `60605d8`
+#5269 closed last month
+
+[Helion]: Develop new optimization to detect unnecessary boundaryCheck on load operations
+#5335 closed last month
+
+Triton kernel `test_matmul.py` regression from new driver
+#5325 closed last month
+
+Binary kernel for Inductor static kernel launcher.
+#5388 closed last month

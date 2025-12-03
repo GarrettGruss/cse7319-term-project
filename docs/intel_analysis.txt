@@ -1,0 +1,125 @@
+================================================================================
+                    DORA METRICS ANALYSIS FOR LANGCHAIN
+================================================================================
+Loading data...
+Data directory: examples/data/intel
+
+Merged PRs: 104
+Opened PRs: 17
+Closed PRs: 73
+Opened Issues: 42
+
+Date range: 2025-11-04 00:00:00 to 2025-12-02 00:00:00
+
+================================================================================
+1. DEPLOYMENT FREQUENCY
+================================================================================
+Total deployments: 104
+Time period: 29 days
+Deployments per day: 3.59
+Deployments per week: 25.10
+
+Median deployments per day: 9.0
+Max deployments in a day: 28
+
+Visualization saved to: examples/deployment_frequency.png
+
+================================================================================
+2. LEAD TIME FOR CHANGES
+================================================================================
+
+Total PRs with lead time data: 3
+
+Lead Time Statistics (in days):
+  Mean: 0.00 days
+  Median: 0.00 days
+  Min: 0.00 days
+  Max: 0.00 days
+  Std Dev: 0.00 days
+
+Percentiles:
+  25th: 0.00 days
+  50th: 0.00 days
+  75th: 0.00 days
+  90th: 0.00 days
+
+Fastest 5 merges:
+  0.0 hours - [BENCHMARKS] Don't use Level Zero v2 loader...
+  0.0 hours - Remove `test_routing.py` from xe2 triton_kernels.txt...
+  0.0 hours - Merge OpenAI Triton commit `e4e68d1`...
+
+[Visualization skipped - lead time data unreliable without direct PR matching]
+
+================================================================================
+3. CHANGE FAILURE RATE
+================================================================================
+Total issues: 42
+Bug-related issues: 11 (26.2%)
+Total deployments: 104
+
+Change Failure Rate: 10.58%
+  (11 bugs / 104 deployments)
+
+Note: This is an approximation based on keyword matching.
+
+Sample bug-related issues:
+================================================================================
+#5561 (2025-11-27): [PyTorch Upstream][regression] RuntimeError: ZE_RESULT_ERROR_MODULE_BU...
+#5549 (2025-11-25): [VLLM][unified attention] Verification fails after changing 3D load to...
+#5547 (2025-11-25): [VLLM][unified attention] Updating VLLM pin leads to verification issu...
+#5536 (2025-11-25): [helion] IGC: Internal Compiler Error: Segmentation violation...
+#5528 (2025-11-18): BMG C91 triggers error "sycl_arch not recognized: 0"...
+#5511 (2025-11-18): users set ```ONEAPI_DEVICE_SELECTOR=level_zero:gpu```, all triton kern...
+#5491 (2025-11-18): [Inductor][UT] `test/inductor/test_analysis.py::TestAnalysisXPU::test_...
+#5481 (2025-11-11): [BMG] `Triton GEMM + PostOp (add matrix) kernel benchmark int8` failur...
+#5478 (2025-11-11): Fix E2E performance workflow when running on BMG...
+#5473 (2025-11-11): Errors from running tutorial programs...
+
+Visualization saved to: examples/change_failure_rate.png
+
+================================================================================
+4. TIME TO RESTORE SERVICE
+================================================================================
+No bug-fix pairs could be identified from the data.
+This requires explicit references from fix PRs to bug issues.
+
+================================================================================
+                         DORA METRICS SUMMARY
+================================================================================
+
+1. DEPLOYMENT FREQUENCY
+   3.59 deployments/day | 25.10 deployments/week
+   Elite: Multiple deploys per day | High: Once per day to once per week
+
+2. LEAD TIME FOR CHANGES
+   Median: 0.00 days | Mean: 0.00 days
+   Elite: Less than 1 day | High: 1 day to 1 week
+
+3. CHANGE FAILURE RATE
+   10.58% (11 bugs / 104 deployments)
+   Elite: 0-15% | High: 16-30%
+
+4. TIME TO RESTORE SERVICE
+   Unable to calculate - no bug-fix pairs identified
+
+================================================================================
+Analysis Period: 2025-11-04 to 2025-12-02 (29 days)
+================================================================================
+
+================================================================================
+                         PERFORMANCE CLASSIFICATION
+================================================================================
+
+Deployment Frequency: Elite
+Lead Time for Changes: Elite
+Change Failure Rate: Elite
+Time to Restore Service: N/A
+
+Overall Performance: Elite Performer
+================================================================================
+
+✓ Analysis complete!
+  Visualizations saved:
+    - examples/deployment_frequency.png
+    - examples/change_failure_rate.png
+  Note: Lead Time and MTTR visualizations skipped due to data matching limitations.

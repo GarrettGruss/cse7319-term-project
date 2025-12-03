@@ -1,0 +1,125 @@
+================================================================================
+                    DORA METRICS ANALYSIS FOR LANGCHAIN
+================================================================================
+Loading data...
+Data directory: examples/data/langchain
+
+Merged PRs: 179
+Opened PRs: 67
+Closed PRs: 89
+Opened Issues: 69
+
+Date range: 2025-10-29 00:00:00 to 2025-11-27 00:00:00
+
+================================================================================
+1. DEPLOYMENT FREQUENCY
+================================================================================
+Total deployments: 179
+Time period: 30 days
+Deployments per day: 5.97
+Deployments per week: 41.77
+
+Median deployments per day: 8.5
+Max deployments in a day: 46
+
+Visualization saved to: examples/deployment_frequency.png
+
+================================================================================
+2. LEAD TIME FOR CHANGES
+================================================================================
+No direct PR matches found between opened and merged datasets.
+Using temporal statistical approach to estimate lead time...
+
+Estimated lead time for 162 PR pairs using temporal proximity
+Note: This is an approximation based on matching nearby open/merge events
+
+Total PRs with lead time data: 162
+
+Lead Time Statistics (in days):
+  Mean: 4.98 days
+  Median: 6.00 days
+  Min: 1.00 days
+  Max: 7.00 days
+  Std Dev: 2.27 days
+
+Percentiles:
+  25th: 2.00 days
+  50th: 6.00 days
+  75th: 7.00 days
+  90th: 7.00 days
+
+Fastest 5 merges:
+  24.0 hours - chore(infra): update PR template, agent files...
+  24.0 hours - style(core,langchain,qdrant): fix some docstrings for refs...
+  24.0 hours - docs(anthropic,core,langchain): updates...
+  24.0 hours - fix(model-profiles): update docs link...
+  24.0 hours - chore(infra): update agent files, remove top-level pyproject...
+
+[Visualization skipped - lead time data unreliable without direct PR matching]
+
+================================================================================
+3. CHANGE FAILURE RATE
+================================================================================
+Total issues: 69
+Bug-related issues: 16 (23.2%)
+Total deployments: 179
+
+Change Failure Rate: 8.94%
+  (16 bugs / 179 deployments)
+
+Note: This is an approximation based on keyword matching.
+
+Sample bug-related issues:
+================================================================================
+#34144 (2025-11-29): Langchain-ollama error for strict parameter with gpt oss 20b cloud mod...
+#34143 (2025-11-29): ChatGoogleGenerativeAIError: 400 - contents is not specified...
+#34140 (2025-11-29): ChatXAI: 400 error when AIMessage has tool_calls but no content...
+#34107 (2025-11-26): Structured output with OpenAI model from Ollama causes TypeError in la...
+#34098 (2025-11-24): To add `OutputFixingParser` or an alternate...
+#34085 (2025-11-24): `NotRequired` in TypedDict causes TypeError when converting to OpenAI ...
+#34084 (2025-11-24): ProviderStrategy fails with JSONDecodeError for Gemini on VertexAI...
+#34076 (2025-11-22): test: test_with_llm failing on master - missing on_llm_start/on_llm_en...
+#34068 (2025-11-22): TypeError in langchain_anthropic/middleware/bash.py...
+#34050 (2025-11-22): SummarizationMiddleware fails - list object has no attribute strip...
+
+Visualization saved to: examples/change_failure_rate.png
+
+================================================================================
+4. TIME TO RESTORE SERVICE
+================================================================================
+No bug-fix pairs could be identified from the data.
+This requires explicit references from fix PRs to bug issues.
+
+================================================================================
+                         DORA METRICS SUMMARY
+================================================================================
+
+1. DEPLOYMENT FREQUENCY
+   5.97 deployments/day | 41.77 deployments/week
+   Elite: Multiple deploys per day | High: Once per day to once per week
+
+2. LEAD TIME FOR CHANGES
+   Median: 6.00 days | Mean: 4.98 days
+   Elite: Less than 1 day | High: 1 day to 1 week
+
+3. CHANGE FAILURE RATE
+   8.94% (16 bugs / 179 deployments)
+   Elite: 0-15% | High: 16-30%
+
+4. TIME TO RESTORE SERVICE
+   Unable to calculate - no bug-fix pairs identified
+
+================================================================================
+Analysis Period: 2025-10-29 to 2025-11-27 (30 days)
+================================================================================
+
+================================================================================
+                         PERFORMANCE CLASSIFICATION
+================================================================================
+
+Deployment Frequency: Elite
+Lead Time for Changes: High
+Change Failure Rate: Elite
+Time to Restore Service: N/A
+
+Overall Performance: High Performer

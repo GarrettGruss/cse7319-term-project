@@ -1,0 +1,200 @@
+ 66 Unresolved conversations
+Sometimes conversations happen on old items that aren't yet closed. Here is a list of all the Issues and Pull Requests with unresolved conversations.
+
+Error during Intel loadBinary: ZE_RESULT_ERROR_INVALID_KERNEL_NAME
+#5394 commented on 4 days ago • new comments
+
+[FlexAttention] The flex attention test takes too long time to run in CI.
+#4265 commented on 6 minutes ago • new comments
+
+Some `python/triton_kernels/tests/test_matmul.py::test_op` test cases don't work
+#5074 commented on yesterday • new comments
+
+Enable triton kernels matmul tests
+#5128 commented on yesterday • new comments
+
+Some `test_routing.py::test_op` tests cases fail on BMG
+#5117 commented on last week • new comments
+
+[2Dblock] fix minicore test's runtime checks
+#5338 commented on 5 days ago • new comments
+
+avg pooling bwd is slow on bmg
+#5199 commented on 2 weeks ago • new comments
+
+[Gluon] Enable GEMM benchmark, reach perf parity with Triton implementation
+#5263 commented on yesterday • new comments
+
+[Pytorch upstream] Feature request: Save SPIR-V Build flag to CompiledKernel metadata for Inductor.
+#5153 commented on 2 weeks ago • new comments
+
+[SGLANG] [Benchmarks] Initial integration of sglang kernels to benchmarks
+#3796 commented on 3 weeks ago • new comments
+
+Check launch overhead on XPU using changes from `b220c76`
+#5028 commented on yesterday • new comments
+
+Enable all tests from `test_debug.py` on XPU
+#2755 commented on 2 weeks ago • new comments
+
+[onednn][perf] onednn improved performance for one gemm shape, but triton didn't
+#5255 commented on 1 hour ago • new comments
+
+Inductor tests segfault on 24.04 + Kobuk
+#5356 commented on 3 weeks ago • new comments
+
+[06-fused-attention] Determine if FP8 operand B can use 2d block load
+#3572 commented on 2 weeks ago • new comments
+
+Add ability to run individual tests using `test-triton.sh`
+#4932 commented on 2 weeks ago • new comments
+
+[FA][Upstream PT] `XPU out of memory` raised by FA kernel with upstream pytorch
+#2042 commented on 2 weeks ago • new comments
+
+[Profiler] Enable Triton Proton for the Intel GPU's
+#1145 commented on last week • new comments
+
+Fix `tests/modules/test_layernorm.py::test_groupnorm[True-1-512-512-2]` test case
+#5078 commented on last week • new comments
+
+Enable `test_side_effectful_reduction` on XPU
+#2736 commented on 2 weeks ago • new comments
+
+RuntimeError (IGC: LLVM Error: Diag: aborted) on MTL and ARL
+#3003 commented on 2 weeks ago • new comments
+
+[Liger-Kernel][CI] Triton-thirdparty-benchmark fails for Liger-Kernel benchmarks
+#3873 commented on 5 days ago • new comments
+
+[TEST][Gluon] Fix `test_[scan|reduce]_layout` when `sanitize_overflow=True`
+#5149 commented on 2 weeks ago • new comments
+
+[BACKEND] Enhance the remove layout implementation to reduce the duplicated values with different layout in scf.for.
+#4527 commented on 2 weeks ago • new comments
+
+Use pytorch train cnn model torch.compile backend compiler failed build.
+#5405 commented on 3 weeks ago • new comments
+
+[Helion] Support rank > 2 tensor descriptor load with block IO.
+#5365 commented on last month • new comments
+
+Replace the load op to llvm loop infrastructure with loops over linear layout input dimensions
+#3895 commented on last month • new comments
+
+Add one autotuning config to the flex attention benchmark
+#5303 commented on 3 weeks ago • new comments
+
+Matmul pattern with deqauntization in it
+#4327 commented on yesterday • new comments
+
+[SGLANG] Functional enabling and performance benchmarking
+#3622 commented on 2 weeks ago • new comments
+
+[Driver] Enhance the error handling in driver.c
+#4334 commented on 2 weeks ago • new comments
+
+[RemoveLayoutConversions]: Failure to compile loop yielding result consumed by reduce operation
+#5262 commented on 2 weeks ago • new comments
+
+[TritonGEN] Enable DPAS SPV interface for sg-size=32.
+#4976 commented on 2 weeks ago • new comments
+
+[pytorch upstream] pointwise is slow compare to cuda
+#4001 commented on 2 weeks ago • new comments
+
+[torchbench][pytorch_unet] Channel last batch norm have bad performance
+#3001 commented on 2 weeks ago • new comments
+
+Cat+BN+Relu inference is very slow on Max 1550
+#3576 commented on 2 weeks ago • new comments
+
+[CI] Triggering Triton Benchmarks by PR Label
+#4326 commented on 2 weeks ago • new comments
+
+`PYTORCH_OPINFO_SAMPLE_INPUT_INDEX=2 python test/inductor/test_torchinductor_opinfo.py TestInductorOpInfoXPU.test_comprehensive___rmod___xpu_float32` is broken
+#5411 commented on last month • new comments
+
+[Intel] Add padding support to tensor descriptor
+#5400 commented on 3 weeks ago • new comments
+
+[PT 2.9-2.10][FlexAttention] Enabling and performance
+#3655 commented on 2 weeks ago • new comments
+
+[CI][Inductor] Parallel Inductor test runs
+#4202 commented on 2 weeks ago • new comments
+
+`PYTORCH_OPINFO_SAMPLE_INPUT_INDEX=7 python test/inductor/test_torchinductor_opinfo.py TestInductorOpInfoXPU.test_comprehensive__chunk_cat_xpu_float64` is broken
+#5408 commented on 2 weeks ago • new comments
+
+[FlexAttn] Investigate verification error with `TRITON_INTEL_ENABLE_BLOCK_IO_ALL_LAYOUTS` on BMG
+#5035 commented on 2 weeks ago • new comments
+
+Evaluate new IGC `ManageableBarriers`
+#3093 commented on 2 weeks ago • new comments
+
+[UT] Several `test_dot` cases failed with `AssertionError` (A770)
+#3366 commented on 2 weeks ago • new comments
+
+Random 08-grouped-gemm.py tutorial hangs on MTL and ARL
+#3004 commented on 2 weeks ago • new comments
+
+Remove run-time dependency on DLE for nightly wheels
+#4195 commented on 2 weeks ago • new comments
+
+[DPAS] Support low precision DPAS on A770 with sub-group-size=8.
+#991 commented on 2 weeks ago • new comments
+
+Compare SPIR-V backend and SPIR-V translator latencies
+#3249 commented on 2 weeks ago • new comments
+
+Atomic add performance with subgroup size 16
+#1867 commented on 2 weeks ago • new comments
+
+[fast math] refactor to a separate pass and get option from user
+#1757 commented on 2 weeks ago • new comments
+
+Reduction performance with subroup size 16
+#1868 commented on 2 weeks ago • new comments
+
+[gdb] `02-fused-softmax.py` tutorial hangs when trying to debug
+#5245 commented on 2 weeks ago • new comments
+
+[Debug Feature] The Inductor generates the triton kernel with libdevice function which is not supported by Triton Interpreter
+#3698 commented on 2 weeks ago • new comments
+
+[Performance] Optimization AtomicOp performance
+#3509 commented on 2 weeks ago • new comments
+
+Use linear layout to extend `-tritonintelgpu-optimize-reduction-locality` to other layouts
+#2563 commented on 2 weeks ago • new comments
+
+No perf advantage for torch.compile on examples from pytorch tutorial
+#1721 commented on 2 weeks ago • new comments
+
+Triton SIMD reduction investigation
+#3310 commented on 2 weeks ago • new comments
+
+Implement tensor descriptor variant of test_perf_warning.py
+#4374 commented on 2 weeks ago • new comments
+
+[TritonGEN] Remove GenISA usages when SPV is available
+#4658 commented on 2 weeks ago • new comments
+
+[ReduceLowering] Improve the lowering the reduce operation with arith.maximumf to SPIRV warp level reduce.
+#5003 commented on 2 weeks ago • new comments
+
+[GEMM] 2048X2048X2048 has big variance.
+#2873 commented on 2 weeks ago • new comments
+
+Automate the ablity to compare cached IRs for the same kernel
+#3430 commented on 2 weeks ago • new comments
+
+Investigate using OCL's atomic functions for AtormicCAS and AtomicRMW codegen.
+#1882 commented on 2 weeks ago • new comments
+
+[TRITON-BP]: Lack of support for `ExpandDimOp`
+#3221 commented on 2 weeks ago • new comments
+
+Consider reusing PyTorch solution for `ext_oneapi_get_default_context`
+#2757 commented on 2 weeks ago • new comments

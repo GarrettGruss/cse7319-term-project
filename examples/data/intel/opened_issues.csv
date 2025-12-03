@@ -1,0 +1,43 @@
+,msg,hash,date_rel,date_abs
+0,Reland upstream commit `31281bc`,#5588,yesterday,2025-12-02
+1,[VLLM][unified attention] Incorrect compiler behavior with vllm tiling,#5581,4 days ago,2025-11-28
+2,`tl.inline_asm_elementwise` returns wrong results on Intel GPU,#5580,4 days ago,2025-11-28
+3,"Triton update introduced ""unknown extension 'SPV_KHR_bfloat16'""",#5574,4 days ago,2025-11-28
+4,[BMG][FlexAttn] Unbelievably high perf with DLE 2025.3,#5572,5 days ago,2025-11-27
+5,[PyTorch Upstream][regression] RuntimeError: ZE_RESULT_ERROR_MODULE_BUILD_FAILURE in generated Triton kernel,#5561,5 days ago,2025-11-27
+6,"Enable Proton ""sampling"" mode for XPU",#5557,last week,2025-11-25
+7,[qantize] do we have a method about 2bit quantize on intel?,#5554,last week,2025-11-25
+8,[Proton] Enable `max_bps` function for Intel GPU,#5550,last week,2025-11-25
+9,[VLLM][unified attention] Verification fails after changing 3D load to 2D load but passes on Nvidia,#5549,last week,2025-11-25
+10,[VLLM][unified attention] Updating VLLM pin leads to verification issues for the upstream code,#5547,last week,2025-11-25
+11,[Perf][vllm] Investigate poor HW utilization for unified attention,#5546,last week,2025-11-25
+12,[TESTS] Remove collect-tests step before pytest calls in triton-test.sh,#5545,last week,2025-11-25
+13,[2Dblock] implement specialized kernels,#5537,last week,2025-11-25
+14,[helion] IGC: Internal Compiler Error: Segmentation violation,#5536,last week,2025-11-25
+15,[LAUNCHER] [vllm-xpu-kerners] make_launcher is incompatible with tensor views derived from CPU pinned memory.,#5534,last week,2025-11-25
+16,[SGLANG] fused_moe_kernel triton kernels performance regressed in pytorch-triton-xpu==3.5.0 compared to 3.4.0 keeping same torch 2.9.0+xpu,#5531,2 weeks ago,2025-11-18
+17,"[LAUNCHER] Align the binary load flow for native binary, SPIRVRunner and driver.c",#5529,2 weeks ago,2025-11-18
+18,"BMG C91 triggers error ""sycl_arch not recognized: 0""",#5528,2 weeks ago,2025-11-18
+19,Reland upstream commit `9b75018`,#5527,2 weeks ago,2025-11-18
+20,[flex-attention] Fluctuations in results for individual shapes,#5519,2 weeks ago,2025-11-18
+21,[benchmarks] Add ability to print HW efficiency as part of a report,#5514,2 weeks ago,2025-11-18
+22,"users set ```ONEAPI_DEVICE_SELECTOR=level_zero:gpu```, all triton kernels will crash",#5511,2 weeks ago,2025-11-18
+23,CI: implement check if any report has total of 0 tests,#5508,2 weeks ago,2025-11-18
+24,[ElementWIse and Reductions] Generic performance improvements,#5496,2 weeks ago,2025-11-18
+25,[Backend] Experimental features,#5495,2 weeks ago,2025-11-18
+26,[DOC] Documentation and release notes,#5494,2 weeks ago,2025-11-18
+27,[Doc] Write readme section on Tensor Descriptor usage,#5492,2 weeks ago,2025-11-18
+28,[Inductor][UT] `test/inductor/test_analysis.py::TestAnalysisXPU::test_augment_trace_against_flop_counter_maxat1_xpu_float16` is broken on LTS2,#5491,2 weeks ago,2025-11-18
+29,[Windows] Support generate binary kernel for Inductor static kernel launcher,#5490,2 weeks ago,2025-11-18
+30,[BMG] `Triton GEMM + PostOp (add matrix) kernel benchmark int8` failure,#5481,3 weeks ago,2025-11-11
+31,Fix E2E performance workflow when running on BMG,#5478,3 weeks ago,2025-11-11
+32,[RemoveLayoutConversion] Refine cost model,#5476,3 weeks ago,2025-11-11
+33,Errors from running tutorial programs,#5473,3 weeks ago,2025-11-11
+34,[tt.load]: Handle load attributes such as volatile and cacheModifier for predicated loads,#5467,3 weeks ago,2025-11-11
+35,Update DLE up to 2025.3.1,#5452,3 weeks ago,2025-11-11
+36,[PROTON] Fix flaky `test_api.py::test_state`,#5447,last month,2025-11-04
+37,Proton tests on MTL: XPU device count is zero,#5445,last month,2025-11-04
+38,[BLOCK IO] To enable the block IO lowering for all layouts other than DotOp and DPAS.,#5443,last month,2025-11-04
+39,[BLOCK IO] Clean up the code to unify the block IO lowering for both both tensor descritpor (block ptr) and teonsr of pointers.,#5442,last month,2025-11-04
+40,Enable Flex Attention bwd shapes with `D_HEAD_qk==128`,#5436,last month,2025-11-04
+41,triton-kernels are stuck on A770 Linux,#5418,last month,2025-11-04

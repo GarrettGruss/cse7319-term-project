@@ -66,5 +66,5 @@
 64,Agent re-attempts original tool call after HumanInTheLoopMiddleware edit decision,#33787,27 days ago,2025-11-02
 65,The issue with the list formatting string type caused the llm call to fail—the JSON in the request body was non-compliant.,#33758,last month,2025-11-01
 66,Support cache_control for ChatOpenAI,#33757,last month,2025-11-01
-67,Unable to inject tool call id into tool when using LLM with bound tools and structured outputs simultaneously,#33744,on Oct 30,2025-11-01
-68,Unified Structured Output and Tool-Calling Interface in BaseChatModel,#33743,on Oct 30,2025-11-01
+67,Unable to inject tool call id into tool when using LLM with bound tools and structured outputs simultaneously,#33744,on Oct 30,2025-10-30
+68,Unified Structured Output and Tool-Calling Interface in BaseChatModel,#33743,on Oct 30,2025-10-30

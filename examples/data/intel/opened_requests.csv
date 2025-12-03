@@ -1,0 +1,18 @@
+,msg,hash,date_rel,date_abs
+0,[LoadStoreOpToLLVM] Unify the 2D block IO lowering code for both regular pointer and block pointer,#5500,2 weeks ago,2025-11-18
+1,use pytest-skip plugin for selection in the test script,#5502,2 weeks ago,2025-11-18
+2,[Inductor][UT] Improve the default testing scope,#5509,2 weeks ago,2025-11-18
+3,[doc] Add tutorial on TDs to readme,#5541,last week,2025-11-25
+4,[DEBUG] Try to run Proton tests on windows,#5542,last week,2025-11-25
+5,Test relands related to matmul,#5558,last week,2025-11-25
+6,Reenable hanging gluon test after driver update,#5562,5 days ago,2025-11-27
+7,[DEBUG] Use system pti,#5584,2 days ago,2025-11-30
+8,Change SPV_KHR_bfloat16 workaround patch to work for different drivers,#5585,yesterday,2025-12-02
+9,[WIP][Gluon] Support tensor descriptors and explicit load/store/prefetch operations,#5586,yesterday,2025-12-02
+10,"Revert ""Enable bfloat16 unit tests (#5163)""",#5589,yesterday,2025-12-02
+11,[BENCHMARKS] Don't use Level Zero v2 loader,#5592,18 hours ago,2025-12-02
+12,TEST,#5593,15 hours ago,2025-12-02
+13,Reland upstream commit 9b75018,#5594,6 hours ago,2025-12-02
+14,empty cache between each run to avoid OOM,#5595,4 hours ago,2025-12-02
+15,Remove `test_routing.py` from xe2 triton_kernels.txt,#5596,3 hours ago,2025-12-02
+16,Merge OpenAI Triton commit `e4e68d1`,#5597,2 hours ago,2025-12-02
