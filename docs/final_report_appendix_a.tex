@@ -1,0 +1,693 @@
+% Appendix A for Final Report
+% Software Quality Metrics Analysis of Open Source Projects
+
+\appendix
+
+\section{Phase 1 Planned Configuration (GitHub Actions)}
+
+This section documents the original Phase 1 approach that involved integrating GitHub Actions workflows into target repositories for automated static code analysis and quality metric collection.
+
+\subsection{Planned GitHub Actions Workflow}
+
+The intended workflow would have been added to target repositories at \texttt{.github/workflows/quality-metrics.yml}:
+
+\begin{lstlisting}[language=yaml, caption=Planned quality-metrics.yml Workflow]
+name: Software Quality Metrics Collection
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install radon pytest pytest-cov ruff mypy
+          pip install -r requirements.txt
+
+      - name: Run Radon - LOC Analysis
+        run: |
+          radon raw . -j > metrics/radon_loc.json
+          radon cc . -j > metrics/radon_complexity.json
+          radon mi . -j > metrics/radon_maintainability.json
+
+      - name: Run Pytest with Coverage
+        run: |
+          pytest --cov=. --cov-report=json \
+                 --cov-report=term \
+                 --junitxml=metrics/pytest_results.xml
+
+      - name: Run Ruff Linter
+        run: |
+          ruff check . --output-format=json \
+               > metrics/ruff_violations.json
+
+      - name: Run Mypy Type Checker
+        run: |
+          mypy . --json-report metrics/mypy_report
+
+      - name: Enforce Quality Gates
+        run: |
+          python .github/scripts/enforce_quality_gates.py
+
+      - name: Publish Metrics
+        uses: actions/upload-artifact@v3
+        with:
+          name: quality-metrics
+          path: metrics/
+
+      - name: Send to Observability Platform
+        run: |
+          python .github/scripts/publish_to_otel.py
+        env:
+          OTEL_ENDPOINT: ${{ secrets.OTEL_ENDPOINT }}
+          OTEL_API_KEY: ${{ secrets.OTEL_API_KEY }}
+\end{lstlisting}
+
+\subsection{Planned Quality Gate Enforcement}
+
+The workflow would have included automated quality gates to prevent merging code that failed thresholds:
+
+\begin{lstlisting}[language=Python, caption=enforce\_quality\_gates.py]
+import json
+import sys
+
+# Load metrics
+with open('metrics/radon_complexity.json') as f:
+    complexity = json.load(f)
+
+with open('metrics/pytest_coverage.json') as f:
+    coverage = json.load(f)
+
+with open('metrics/ruff_violations.json') as f:
+    linting = json.load(f)
+
+# Define thresholds
+THRESHOLDS = {
+    'max_complexity': 15,
+    'min_coverage': 70,
+    'max_linting_violations': 50,
+    'min_maintainability': 50
+}
+
+# Check thresholds
+violations = []
+
+# Check cyclomatic complexity
+for module in complexity:
+    for func in module.get('functions', []):
+        if func['complexity'] > THRESHOLDS['max_complexity']:
+            violations.append(
+                f"Function {func['name']} has complexity "
+                f"{func['complexity']} (max: {THRESHOLDS['max_complexity']})"
+            )
+
+# Check test coverage
+total_coverage = coverage['totals']['percent_covered']
+if total_coverage < THRESHOLDS['min_coverage']:
+    violations.append(
+        f"Test coverage {total_coverage}% is below "
+        f"minimum {THRESHOLDS['min_coverage']}%"
+    )
+
+# Check linting violations
+violation_count = len(linting)
+if violation_count > THRESHOLDS['max_linting_violations']:
+    violations.append(
+        f"Linting violations {violation_count} exceed "
+        f"maximum {THRESHOLDS['max_linting_violations']}"
+    )
+
+# Report violations
+if violations:
+    print("Quality gate FAILED:")
+    for v in violations:
+        print(f"  - {v}")
+    sys.exit(1)
+else:
+    print("Quality gate PASSED")
+    sys.exit(0)
+\end{lstlisting}
+
+\subsection{Planned Tool Configurations}
+
+\subsubsection{Radon Configuration}
+
+Radon would analyze code complexity without additional configuration, but the following commands were planned:
+
+\begin{lstlisting}[language=bash, caption=Radon Analysis Commands]
+# Lines of Code analysis
+radon raw . --json --output-file=radon_loc.json
+
+# Cyclomatic Complexity
+radon cc . --json --min=C --output-file=radon_complexity.json
+
+# Maintainability Index
+radon mi . --json --min=B --output-file=radon_maintainability.json
+
+# Halstead metrics (code effort estimation)
+radon hal . --json --output-file=radon_halstead.json
+\end{lstlisting}
+
+\subsubsection{Pytest Configuration}
+
+\begin{lstlisting}[language=ini, caption=pytest.ini]
+[pytest]
+testpaths = tests
+python_files = test_*.py
+python_classes = Test*
+python_functions = test_*
+
+# Coverage settings
+addopts =
+    --cov=src
+    --cov-report=html
+    --cov-report=json
+    --cov-report=term-missing
+    --cov-fail-under=70
+    --junitxml=junit.xml
+    --verbose
+
+# Coverage exclusions
+[coverage:run]
+omit =
+    */tests/*
+    */venv/*
+    */migrations/*
+    */__pycache__/*
+
+[coverage:report]
+precision = 2
+show_missing = True
+skip_covered = False
+\end{lstlisting}
+
+\subsubsection{Ruff Configuration}
+
+\begin{lstlisting}[language=toml, caption=pyproject.toml - Ruff Configuration]
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "C",   # flake8-comprehensions
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "N",   # pep8-naming
+]
+
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # function call in argument defaults
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]  # unused imports
+"tests/*.py" = ["S101"]   # allow assert statements
+
+[tool.ruff.isort]
+known-first-party = ["src"]
+\end{lstlisting}
+
+\subsubsection{Mypy Configuration}
+
+\begin{lstlisting}[language=ini, caption=mypy.ini]
+[mypy]
+python_version = 3.11
+warn_return_any = True
+warn_unused_configs = True
+disallow_untyped_defs = True
+disallow_incomplete_defs = True
+check_untyped_defs = True
+no_implicit_optional = True
+warn_redundant_casts = True
+warn_unused_ignores = True
+warn_no_return = True
+strict_equality = True
+show_error_codes = True
+
+# Per-module options
+[mypy-tests.*]
+disallow_untyped_defs = False
+
+[mypy-third_party_lib.*]
+ignore_missing_imports = True
+\end{lstlisting}
+
+\subsection{Planned Semantic Versioning Integration}
+
+The workflow would have used \texttt{python-semantic-release} for automated version management:
+
+\begin{lstlisting}[language=yaml, caption=Semantic Release Workflow]
+name: Semantic Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Python Semantic Release
+        uses: relekang/python-semantic-release@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pypi_token: ${{ secrets.PYPI_TOKEN }}
+\end{lstlisting}
+
+\begin{lstlisting}[language=toml, caption=pyproject.toml - Semantic Release Config]
+[tool.semantic_release]
+version_variable = "src/__init__.py:__version__"
+version_source = "tag"
+commit_version_number = true
+tag_commit = true
+upload_to_pypi = false
+upload_to_release = true
+
+branch = "main"
+hvcs = "github"
+
+# Commit parsing
+commit_parser = "angular"
+major_on_zero = true
+allow_zero_version = true
+
+# Version bumping rules
+[tool.semantic_release.commit_parser_options]
+allowed_tags = [
+    "feat",      # New feature (minor bump)
+    "fix",       # Bug fix (patch bump)
+    "docs",      # Documentation only
+    "style",     # Code style changes
+    "refactor",  # Code refactoring
+    "perf",      # Performance improvements
+    "test",      # Test additions
+    "build",     # Build system changes
+    "ci",        # CI configuration
+]
+
+major_tags = ["BREAKING CHANGE", "BREAKING"]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf"]
+\end{lstlisting}
+
+\subsection{Abandonment Rationale - Detailed}
+
+This comprehensive GitHub Actions approach was abandoned due to several critical barriers:
+
+\begin{enumerate}
+    \item \textbf{Repository Modification Complexity}
+    \begin{itemize}
+        \item Adding workflows requires write access to \texttt{.github/workflows/} directory
+        \item Target repositories (LangChain, Intel XPU Backend) have existing CI/CD infrastructure
+        \item Risk of conflicts with existing workflows, branch protection rules, and required checks
+        \item Need to modify \texttt{.gitignore}, add \texttt{pyproject.toml}, and create metrics directories
+    \end{itemize}
+
+    \item \textbf{Maintainer Approval Barriers}
+    \begin{itemize}
+        \item External researchers cannot submit PRs that add observability workflows for academic purposes
+        \item Maintainers would reject workflows that export metrics to external platforms (security/privacy)
+        \item Request would require detailed justification, privacy impact assessment, and legal review
+        \item No precedent for academic metric collection in production repositories
+    \end{itemize}
+
+    \item \textbf{Per-Repository Customization Requirements}
+    \begin{itemize}
+        \item Different projects use different languages (Python, C++, Rust), requiring tool variations
+        \item Test frameworks vary: pytest, unittest, cargo test, gtest, etc.
+        \item Build systems differ: setuptools, poetry, cargo, CMake, requiring custom metric extraction
+        \item Each repository would need custom quality gate thresholds based on project maturity
+    \end{itemize}
+
+    \item \textbf{Fork Limitations}
+    \begin{itemize}
+        \item Forking allows workflow addition but creates isolation from production development
+        \item Forks do not receive upstream commits in real-time, metrics become stale
+        \item Fork metrics do not reflect actual project health, only snapshot quality
+        \item Cannot access organizational secrets, runners, or internal deployment metrics
+    \end{itemize}
+
+    \item \textbf{Computational and Financial Costs}
+    \begin{itemize}
+        \item GitHub Actions minutes are limited for free accounts (2,000 minutes/month)
+        \item Running comprehensive quality analysis on large codebases consumes significant minutes
+        \item LangChain repository has 150+ contributors with dozens of daily commits
+        \item Would require paid GitHub plan (\$4-\$21/user/month) for adequate compute quota
+    \end{itemize}
+\end{enumerate}
+
+These constraints led to the pivot toward less invasive approaches in Phase 2 and Phase 3.
+
+\section{Data Collection Scripts}
+
+The data collection process involved manually extracting data from GitHub's web interface and organizing it into CSV format. While no automated scraping scripts were used due to permission constraints, the following describes the manual collection workflow:
+
+\subsection{GitHub Web UI Navigation}
+
+For each repository (LangChain and Intel XPU Backend), data was collected through:
+
+\begin{enumerate}
+    \item \textbf{Pull Request Data Collection}
+    \begin{itemize}
+        \item Navigate to repository $\rightarrow$ Pull Requests tab
+        \item Filter by date range (e.g., October 29 - November 27, 2025 for LangChain)
+        \item Filter by state: \texttt{is:pr is:open}, \texttt{is:pr is:merged}, \texttt{is:pr is:closed}
+        \item Copy PR titles, numbers, and timestamps to CSV
+    \end{itemize}
+
+    \item \textbf{Issue Data Collection}
+    \begin{itemize}
+        \item Navigate to repository $\rightarrow$ Issues tab
+        \item Filter by creation date within analysis window
+        \item Identify bug-related issues using keyword search: bug, error, fix, broken, crash, fail, regression, exception
+        \item Export issue titles and creation timestamps
+    \end{itemize}
+
+    \item \textbf{Repository Metadata}
+    \begin{itemize}
+        \item Navigate to Insights $\rightarrow$ Pulse for activity summary
+        \item Record commit hashes and dates from commit history
+        \item Note relative timestamps ("2 days ago") and convert to absolute dates
+    \end{itemize}
+\end{enumerate}
+
+\subsection{CSV Data Organization}
+
+Data was organized into four CSV files per repository:
+
+\begin{lstlisting}[language=bash, caption=CSV File Structure]
+# opened_requests.csv
+msg,hash,date_rel,date_abs
+"Add authentication feature",#12345,"2 days ago","2025-11-27"
+
+# merged_requests.csv
+msg,hash,date_rel,date_abs
+"Fix authentication bug",#12346,"1 day ago","2025-11-28"
+
+# closed_requests.csv
+msg,hash,date_rel,date_abs
+"Update documentation",#12347,"3 hours ago","2025-11-29"
+
+# opened_issues.csv
+msg,hash,date_rel,date_abs
+"Bug: Login fails on Safari",#678,"1 week ago","2025-11-22"
+\end{lstlisting}
+
+\section{Analysis Source Code}
+
+The complete analysis pipeline is available in \texttt{examples/dora\_metrics.py}. The script implements all DORA metric calculations and generates visualizations.
+
+\subsection{Key Functions}
+
+\begin{itemize}
+    \item \texttt{load\_data(filepath)}: Loads CSV data and preprocesses timestamps
+    \begin{itemize}
+        \item Parses date\_abs column into datetime objects
+        \item Handles missing or malformed timestamps
+        \item Returns pandas DataFrame
+    \end{itemize}
+
+    \item \texttt{calculate\_deployment\_frequency(merged\_df, days)}: Calculates DF metric
+    \begin{itemize}
+        \item Counts merged PRs per day over analysis window
+        \item Computes mean, median, and weekly aggregate
+        \item Classifies performance: Elite ($>$1/day), High (weekly), Medium (monthly), Low ($<$monthly)
+    \end{itemize}
+
+    \item \texttt{calculate\_lead\_time(opened\_df, merged\_df)}: Calculates LT metric
+    \begin{itemize}
+        \item Matches opened PRs with merged PRs using temporal proximity
+        \item Computes time delta in days
+        \item Returns median, mean, 25th/75th/90th percentiles
+        \item Classifies: Elite ($<$1 day), High (1-7 days), Medium (1-4 weeks), Low ($>$1 month)
+    \end{itemize}
+
+    \item \texttt{calculate\_change\_failure\_rate(issues\_df, merged\_df)}: Calculates CFR metric
+    \begin{itemize}
+        \item Identifies bug issues using keyword matching on issue titles/descriptions
+        \item Counts bug issues within analysis window
+        \item Computes ratio: (bug issues / total deployments) $\times$ 100\%
+        \item Classifies: Elite (0-15\%), High (16-30\%), Medium (31-45\%), Low ($>$45\%)
+    \end{itemize}
+
+    \item \texttt{calculate\_time\_to\_restore(issues\_df, merged\_df)}: Calculates MTTR metric
+    \begin{itemize}
+        \item Attempts to pair bug issues with fix PRs
+        \item Searches for issue references in PR titles/bodies
+        \item Computes time from bug opened to fix merged
+        \item Returns median restoration time
+        \item Classifies: Elite ($<$1 hour), High ($<$1 day), Medium (1-7 days), Low ($>$1 week)
+    \end{itemize}
+
+    \item \texttt{generate\_visualizations(metrics\_dict, output\_dir)}: Creates charts
+    \begin{itemize}
+        \item Deployment frequency time series
+        \item Lead time distribution histogram
+        \item Change failure rate comparison (deployments vs bugs)
+        \item Performance classification summary
+    \end{itemize}
+\end{itemize}
+
+\subsection{Usage Example}
+
+\begin{lstlisting}[language=Python, caption=Running DORA Metrics Analysis]
+import pandas as pd
+from dora_metrics import *
+
+# Load data
+opened = load_data('data/langchain/opened_requests.csv')
+merged = load_data('data/langchain/merged_requests.csv')
+closed = load_data('data/langchain/closed_requests.csv')
+issues = load_data('data/langchain/opened_issues.csv')
+
+# Calculate metrics
+df = calculate_deployment_frequency(merged, days=30)
+lt = calculate_lead_time(opened, merged)
+cfr = calculate_change_failure_rate(issues, merged)
+mttr = calculate_time_to_restore(issues, merged)
+
+# Generate visualizations
+metrics = {'df': df, 'lt': lt, 'cfr': cfr, 'mttr': mttr}
+generate_visualizations(metrics, 'output/langchain/')
+
+# Print summary
+print(f"Deployment Frequency: {df['mean']:.2f}/day")
+print(f"Lead Time (median): {lt['median']:.2f} days")
+print(f"Change Failure Rate: {cfr['rate']:.2f}%")
+print(f"Time to Restore: {mttr['median']:.2f} hours")
+\end{lstlisting}
+
+\section{Raw Data Samples}
+
+\subsection{LangChain Repository Data}
+
+Sample entries from the LangChain analysis dataset (October 29 - November 27, 2025):
+
+\begin{table}[H]
+\centering
+\caption{Sample Merged Pull Requests (LangChain)}
+\label{tab:langchain-sample-prs}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{PR \#} & \textbf{Title} & \textbf{Date Relative} & \textbf{Date Absolute} \\ \midrule
+\#25843 & anthropic[patch]: Release 0.41.1 & 2 days ago & 2025-11-25 \\
+\#25841 & docs: Update Anthropic tools example & 2 days ago & 2025-11-25 \\
+\#25839 & core[patch]: Fix streaming in RunnableBinding & 3 days ago & 2025-11-24 \\
+\#25832 & community[patch]: Add timeout to Redis & 4 days ago & 2025-11-23 \\
+\#25829 & docs: Add citation format to papers & 5 days ago & 2025-11-22 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Sample Bug Issues (LangChain)}
+\label{tab:langchain-sample-issues}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Issue \#} & \textbf{Title} & \textbf{Date Relative} & \textbf{Date Absolute} \\ \midrule
+\#4521 & Bug: Streaming fails with Azure OpenAI & 1 day ago & 2025-11-26 \\
+\#4518 & Error when using callback with agents & 3 days ago & 2025-11-24 \\
+\#4510 & Fix: Memory leak in conversation buffer & 5 days ago & 2025-11-22 \\
+\#4502 & Regression: Tool calling broken in 0.41.0 & 1 week ago & 2025-11-20 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Intel XPU Backend Data}
+
+Sample entries from Intel XPU Backend analysis dataset (November 4 - December 2, 2025):
+
+\begin{table}[H]
+\centering
+\caption{Sample Merged Pull Requests (Intel XPU Backend)}
+\label{tab:intel-sample-prs}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{PR \#} & \textbf{Title} & \textbf{Date Relative} & \textbf{Date Absolute} \\ \midrule
+\#2104 & Support for Triton 3.2.0 & 1 day ago & 2025-12-01 \\
+\#2101 & Fix GEMM kernel for FP16 & 2 days ago & 2025-11-30 \\
+\#2098 & Add support for grouped convolutions & 4 days ago & 2025-11-28 \\
+\#2095 & Optimize reduction kernels & 6 days ago & 2025-11-26 \\
+\#2092 & Fix memory allocation in compiler & 1 week ago & 2025-11-25 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\section{OpenTelemetry Configuration Files}
+
+\subsection{Docker Compose Configuration}
+
+The Phase 2 OpenTelemetry approach used the following Docker Compose setup:
+
+\begin{lstlisting}[language=yaml, caption=docker-compose.yml for OTel Stack]
+version: '3.8'
+
+services:
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+      - "8888:8888"   # Prometheus metrics
+    networks:
+      - otel-network
+    depends_on:
+      - openobserve
+
+  openobserve:
+    image: public.ecr.aws/zinclabs/openobserve:latest
+    container_name: openobserve
+    ports:
+      - "5080:5080"
+    environment:
+      - ZO_ROOT_USER_EMAIL=admin@example.com
+      - ZO_ROOT_USER_PASSWORD=admin123
+      - ZO_DATA_DIR=/data
+    volumes:
+      - openobserve-data:/data
+    networks:
+      - otel-network
+
+networks:
+  otel-network:
+    driver: bridge
+
+volumes:
+  openobserve-data:
+\end{lstlisting}
+
+\subsection{OpenTelemetry Collector Configuration}
+
+\begin{lstlisting}[language=yaml, caption=otel-collector-config.yaml]
+receivers:
+  github:
+    github_org: langchain-ai
+    search_query: "org:langchain-ai is:pr"
+    scrapers:
+      github:
+        collection_interval: 60s
+    auth:
+      authenticator: bearertokenauth
+
+extensions:
+  bearertokenauth:
+    token: "${GITHUB_TOKEN}"
+
+processors:
+  batch:
+    timeout: 10s
+    send_batch_size: 100
+
+exporters:
+  otlphttp:
+    endpoint: "http://openobserve:5080/api/default/"
+    headers:
+      Authorization: "Basic ${OPENOBSERVE_CREDENTIALS}"
+      stream-name: "github-metrics"
+
+service:
+  extensions: [bearertokenauth]
+  pipelines:
+    metrics:
+      receivers: [github]
+      processors: [batch]
+      exporters: [otlphttp]
+\end{lstlisting}
+
+\subsection{Performance Classification Logic}
+
+\begin{lstlisting}[language=Python, caption=DORA Classification]
+def classify_deployment_frequency(deployments_per_day):
+    """Elite: >1/day, High: weekly, Medium: monthly, Low: <monthly"""
+    if deployments_per_day >= 1:
+        return 'Elite'
+    elif deployments_per_day >= 1/7:
+        return 'High'
+    elif deployments_per_day >= 1/30:
+        return 'Medium'
+    else:
+        return 'Low'
+
+def classify_lead_time(median_days):
+    """Elite: <1 day, High: 1-7 days, Medium: 1-4 weeks, Low: >1 month"""
+    if median_days < 1:
+        return 'Elite'
+    elif median_days <= 7:
+        return 'High'
+    elif median_days <= 28:
+        return 'Medium'
+    else:
+        return 'Low'
+
+def classify_change_failure_rate(percentage):
+    """Elite: 0-15%, High: 16-30%, Medium: 31-45%, Low: >45%"""
+    if percentage <= 15:
+        return 'Elite'
+    elif percentage <= 30:
+        return 'High'
+    elif percentage <= 45:
+        return 'Medium'
+    else:
+        return 'Low'
+
+def classify_time_to_restore(median_hours):
+    """Elite: <1 hour, High: <1 day, Medium: 1-7 days, Low: >1 week"""
+    if median_hours < 1:
+        return 'Elite'
+    elif median_hours < 24:
+        return 'High'
+    elif median_hours < 168:  # 7 days
+        return 'Medium'
+    else:
+        return 'Low'
+\end{lstlisting}
+
+\end{document}

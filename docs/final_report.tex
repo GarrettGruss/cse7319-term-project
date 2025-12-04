@@ -1,6 +1,10 @@
-% A project report should be around 15 double-spaced pages in length, clearly and comprehensively describing the background, problem, strategy, metrics, activities, result analysis, lessons learned, follow up actions, and summary/conclusions. A high level summary or an abstract should also be included at the beginning of your report.
+% A project report should be around 15 double-spaced pages in length, clearly and comprehensively 
+% describing the background, problem, strategy, metrics, activities, result analysis, lessons learned, 
+% follow up actions, and summary/conclusions. A high level summary or an abstract should also be 
+% included at the beginning of your report.
 
-% If you'd like to, raw data and detailed modeling/analysis activities should be included in the appendix. Please note: This it is a "report” and not a collection of data and models without description and discussion.
+% If you'd like to, raw data and detailed modeling/analysis activities should be included in the appendix. 
+% Please note: This it is a "report” and not a collection of data and models without description and discussion.
 
 % Project assignment
 % The project is the most important part of the CS 8314 class. The intention of the project is to
@@ -109,7 +113,7 @@ A Study of LangChain and Intel XPU Backend for Triton}
 \maketitle
 
 \begin{abstract}
-This report presents a comprehensive analysis of software quality metrics for two prominent open source projects: langchain-ai/langchain and intel/intel-xpu-backend-for-triton. Initially designed to collect discrete code-level metrics such as lines of code and cyclomatic complexity using an OpenTelemetry-based approach, the project pivoted to focus on DORA (DevOps Research and Assessment) metrics due to permissions constraints. By analyzing GitHub project insights data including pull requests, issues, and merge patterns, we calculated the four key DORA metrics: Deployment Frequency, Lead Time for Changes, Change Failure Rate, and Time to Restore Service. Our findings reveal that both projects demonstrate exceptional software delivery performance. LangChain achieves elite-level deployment frequency (5.97 deployments/day) and change failure rate (8.94\%), with high-performing lead time (6.00 days median), earning an overall classification as a High Performer. Intel XPU Backend demonstrates elite performance across all measurable metrics with 3.59 deployments/day and a 10.58\% change failure rate, qualifying as an Elite Performer. Both projects maintain change failure rates well below 15\%, indicating mature testing practices and code quality controls. This study demonstrates the value of using DORA metrics as practical indicators of software project health and team performance in open source development environments.
+    This report presents a comprehensive analysis of software quality metrics for two prominent open source projects: langchain-ai/langchain and intel/intel-xpu-backend-for-triton. Initially designed to collect discrete code-level metrics such as lines of code and cyclomatic complexity using an OpenTelemetry-based approach, the project pivoted to focus on DORA (DevOps Research and Assessment) metrics due to permissions constraints. By analyzing GitHub project insights data including pull requests, issues, and merge patterns, we calculated the four key DORA metrics: Deployment Frequency, Lead Time for Changes, Change Failure Rate, and Time to Restore Service. Our findings reveal that both projects demonstrate exceptional software delivery performance. LangChain achieves elite-level deployment frequency (5.97 deployments/day) and change failure rate (8.94\%), with high-performing lead time (6.00 days median), earning an overall classification as a High Performer. Intel XPU Backend demonstrates elite performance across all measurable metrics with 3.59 deployments/day and a 10.58\% change failure rate, qualifying as an Elite Performer. Both projects maintain change failure rates well below 15\%, indicating mature testing practices and code quality controls. This study demonstrates the value of using DORA metrics as practical indicators of software project health and team performance in open source development environments.
 \end{abstract}
 
 \tableofcontents
@@ -120,7 +124,7 @@ This report presents a comprehensive analysis of software quality metrics for tw
 \subsection{Background}
 Software quality measurement is essential for understanding and improving development processes. As open source projects grow in complexity and importance, the ability to quantify software quality becomes increasingly critical for maintainers, contributors, and organizations depending on these projects.
 
-[TODO: Expand on the importance of software quality metrics in modern software development]
+    [TODO: Expand on the importance of software quality metrics in modern software development]
 
 \subsection{Motivation}
 This project was motivated by the need to systematically assess software quality in popular open source projects. By analyzing established projects with active communities, we can:
@@ -159,74 +163,142 @@ Key characteristics:
 
 \section{Methodology}
 
-\subsection{Initial Approach: OpenTelemetry-Based Collection}
+This project evolved through three distinct methodological phases, each representing a strategic pivot in response to technical and practical constraints. This section documents the complete evolution from initial planning through final implementation, providing insight into the decision-making process and tradeoffs encountered.
 
-\subsubsection{Original Plan}
-The initial methodology involved collecting discrete code-level metrics using an OpenTelemetry (OTel) collector infrastructure. The planned metrics included:
+\subsection{Phase 1: Original Plan - Static Code Analysis via GitHub Actions}
+
+\subsubsection{Initial Objectives}
+The original methodology aimed to collect internal code-level quality metrics by integrating custom GitHub Actions workflows into the target repositories. These workflows would trigger static analysis tools on each commit or pull request to extract:
 
 \begin{itemize}
-    \item \textbf{Lines of Code (LOC):} Total, source, comment, and blank lines
-    \item \textbf{Cyclomatic Complexity:} Measure of code path complexity
-    \item \textbf{Code Coverage:} Percentage of code exercised by tests
-    \item \textbf{Technical Debt:} Estimated time to fix code quality issues
-    \item \textbf{Maintainability Index:} Composite metric of code maintainability
+    \item \textbf{Lines of Code (LOC):} Total, source, comment, and blank lines measured via tools like cloc or tokei
+    \item \textbf{Cyclomatic Complexity:} Code path complexity measured via Radon (Python) or similar language-specific analyzers
+    \item \textbf{Code Coverage:} Percentage of code exercised by tests, extracted from pytest-cov or coverage.py reports
+    \item \textbf{Technical Debt:} Estimated remediation time calculated via SonarQube or CodeClimate analysis
+    \item \textbf{Maintainability Index:} Composite metric combining complexity, LOC, and comment density
 \end{itemize}
 
+\subsubsection{Planned Implementation}
+The approach would involve:
+\begin{enumerate}
+    \item Creating custom GitHub Actions workflows (.github/workflows/metrics.yml)
+    \item Installing static analysis tools in the workflow environment
+    \item Running analysis on each commit or PR
+    \item Publishing metrics to a centralized database or observability platform
+\end{enumerate}
+
+\subsubsection{Abandonment Rationale}
+This approach was abandoned before implementation due to its invasive nature:
+
+\begin{enumerate}
+    \item \textbf{Repository Modification Requirements:} Adding custom GitHub Actions workflows requires forking repositories or obtaining maintainer approval to modify .github/workflows/ directory
+    \item \textbf{Complexity for Established Projects:} Large, active projects like LangChain have existing CI/CD pipelines; integrating custom actions risks conflicts with established workflows
+    \item \textbf{Maintainer Approval Barriers:} External researchers cannot reasonably request that production repositories add custom observability workflows for academic studies
+    \item \textbf{Scalability Concerns:} Each target repository would require custom workflow configuration tailored to its language, build system, and testing framework
+\end{enumerate}
+
+The invasiveness of modifying production repositories necessitated a less intrusive approach.
+
+\subsection{Phase 2: First Pivot - DORA Metrics via OpenTelemetry}
+
+\subsubsection{Revised Approach}
+To avoid repository modifications, the project pivoted to collecting DORA (DevOps Research and Assessment) metrics using OpenTelemetry's GitHub receiver. This non-invasive approach automated metrics collection through GitHub's GraphQL and REST APIs without requiring any changes to target repositories.
+
 \subsubsection{Technical Architecture}
-[TODO: Describe the planned OTel collector setup, data pipeline, and storage]
+The planned system deployed three components via Docker Compose:
+
+\begin{enumerate}
+    \item \textbf{OpenTelemetry Collector (otelcol-contrib):} Scrapes GitHub repositories every 60 seconds using the GitHub receiver with Personal Access Token (PAT) authentication via bearer token extension
+    \item \textbf{OpenObserve:} Stores time-series metrics on port 5080, receiving OTLP metrics at \texttt{/api/default/} endpoint with SQL-based querying for dashboard visualization
+    \item \textbf{Docker Networking:} Bridge network (\texttt{otel-network}) with persistent storage (\texttt{openobserve-data} volume) for metric retention
+\end{enumerate}
 
 \begin{figure}[H]
     \centering
-    % TODO: Add architecture diagram
-    \caption{Planned OpenTelemetry Architecture (Initial Approach)}
+    % TODO: Add architecture diagram showing OTel Collector -> OpenObserve pipeline
+    \caption{OpenTelemetry DORA Metrics Architecture (Phase 2 Approach)}
     \label{fig:otel-architecture}
 \end{figure}
 
+The GitHub receiver supports flexible search queries (e.g., \texttt{org:<ORG>}, \texttt{is:private}, \texttt{is:pr is:open}) enabling targeted collection across repositories and pull request states.
+
+\subsubsection{Target Metrics}
+The GitHub receiver was configured to collect nine VCS (Version Control System) metrics conforming to OpenTelemetry semantic conventions v1.37.0:
+
+\textbf{Deployment Frequency Support:}
+\begin{itemize}
+    \item \texttt{vcs.change.count} - Pull request counts by state (open/merged)
+    \item \texttt{vcs.repository.count} - Total repositories monitored
+\end{itemize}
+
+\textbf{Lead Time for Changes Support:}
+\begin{itemize}
+    \item \texttt{vcs.change.time\_to\_merge} - Duration from PR creation to merge (seconds)
+    \item \texttt{vcs.change.time\_to\_approval} - Duration from PR creation to approval (seconds)
+    \item \texttt{vcs.change.duration} - Time PRs remain in open state (seconds)
+\end{itemize}
+
+\textbf{Development Velocity Indicators:}
+\begin{itemize}
+    \item \texttt{vcs.ref.count} - Branch/tag counts per repository
+    \item \texttt{vcs.ref.time} - Branch lifespan from creation (seconds)
+    \item \texttt{vcs.ref.lines\_delta} - Code churn (lines added/removed) vs. trunk
+    \item \texttt{vcs.ref.revisions\_delta} - Commit count ahead/behind trunk
+\end{itemize}
+
 \subsubsection{Challenges Encountered}
-The OpenTelemetry-based approach encountered several critical challenges:
+While less invasive than GitHub Actions, the OpenTelemetry approach encountered critical authentication and permissions obstacles:
 
 \begin{enumerate}
-    \item \textbf{GitHub API Permissions:} Limited access to repository data without organization-level authentication
-    \item \textbf{Rate Limiting:} GitHub API rate limits constrained data collection
-    \item \textbf{Repository Access:} Inability to clone and analyze large repositories without proper credentials
-    \item \textbf{Complexity:} Setting up a complete OTel pipeline proved more complex than anticipated for the project timeline
+    \item \textbf{GitHub API Authentication:} GitHub PAT tokens require specific repository scopes (\texttt{repo}, \texttt{read:org}) and organization approval for accessing organizational repositories
+    \item \textbf{Permission Model Constraints:} Public repositories provide limited data through unauthenticated API access; detailed PR metrics require authenticated requests
+    \item \textbf{Rate Limiting:} GitHub API rate limits (5,000 requests/hour for authenticated users, 60/hour for unauthenticated) constrained continuous polling across multiple repositories
+    \item \textbf{Organizational Barriers:} Accessing repositories under organizational accounts (langchain-ai, intel) requires PAT tokens approved by organization administrators
+    \item \textbf{Data Completeness Gaps:} Change Failure Rate calculation required GitHub Actions workflow status integration, which was not available through the standard GitHub receiver
 \end{enumerate}
 
-[TODO: Expand on specific permission errors and technical roadblocks]
+Despite successful initial testing with personal repositories, the permissions required to continuously poll organizational repositories proved prohibitive for external researchers without organizational affiliation.
 
-\subsection{Pivot: DORA Metrics from GitHub Insights}
+\subsection{Phase 3: Final Pivot - Manual DORA Metrics from GitHub Web UI}
 
-\subsubsection{Rationale for Pivot}
-Given the constraints of the initial approach, we pivoted to focus on DORA metrics, which:
+\subsubsection{Rationale for Final Approach}
+With automated API collection blocked by permissions constraints, the project adopted a pragmatic manual data collection strategy. This approach leveraged publicly accessible GitHub repository insights available through the web interface, requiring no authentication or repository access permissions. While less automated than previous approaches, this method provided:
+
 \begin{itemize}
-    \item Can be derived from publicly available GitHub data
-    \item Provide industry-standard measures of software delivery performance
-    \item Offer meaningful insights into team productivity and code quality
-    \item Are widely recognized in DevOps and software engineering research
+    \item \textbf{Universal Access:} No authentication requirements or organizational approvals needed
+    \item \textbf{Data Availability:} Public repositories expose comprehensive PR and issue history through web UI
+    \item \textbf{DORA Compatibility:} Sufficient data granularity to calculate industry-standard DORA metrics
+    \item \textbf{Reproducibility:} Any researcher can replicate this methodology for public repositories
 \end{itemize}
 
-\subsubsection{DORA Metrics Overview}
-The four key DORA metrics, established by the DevOps Research and Assessment team, are:
+\subsubsection{DORA Metrics Framework}
+The four key DORA metrics, established by the DevOps Research and Assessment team, serve as the analytical foundation:
 
 \begin{enumerate}
-    \item \textbf{Deployment Frequency (DF):} How often an organization successfully releases to production
-    \item \textbf{Lead Time for Changes (LT):} The time it takes for a commit to get into production
-    \item \textbf{Change Failure Rate (CFR):} The percentage of deployments causing a failure in production
-    \item \textbf{Time to Restore Service (MTTR):} How long it takes to recover from a failure in production
+    \item \textbf{Deployment Frequency (DF):} How often an organization successfully releases to production (proxied by merged PR rate)
+    \item \textbf{Lead Time for Changes (LT):} The time it takes for a commit to get into production (measured as PR open-to-merge duration)
+    \item \textbf{Change Failure Rate (CFR):} The percentage of deployments causing a failure in production (calculated from bug issue frequency)
+    \item \textbf{Time to Restore Service (MTTR):} How long it takes to recover from a failure in production (measured as bug report to fix merge duration)
 \end{enumerate}
 
-\subsection{Data Collection Process}
+\subsubsection{Data Collection Process}
+Data was manually extracted from GitHub's web interface using the repository Insights tab and Pull Requests/Issues pages. For each target repository, the following data was collected over a one-month analysis window:
 
-\subsubsection{GitHub API Queries}
-We collected data from GitHub using the following approach:
 \begin{itemize}
-    \item Pull request data (opened, merged, closed)
-    \item Issue data (opened, labeled, resolved)
-    \item Commit metadata and timestamps
-    \item Repository activity over a one-month period
+    \item \textbf{Pull Request Events:} Creation timestamps, merge timestamps, and closure timestamps for all PRs
+    \item \textbf{Issue Events:} Creation timestamps and issue titles/descriptions containing bug-related keywords
+    \item \textbf{Metadata:} Commit hashes, relative dates (e.g., "2 days ago"), and absolute timestamps
 \end{itemize}
 
-[TODO: Add specific API endpoints and query parameters used]
+The manual collection process involved:
+\begin{enumerate}
+    \item Navigating to repository Insights $\rightarrow$ Pulse/Contributors pages
+    \item Exporting PR data from Pull Requests page filtered by date range
+    \item Exporting issue data from Issues page with appropriate filters
+    \item Organizing data into CSV format for programmatic analysis
+\end{enumerate}
+
+This manual approach, while labor-intensive, bypassed all authentication and permission barriers encountered in previous phases.
 
 \subsubsection{Data Structure}
 The collected data was organized into CSV files:
@@ -285,17 +357,17 @@ Aggregate metric: median($MTTR_{b,f}$)
 We classified metrics according to the 2023 DORA State of DevOps Report standards:
 
 \begin{table}[H]
-\centering
-\caption{DORA Performance Level Classifications}
-\label{tab:dora-classification}
-\begin{tabular}{@{}lllll@{}}
-\toprule
-\textbf{Metric} & \textbf{Elite} & \textbf{High} & \textbf{Medium} & \textbf{Low} \\ \midrule
-Deployment Frequency & Multiple/day & Weekly & Monthly & < Monthly \\
-Lead Time & < 1 day & 1-7 days & 1-4 weeks & > 1 month \\
-Change Failure Rate & 0-15\% & 16-30\% & 31-45\% & > 45\% \\
-Time to Restore & < 1 hour & < 1 day & 1-7 days & > 1 week \\ \bottomrule
-\end{tabular}
+    \centering
+    \caption{DORA Performance Level Classifications}
+    \label{tab:dora-classification}
+    \begin{tabular}{@{}lllll@{}}
+        \toprule
+        \textbf{Metric}      & \textbf{Elite} & \textbf{High} & \textbf{Medium} & \textbf{Low} \\ \midrule
+        Deployment Frequency & Multiple/day   & Weekly        & Monthly         & < Monthly    \\
+        Lead Time            & < 1 day        & 1-7 days      & 1-4 weeks       & > 1 month    \\
+        Change Failure Rate  & 0-15\%         & 16-30\%       & 31-45\%         & > 45\%       \\
+        Time to Restore      & < 1 hour       & < 1 day       & 1-7 days        & > 1 week     \\ \bottomrule
+    \end{tabular}
 \end{table}
 
 \section{Results}
@@ -333,18 +405,18 @@ The Time to Restore Service (MTTR) metric could not be calculated due to data li
 
 \subsubsection{Overall Performance}
 \begin{table}[H]
-\centering
-\caption{LangChain DORA Metrics Summary}
-\label{tab:langchain-summary}
-\begin{tabular}{@{}lll@{}}
-\toprule
-\textbf{Metric} & \textbf{Value} & \textbf{Classification} \\ \midrule
-Deployment Frequency & 5.97/day, 41.77/week & Elite \\
-Lead Time for Changes & 6.00 days (median) & High \\
-Change Failure Rate & 8.94\% & Elite \\
-Time to Restore Service & N/A & N/A \\ \midrule
-\textbf{Overall Rating} & \multicolumn{2}{l}{\textbf{High Performer}} \\ \bottomrule
-\end{tabular}
+    \centering
+    \caption{LangChain DORA Metrics Summary}
+    \label{tab:langchain-summary}
+    \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Metric}         & \textbf{Value}                              & \textbf{Classification} \\ \midrule
+        Deployment Frequency    & 5.97/day, 41.77/week                        & Elite                   \\
+        Lead Time for Changes   & 6.00 days (median)                          & High                    \\
+        Change Failure Rate     & 8.94\%                                      & Elite                   \\
+        Time to Restore Service & N/A                                         & N/A                     \\ \midrule
+        \textbf{Overall Rating} & \multicolumn{2}{l}{\textbf{High Performer}}                           \\ \bottomrule
+    \end{tabular}
 \end{table}
 
 \subsection{Intel XPU Backend for Triton Analysis}
@@ -366,18 +438,18 @@ The Time to Restore Service metric could not be calculated due to data limitatio
 
 \subsubsection{Overall Performance}
 \begin{table}[H]
-\centering
-\caption{Intel XPU Backend DORA Metrics Summary}
-\label{tab:intel-summary}
-\begin{tabular}{@{}lll@{}}
-\toprule
-\textbf{Metric} & \textbf{Value} & \textbf{Classification} \\ \midrule
-Deployment Frequency & 3.59/day, 25.10/week & Elite \\
-Lead Time for Changes & N/A (insufficient data) & N/A \\
-Change Failure Rate & 10.58\% & Elite \\
-Time to Restore Service & N/A & N/A \\ \midrule
-\textbf{Overall Rating} & \multicolumn{2}{l}{\textbf{Elite Performer*}} \\ \bottomrule
-\end{tabular}
+    \centering
+    \caption{Intel XPU Backend DORA Metrics Summary}
+    \label{tab:intel-summary}
+    \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Metric}         & \textbf{Value}                                & \textbf{Classification} \\ \midrule
+        Deployment Frequency    & 3.59/day, 25.10/week                          & Elite                   \\
+        Lead Time for Changes   & N/A (insufficient data)                       & N/A                     \\
+        Change Failure Rate     & 10.58\%                                       & Elite                   \\
+        Time to Restore Service & N/A                                           & N/A                     \\ \midrule
+        \textbf{Overall Rating} & \multicolumn{2}{l}{\textbf{Elite Performer*}}                           \\ \bottomrule
+    \end{tabular}
 \end{table}
 
 * Overall rating based on elite performance in deployment frequency and change failure rate
@@ -385,18 +457,18 @@ Time to Restore Service & N/A & N/A \\ \midrule
 \subsection{Comparative Analysis}
 
 \begin{table}[H]
-\centering
-\caption{Comparative DORA Metrics: LangChain vs Intel XPU Backend}
-\label{tab:comparison}
-\begin{tabular}{@{}lll@{}}
-\toprule
-\textbf{Metric} & \textbf{LangChain} & \textbf{Intel XPU} \\ \midrule
-Deployment Frequency & 5.97/day (Elite) & 3.59/day (Elite) \\
-Lead Time for Changes & 6.00 days (High) & N/A \\
-Change Failure Rate & 8.94\% (Elite) & 10.58\% (Elite) \\
-Time to Restore Service & N/A & N/A \\
-Overall Rating & High Performer & Elite Performer \\ \bottomrule
-\end{tabular}
+    \centering
+    \caption{Comparative DORA Metrics: LangChain vs Intel XPU Backend}
+    \label{tab:comparison}
+    \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Metric}         & \textbf{LangChain} & \textbf{Intel XPU} \\ \midrule
+        Deployment Frequency    & 5.97/day (Elite)   & 3.59/day (Elite)   \\
+        Lead Time for Changes   & 6.00 days (High)   & N/A                \\
+        Change Failure Rate     & 8.94\% (Elite)     & 10.58\% (Elite)    \\
+        Time to Restore Service & N/A                & N/A                \\
+        Overall Rating          & High Performer     & Elite Performer    \\ \bottomrule
+    \end{tabular}
 \end{table}
 
 \section{Discussion}
@@ -451,27 +523,72 @@ Overall Rating & High Performer & Elite Performer \\ \bottomrule
 
 \subsection{Technical Challenges}
 
-\subsubsection{API and Permission Constraints}
-[TODO: Discuss the challenges encountered with GitHub API access, rate limits, and authentication]
+\subsubsection{Repository Access and Invasiveness Tradeoffs}
+The initial GitHub Actions approach highlighted a fundamental constraint in external software quality research: obtaining internal code metrics requires invasive modifications to production repositories. This invasiveness creates insurmountable barriers when analyzing established open source projects:
 
-\subsubsection{Complexity of Automated Metrics Collection}
-[TODO: Reflect on the difficulties of setting up OpenTelemetry infrastructure for external projects]
+\begin{itemize}
+    \item \textbf{Workflow Integration Complexity:} Adding custom GitHub Actions to repositories with existing CI/CD pipelines risks breaking production workflows
+    \item \textbf{Maintainer Approval Requirements:} External researchers cannot reasonably request that active projects modify their infrastructure for academic studies
+    \item \textbf{Forking Limitations:} Forked repositories do not reflect real-world development practices and lose access to organizational resources
+\end{itemize}
+
+This experience underscores that non-invasive observability is essential for external research on production systems.
+
+\subsubsection{API and Permission Constraints}
+The OpenTelemetry pivot revealed that even non-invasive API-based approaches face significant authentication and authorization barriers:
+
+\begin{itemize}
+    \item \textbf{Organizational Permissions:} GitHub's permission model requires organization-level approval for PAT tokens accessing organizational repositories, creating a gatekeeping mechanism that external researchers cannot bypass
+    \item \textbf{Rate Limiting at Scale:} GitHub's API rate limits (5,000 requests/hour authenticated, 60/hour unauthenticated) make continuous monitoring of multiple active repositories impractical without organizational quotas
+    \item \textbf{Scope Creep in Permissions:} Obtaining sufficient API access requires broad permission scopes (\texttt{repo}, \texttt{read:org}) that organizations rightfully restrict to trusted members
+\end{itemize}
+
+These constraints demonstrate that API-based automation, while technically feasible, remains practically inaccessible for external researchers studying organizational repositories.
+
+\subsubsection{Data Completeness vs. Access Constraints}
+Each phase traded data richness for accessibility:
+
+\begin{enumerate}
+    \item \textbf{Phase 1 (GitHub Actions):} Maximum data richness (code-level metrics) but maximum invasiveness
+    \item \textbf{Phase 2 (OpenTelemetry):} Moderate data richness (VCS metrics) but still blocked by permissions
+    \item \textbf{Phase 3 (Manual Collection):} Minimum data richness (PR/issue metadata) but universal accessibility
+\end{enumerate}
+
+This progression illustrates the inverse relationship between metric depth and research feasibility for external studies.
 
 \subsection{Project Pivoting}
 
-\subsubsection{Adapting to Constraints}
-[TODO: Discuss how pivoting to DORA metrics provided a viable alternative approach]
+\subsubsection{Adaptive Methodology as Research Strategy}
+The three-phase evolution demonstrates the necessity of adaptive methodologies in empirical software engineering research. Rather than abandoning the project when faced with technical barriers, strategic pivoting enabled completion while maintaining research validity:
 
-\subsubsection{Value of DORA Metrics}
-[TODO: Reflect on the advantages and insights gained from focusing on DORA metrics]
+\begin{itemize}
+    \item \textbf{Scope Reduction:} Moving from internal code metrics to external process metrics preserved analytical value while reducing technical requirements
+    \item \textbf{Pragmatic Compromise:} Manual data collection, though labor-intensive, proved more feasible than complex automation infrastructure
+    \item \textbf{Research Question Adaptation:} Shifting focus to DORA metrics aligned with industry-recognized frameworks, enhancing result interpretability
+\end{itemize}
+
+\subsubsection{Value of DORA Metrics for External Research}
+The final pivot to DORA metrics revealed their particular suitability for external software quality studies:
+
+\begin{itemize}
+    \item \textbf{Industry Standardization:} DORA metrics provide benchmarked performance classifications, enabling meaningful comparisons without domain-specific baselines
+    \item \textbf{Process-Level Insights:} While missing code-level detail, DORA metrics capture team velocity, quality practices, and operational maturity
+    \item \textbf{Publicly Derivable:} All four DORA metrics can be calculated from publicly visible GitHub data, enabling reproducible research
+    \item \textbf{Actionable Framework:} DORA's elite/high/medium/low classifications provide clear performance assessment without complex interpretation
+\end{itemize}
 
 \subsection{Best Practices Identified}
 
+Through three methodological iterations, several best practices emerged for conducting software quality research on external projects:
+
 \begin{enumerate}
-    \item Start with publicly accessible data when analyzing external projects
-    \item DORA metrics provide meaningful insights without requiring code-level access
-    \item Automated analysis pipelines enable repeatable, scalable measurements
-    \item Visualization aids in communicating metrics to stakeholders
+    \item \textbf{Start with minimal access assumptions:} Design data collection strategies assuming no repository access, authentication, or organizational cooperation
+    \item \textbf{Prioritize non-invasive observation:} Favor passive data collection over active instrumentation to avoid modifying target systems
+    \item \textbf{Leverage public observability:} GitHub's public Insights, PR history, and issue tracking provide substantial data without authentication
+    \item \textbf{Use industry-standard frameworks:} DORA, SPACE, and other recognized frameworks enhance result interpretability and benchmarking
+    \item \textbf{Automate analysis, not collection:} When collection must be manual, invest in automated analysis pipelines for reproducibility
+    \item \textbf{Build incremental validation:} Test approaches on personal/accessible repositories before attempting large-scale collection
+    \item \textbf{Document methodological pivots:} Transparency about failed approaches provides value to future researchers facing similar constraints
 \end{enumerate}
 
 \section{Future Work}
@@ -509,37 +626,19 @@ Overall Rating & High Performer & Elite Performer \\ \bottomrule
 
 This project successfully analyzed software quality metrics for two prominent open source projects using DORA metrics derived from GitHub data. Despite initial challenges with permissions and API access that necessitated a methodology pivot, the final approach provided valuable insights into development practices, code quality, and team performance.
 
-[TODO: Summarize key findings and their implications]
+    [TODO: Summarize key findings and their implications]
 
 The analysis demonstrates that DORA metrics serve as effective indicators of software project health and can be calculated using publicly available data. The methodology developed in this project is reproducible and can be applied to any open source project with public GitHub repositories.
 
-[TODO: Final concluding thoughts on the value of the work and lessons learned]
+    [TODO: Final concluding thoughts on the value of the work and lessons learned]
 
 \section*{Acknowledgments}
-[TODO: Add acknowledgments if applicable]
+ [TODO: Add acknowledgments if applicable]
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
-\appendix
-
-\section{Data Collection Scripts}
-[TODO: Include or reference the data collection code]
-
-\section{Analysis Source Code}
-The complete analysis pipeline is available in \texttt{examples/dora\_metrics.py}. Key functions include:
-\begin{itemize}
-    \item \texttt{load\_data()}: CSV data loading and preprocessing
-    \item \texttt{calculate\_deployment\_frequency()}: DF metric calculation
-    \item \texttt{calculate\_lead\_time()}: LT metric calculation
-    \item \texttt{calculate\_change\_failure\_rate()}: CFR metric calculation
-    \item \texttt{calculate\_time\_to\_restore()}: MTTR metric calculation
-\end{itemize}
-
-\section{Raw Data Samples}
-[TODO: Include sample data from CSV files if appropriate]
-
-\section{Additional Visualizations}
-[TODO: Include any supplementary charts or graphs]
+% Include Appendix A from separate file
+\input{final_report_appendix_a}
 
 \end{document}
