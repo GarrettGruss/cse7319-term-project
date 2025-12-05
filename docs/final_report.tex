@@ -184,27 +184,17 @@ A Study of LangChain and Intel XPU Backend for Triton}
 \maketitle
 
 \begin{abstract}
-  This report presents a comprehensive analysis of software quality
-  metrics for two prominent open source projects:
-  langchain-ai/langchain and intel/intel-xpu-backend-for-triton.
-  Initially designed to collect discrete code-level metrics such as
-  lines of code and cyclomatic complexity using an
-  OpenTelemetry-based approach, the project pivoted to focus on DORA
-  (DevOps Research and Assessment) metrics due to permissions
-  constraints. By analyzing GitHub project insights data including
-  pull requests, issues, and merge patterns, we calculated the four
-  key DORA metrics: Deployment Frequency, Lead Time for Changes,
-  Change Failure Rate, and Time to Restore Service. Our findings
-  reveal that both projects demonstrate exceptional software delivery
-  performance. LangChain achieves elite-level deployment frequency
-  (5.97 deployments/day) and change failure rate (8.94\%), with
-  high-performing lead time (6.00 days median), earning an overall
-  classification as a High Performer. Intel XPU Backend demonstrates
-  elite performance across all measurable metrics with 3.59
-  deployments/day and a 10.58\% change failure rate, qualifying as an
-  Elite Performer. Both projects maintain change failure rates well
-  below 15\%, indicating mature testing practices and code quality
-  controls. This study demonstrates the value of using DORA metrics
+  This report presents a study of software quality metrics pertaining to two
+  popular open source projects: Langchain-ai/langhain and
+  intel/intel-xpu-backend-for-trition.
+  The intial goal of this study was to collect discrete internal quality metrics
+  such as lines of code, cyclomatic complexity over time, the project pivoted
+  to focus on DORA (DevOps Research and Assessment) metrics due to permissions
+  issues. pull requests, issues, and merge patterns over a timeframe of one
+  month were collected from GitHub project insights. These metrics were used
+  to calculate deployment frequency, lead time for changes, change failure rate
+  and time to restore service. This study demonstrates the value of
+  using DORA metrics
   as practical indicators of software project health and team
   performance in open source development environments.
 \end{abstract}
@@ -215,6 +205,7 @@ A Study of LangChain and Intel XPU Backend for Triton}
 \section{Introduction}
 
 \subsection{Background}
+
 Software quality measurement is essential for understanding and
 improving development processes. As open source projects grow in
 complexity and importance, the ability to quantify software quality

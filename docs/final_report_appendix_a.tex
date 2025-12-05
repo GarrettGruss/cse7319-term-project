@@ -5,11 +5,14 @@
 
 \section{Phase 1 Planned Configuration (GitHub Actions)}
 
-This section documents the original Phase 1 approach that involved integrating GitHub Actions workflows into target repositories for automated static code analysis and quality metric collection.
+This section documents the original Phase 1 approach that involved
+integrating GitHub Actions workflows into target repositories for
+automated static code analysis and quality metric collection.
 
 \subsection{Planned GitHub Actions Workflow}
 
-The intended workflow would have been added to target repositories at \texttt{.github/workflows/quality-metrics.yml}:
+The intended workflow would have been added to target repositories at
+\texttt{.github/workflows/quality-metrics.yml}:
 
 \begin{lstlisting}[language=yaml, caption=Planned quality-metrics.yml Workflow]
 name: Software Quality Metrics Collection
@@ -79,7 +82,8 @@ jobs:
 
 \subsection{Planned Quality Gate Enforcement}
 
-The workflow would have included automated quality gates to prevent merging code that failed thresholds:
+The workflow would have included automated quality gates to prevent
+merging code that failed thresholds:
 
 \begin{lstlisting}[language=Python, caption=enforce\_quality\_gates.py]
 import json
@@ -146,7 +150,8 @@ else:
 
 \subsubsection{Radon Configuration}
 
-Radon would analyze code complexity without additional configuration, but the following commands were planned:
+Radon would analyze code complexity without additional configuration,
+but the following commands were planned:
 
 \begin{lstlisting}[language=bash, caption=Radon Analysis Commands]
 # Lines of Code analysis
@@ -253,7 +258,8 @@ ignore_missing_imports = True
 
 \subsection{Planned Semantic Versioning Integration}
 
-The workflow would have used \texttt{python-semantic-release} for automated version management:
+The workflow would have used \texttt{python-semantic-release} for
+automated version management:
 
 \begin{lstlisting}[language=yaml, caption=Semantic Release Workflow]
 name: Semantic Release
@@ -315,82 +321,111 @@ patch_tags = ["fix", "perf"]
 
 \subsection{Abandonment Rationale - Detailed}
 
-This comprehensive GitHub Actions approach was abandoned due to several critical barriers:
+This comprehensive GitHub Actions approach was abandoned due to
+several critical barriers:
 
 \begin{enumerate}
-    \item \textbf{Repository Modification Complexity}
+  \item \textbf{Repository Modification Complexity}
     \begin{itemize}
-        \item Adding workflows requires write access to \texttt{.github/workflows/} directory
-        \item Target repositories (LangChain, Intel XPU Backend) have existing CI/CD infrastructure
-        \item Risk of conflicts with existing workflows, branch protection rules, and required checks
-        \item Need to modify \texttt{.gitignore}, add \texttt{pyproject.toml}, and create metrics directories
+      \item Adding workflows requires write access to
+        \texttt{.github/workflows/} directory
+      \item Target repositories (LangChain, Intel XPU Backend) have
+        existing CI/CD infrastructure
+      \item Risk of conflicts with existing workflows, branch
+        protection rules, and required checks
+      \item Need to modify \texttt{.gitignore}, add
+        \texttt{pyproject.toml}, and create metrics directories
     \end{itemize}
 
-    \item \textbf{Maintainer Approval Barriers}
+  \item \textbf{Maintainer Approval Barriers}
     \begin{itemize}
-        \item External researchers cannot submit PRs that add observability workflows for academic purposes
-        \item Maintainers would reject workflows that export metrics to external platforms (security/privacy)
-        \item Request would require detailed justification, privacy impact assessment, and legal review
-        \item No precedent for academic metric collection in production repositories
+      \item External researchers cannot submit PRs that add
+        observability workflows for academic purposes
+      \item Maintainers would reject workflows that export metrics to
+        external platforms (security/privacy)
+      \item Request would require detailed justification, privacy
+        impact assessment, and legal review
+      \item No precedent for academic metric collection in production
+        repositories
     \end{itemize}
 
-    \item \textbf{Per-Repository Customization Requirements}
+  \item \textbf{Per-Repository Customization Requirements}
     \begin{itemize}
-        \item Different projects use different languages (Python, C++, Rust), requiring tool variations
-        \item Test frameworks vary: pytest, unittest, cargo test, gtest, etc.
-        \item Build systems differ: setuptools, poetry, cargo, CMake, requiring custom metric extraction
-        \item Each repository would need custom quality gate thresholds based on project maturity
+      \item Different projects use different languages (Python, C++,
+        Rust), requiring tool variations
+      \item Test frameworks vary: pytest, unittest, cargo test, gtest, etc.
+      \item Build systems differ: setuptools, poetry, cargo, CMake,
+        requiring custom metric extraction
+      \item Each repository would need custom quality gate thresholds
+        based on project maturity
     \end{itemize}
 
-    \item \textbf{Fork Limitations}
+  \item \textbf{Fork Limitations}
     \begin{itemize}
-        \item Forking allows workflow addition but creates isolation from production development
-        \item Forks do not receive upstream commits in real-time, metrics become stale
-        \item Fork metrics do not reflect actual project health, only snapshot quality
-        \item Cannot access organizational secrets, runners, or internal deployment metrics
+      \item Forking allows workflow addition but creates isolation
+        from production development
+      \item Forks do not receive upstream commits in real-time,
+        metrics become stale
+      \item Fork metrics do not reflect actual project health, only
+        snapshot quality
+      \item Cannot access organizational secrets, runners, or
+        internal deployment metrics
     \end{itemize}
 
-    \item \textbf{Computational and Financial Costs}
+  \item \textbf{Computational and Financial Costs}
     \begin{itemize}
-        \item GitHub Actions minutes are limited for free accounts (2,000 minutes/month)
-        \item Running comprehensive quality analysis on large codebases consumes significant minutes
-        \item LangChain repository has 150+ contributors with dozens of daily commits
-        \item Would require paid GitHub plan (\$4-\$21/user/month) for adequate compute quota
+      \item GitHub Actions minutes are limited for free accounts
+        (2,000 minutes/month)
+      \item Running comprehensive quality analysis on large codebases
+        consumes significant minutes
+      \item LangChain repository has 150+ contributors with dozens of
+        daily commits
+      \item Would require paid GitHub plan (\$4-\$21/user/month) for
+        adequate compute quota
     \end{itemize}
 \end{enumerate}
 
-These constraints led to the pivot toward less invasive approaches in Phase 2 and Phase 3.
+These constraints led to the pivot toward less invasive approaches in
+Phase 2 and Phase 3.
 
 \section{Data Collection Scripts}
 
-The data collection process involved manually extracting data from GitHub's web interface and organizing it into CSV format. While no automated scraping scripts were used due to permission constraints, the following describes the manual collection workflow:
+The data collection process involved manually extracting data from
+GitHub's web interface and organizing it into CSV format. While no
+automated scraping scripts were used due to permission constraints,
+the following describes the manual collection workflow:
 
 \subsection{GitHub Web UI Navigation}
 
-For each repository (LangChain and Intel XPU Backend), data was collected through:
+For each repository (LangChain and Intel XPU Backend), data was
+collected through:
 
 \begin{enumerate}
-    \item \textbf{Pull Request Data Collection}
+  \item \textbf{Pull Request Data Collection}
     \begin{itemize}
-        \item Navigate to repository $\rightarrow$ Pull Requests tab
-        \item Filter by date range (e.g., October 29 - November 27, 2025 for LangChain)
-        \item Filter by state: \texttt{is:pr is:open}, \texttt{is:pr is:merged}, \texttt{is:pr is:closed}
-        \item Copy PR titles, numbers, and timestamps to CSV
+      \item Navigate to repository $\rightarrow$ Pull Requests tab
+      \item Filter by date range (e.g., October 29 - November 27,
+        2025 for LangChain)
+      \item Filter by state: \texttt{is:pr is:open}, \texttt{is:pr
+        is:merged}, \texttt{is:pr is:closed}
+      \item Copy PR titles, numbers, and timestamps to CSV
     \end{itemize}
 
-    \item \textbf{Issue Data Collection}
+  \item \textbf{Issue Data Collection}
     \begin{itemize}
-        \item Navigate to repository $\rightarrow$ Issues tab
-        \item Filter by creation date within analysis window
-        \item Identify bug-related issues using keyword search: bug, error, fix, broken, crash, fail, regression, exception
-        \item Export issue titles and creation timestamps
+      \item Navigate to repository $\rightarrow$ Issues tab
+      \item Filter by creation date within analysis window
+      \item Identify bug-related issues using keyword search: bug,
+        error, fix, broken, crash, fail, regression, exception
+      \item Export issue titles and creation timestamps
     \end{itemize}
 
-    \item \textbf{Repository Metadata}
+  \item \textbf{Repository Metadata}
     \begin{itemize}
-        \item Navigate to Insights $\rightarrow$ Pulse for activity summary
-        \item Record commit hashes and dates from commit history
-        \item Note relative timestamps ("2 days ago") and convert to absolute dates
+      \item Navigate to Insights $\rightarrow$ Pulse for activity summary
+      \item Record commit hashes and dates from commit history
+      \item Note relative timestamps ("2 days ago") and convert to
+        absolute dates
     \end{itemize}
 \end{enumerate}
 
@@ -418,56 +453,69 @@ msg,hash,date_rel,date_abs
 
 \section{Analysis Source Code}
 
-The complete analysis pipeline is available in \texttt{examples/dora\_metrics.py}. The script implements all DORA metric calculations and generates visualizations.
+The complete analysis pipeline is available in
+\texttt{examples/dora\_metrics.py}. The script implements all DORA
+metric calculations and generates visualizations.
 
 \subsection{Key Functions}
 
 \begin{itemize}
-    \item \texttt{load\_data(filepath)}: Loads CSV data and preprocesses timestamps
+  \item \texttt{load\_data(filepath)}: Loads CSV data and
+    preprocesses timestamps
     \begin{itemize}
-        \item Parses date\_abs column into datetime objects
-        \item Handles missing or malformed timestamps
-        \item Returns pandas DataFrame
+      \item Parses date\_abs column into datetime objects
+      \item Handles missing or malformed timestamps
+      \item Returns pandas DataFrame
     \end{itemize}
 
-    \item \texttt{calculate\_deployment\_frequency(merged\_df, days)}: Calculates DF metric
+  \item \texttt{calculate\_deployment\_frequency(merged\_df, days)}:
+    Calculates DF metric
     \begin{itemize}
-        \item Counts merged PRs per day over analysis window
-        \item Computes mean, median, and weekly aggregate
-        \item Classifies performance: Elite ($>$1/day), High (weekly), Medium (monthly), Low ($<$monthly)
+      \item Counts merged PRs per day over analysis window
+      \item Computes mean, median, and weekly aggregate
+      \item Classifies performance: Elite ($>$1/day), High (weekly),
+        Medium (monthly), Low ($<$monthly)
     \end{itemize}
 
-    \item \texttt{calculate\_lead\_time(opened\_df, merged\_df)}: Calculates LT metric
+  \item \texttt{calculate\_lead\_time(opened\_df, merged\_df)}:
+    Calculates LT metric
     \begin{itemize}
-        \item Matches opened PRs with merged PRs using temporal proximity
-        \item Computes time delta in days
-        \item Returns median, mean, 25th/75th/90th percentiles
-        \item Classifies: Elite ($<$1 day), High (1-7 days), Medium (1-4 weeks), Low ($>$1 month)
+      \item Matches opened PRs with merged PRs using temporal proximity
+      \item Computes time delta in days
+      \item Returns median, mean, 25th/75th/90th percentiles
+      \item Classifies: Elite ($<$1 day), High (1-7 days), Medium
+        (1-4 weeks), Low ($>$1 month)
     \end{itemize}
 
-    \item \texttt{calculate\_change\_failure\_rate(issues\_df, merged\_df)}: Calculates CFR metric
+  \item \texttt{calculate\_change\_failure\_rate(issues\_df,
+    merged\_df)}: Calculates CFR metric
     \begin{itemize}
-        \item Identifies bug issues using keyword matching on issue titles/descriptions
-        \item Counts bug issues within analysis window
-        \item Computes ratio: (bug issues / total deployments) $\times$ 100\%
-        \item Classifies: Elite (0-15\%), High (16-30\%), Medium (31-45\%), Low ($>$45\%)
+      \item Identifies bug issues using keyword matching on issue
+        titles/descriptions
+      \item Counts bug issues within analysis window
+      \item Computes ratio: (bug issues / total deployments) $\times$ 100\%
+      \item Classifies: Elite (0-15\%), High (16-30\%), Medium
+        (31-45\%), Low ($>$45\%)
     \end{itemize}
 
-    \item \texttt{calculate\_time\_to\_restore(issues\_df, merged\_df)}: Calculates MTTR metric
+  \item \texttt{calculate\_time\_to\_restore(issues\_df,
+    merged\_df)}: Calculates MTTR metric
     \begin{itemize}
-        \item Attempts to pair bug issues with fix PRs
-        \item Searches for issue references in PR titles/bodies
-        \item Computes time from bug opened to fix merged
-        \item Returns median restoration time
-        \item Classifies: Elite ($<$1 hour), High ($<$1 day), Medium (1-7 days), Low ($>$1 week)
+      \item Attempts to pair bug issues with fix PRs
+      \item Searches for issue references in PR titles/bodies
+      \item Computes time from bug opened to fix merged
+      \item Returns median restoration time
+      \item Classifies: Elite ($<$1 hour), High ($<$1 day), Medium
+        (1-7 days), Low ($>$1 week)
     \end{itemize}
 
-    \item \texttt{generate\_visualizations(metrics\_dict, output\_dir)}: Creates charts
+  \item \texttt{generate\_visualizations(metrics\_dict,
+    output\_dir)}: Creates charts
     \begin{itemize}
-        \item Deployment frequency time series
-        \item Lead time distribution histogram
-        \item Change failure rate comparison (deployments vs bugs)
-        \item Performance classification summary
+      \item Deployment frequency time series
+      \item Lead time distribution histogram
+      \item Change failure rate comparison (deployments vs bugs)
+      \item Performance classification summary
     \end{itemize}
 \end{itemize}
 
@@ -504,57 +552,68 @@ print(f"Time to Restore: {mttr['median']:.2f} hours")
 
 \subsection{LangChain Repository Data}
 
-Sample entries from the LangChain analysis dataset (October 29 - November 27, 2025):
+Sample entries from the LangChain analysis dataset (October 29 -
+November 27, 2025):
 
 \begin{table}[H]
-\centering
-\caption{Sample Merged Pull Requests (LangChain)}
-\label{tab:langchain-sample-prs}
-\small
-\begin{tabular}{@{}llll@{}}
-\toprule
-\textbf{PR \#} & \textbf{Title} & \textbf{Date Relative} & \textbf{Date Absolute} \\ \midrule
-\#25843 & anthropic[patch]: Release 0.41.1 & 2 days ago & 2025-11-25 \\
-\#25841 & docs: Update Anthropic tools example & 2 days ago & 2025-11-25 \\
-\#25839 & core[patch]: Fix streaming in RunnableBinding & 3 days ago & 2025-11-24 \\
-\#25832 & community[patch]: Add timeout to Redis & 4 days ago & 2025-11-23 \\
-\#25829 & docs: Add citation format to papers & 5 days ago & 2025-11-22 \\ \bottomrule
-\end{tabular}
+  \centering
+  \caption{Sample Merged Pull Requests (LangChain)}
+  \label{tab:langchain-sample-prs}
+  \small
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    \textbf{PR \#} & \textbf{Title} & \textbf{Date Relative} &
+    \textbf{Date Absolute} \\ \midrule
+    \#25843 & anthropic[patch]: Release 0.41.1 & 2 days ago & 2025-11-25 \\
+    \#25841 & docs: Update Anthropic tools example & 2 days ago & 2025-11-25 \\
+    \#25839 & core[patch]: Fix streaming in RunnableBinding & 3 days
+    ago & 2025-11-24 \\
+    \#25832 & community[patch]: Add timeout to Redis & 4 days ago &
+    2025-11-23 \\
+    \#25829 & docs: Add citation format to papers & 5 days ago &
+    2025-11-22 \\ \bottomrule
+  \end{tabular}
 \end{table}
 
 \begin{table}[H]
-\centering
-\caption{Sample Bug Issues (LangChain)}
-\label{tab:langchain-sample-issues}
-\small
-\begin{tabular}{@{}llll@{}}
-\toprule
-\textbf{Issue \#} & \textbf{Title} & \textbf{Date Relative} & \textbf{Date Absolute} \\ \midrule
-\#4521 & Bug: Streaming fails with Azure OpenAI & 1 day ago & 2025-11-26 \\
-\#4518 & Error when using callback with agents & 3 days ago & 2025-11-24 \\
-\#4510 & Fix: Memory leak in conversation buffer & 5 days ago & 2025-11-22 \\
-\#4502 & Regression: Tool calling broken in 0.41.0 & 1 week ago & 2025-11-20 \\ \bottomrule
-\end{tabular}
+  \centering
+  \caption{Sample Bug Issues (LangChain)}
+  \label{tab:langchain-sample-issues}
+  \small
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    \textbf{Issue \#} & \textbf{Title} & \textbf{Date Relative} &
+    \textbf{Date Absolute} \\ \midrule
+    \#4521 & Bug: Streaming fails with Azure OpenAI & 1 day ago & 2025-11-26 \\
+    \#4518 & Error when using callback with agents & 3 days ago & 2025-11-24 \\
+    \#4510 & Fix: Memory leak in conversation buffer & 5 days ago &
+    2025-11-22 \\
+    \#4502 & Regression: Tool calling broken in 0.41.0 & 1 week ago &
+    2025-11-20 \\ \bottomrule
+  \end{tabular}
 \end{table}
 
 \subsection{Intel XPU Backend Data}
 
-Sample entries from Intel XPU Backend analysis dataset (November 4 - December 2, 2025):
+Sample entries from Intel XPU Backend analysis dataset (November 4 -
+December 2, 2025):
 
 \begin{table}[H]
-\centering
-\caption{Sample Merged Pull Requests (Intel XPU Backend)}
-\label{tab:intel-sample-prs}
-\small
-\begin{tabular}{@{}llll@{}}
-\toprule
-\textbf{PR \#} & \textbf{Title} & \textbf{Date Relative} & \textbf{Date Absolute} \\ \midrule
-\#2104 & Support for Triton 3.2.0 & 1 day ago & 2025-12-01 \\
-\#2101 & Fix GEMM kernel for FP16 & 2 days ago & 2025-11-30 \\
-\#2098 & Add support for grouped convolutions & 4 days ago & 2025-11-28 \\
-\#2095 & Optimize reduction kernels & 6 days ago & 2025-11-26 \\
-\#2092 & Fix memory allocation in compiler & 1 week ago & 2025-11-25 \\ \bottomrule
-\end{tabular}
+  \centering
+  \caption{Sample Merged Pull Requests (Intel XPU Backend)}
+  \label{tab:intel-sample-prs}
+  \small
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    \textbf{PR \#} & \textbf{Title} & \textbf{Date Relative} &
+    \textbf{Date Absolute} \\ \midrule
+    \#2104 & Support for Triton 3.2.0 & 1 day ago & 2025-12-01 \\
+    \#2101 & Fix GEMM kernel for FP16 & 2 days ago & 2025-11-30 \\
+    \#2098 & Add support for grouped convolutions & 4 days ago & 2025-11-28 \\
+    \#2095 & Optimize reduction kernels & 6 days ago & 2025-11-26 \\
+    \#2092 & Fix memory allocation in compiler & 1 week ago &
+    2025-11-25 \\ \bottomrule
+  \end{tabular}
 \end{table}
 
 \section{OpenTelemetry Configuration Files}
