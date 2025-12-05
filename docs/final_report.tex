@@ -206,90 +206,94 @@ A Study of LangChain and Intel XPU Backend for Triton}
 
 \subsection{Background}
 
-Software quality measurement is essential for understanding and
-improving development processes. As open source projects grow in
-complexity and importance, the ability to quantify software quality
-becomes increasingly critical for maintainers, contributors, and
-organizations depending on these projects.
+The automated measurement of software quality metrics is essential
+for proactively monitoring and improving development processes. As open
+source projects grow in complexity and importance, the ability to identify
+quantify software quality becomes increasingly important for maintainers,
+contributors, and organizations depending on these projects.
 
-Software quality metrics serve as the foundation for data-driven
-decision making in modern software engineering. The fundamental
-relationship between internal metrics (code-level characteristics
-such as complexity, size, and structure) and external metrics
-(user-facing quality attributes such as reliability, maintainability,
-and performance) enables teams to use measurable code properties as
-leading indicators of software quality. Internal metrics, which are
-controllable and available early in the development lifecycle, allow
-teams to identify potential quality issues before they manifest as
-external failures that impact users. This predictive relationship,
-while not deterministic, provides actionable insights that guide
-architectural decisions, resource allocation, and process improvements.
+Software quality metrics are essential for driving data-driven
+decisions regarding the development, maintenance, and deployment
+of modern open source software. The predictive relationship between
+internal metrics such as code complexity, size, structure, and external
+user-facing metrics such as reliability, maintainability, and performance
+enables teams to use measurable code properties as leading indicators of
+software quality. Internal metrics are available early in the
+software development
+lifecycle, and allow teams to identify potential quality issues before
+they manifest as failures that directly impact external users. This predictive
+relationship empowers teams to take a proactive approach to
+corrective action to improve code quality before downstream failures occur.
 
-The importance of systematic quality measurement extends beyond
-defect prediction to encompass the entire software development
-ecosystem. Frameworks such as Goal-Question-Metric (GQM) and the
-Quality Improvement Paradigm (QIP) formalize the process of
-translating organizational goals into measurable indicators, enabling
-continuous improvement through empirical feedback loops. In modern
-DevOps environments, metrics like the DORA framework's deployment
-frequency, lead time for changes, change failure rate, and time to
-restore service have become industry standards for assessing team
-performance and delivery capabilities. These metrics bridge the gap
-between technical implementation details and business outcomes,
-providing stakeholders across the organization with a common language
-for discussing software quality. For open source projects, where
-distributed teams collaborate asynchronously across organizational
-boundaries, quantitative metrics become even more essential as
-objective measures of project health, community productivity, and
-code quality that transcend individual perspectives and organizational contexts.
+The importance of routine, repeatable quality measurement can be Extended
+to frameworks such as Goal-Question-Metrics (GQM) and the
+Quality Improvement Paradigm (QIP). These frameworks formalize
+the process of translating organizational goals into measureable
+indicators, enabling corrective action and discrete quality tracking.
+In modern DevOps environments, team velocity can neccessitate
+multiple deployments per day, issue resolutions, and defect
+identifications. This rapid velocity
+and continuous integration and deployment can be modeled and tracking
+using metrics like the DORA framework's deployment
+frequency, lead time for changes, change failure rate, and time to restore
+service have become industry standards for assessing team performance and
+delivery capability. For open source projects composing of
+distributed teams collaborating across
+the globe, the automated collection of quality metrics becomes essential
+to manage the project's health, productivity, and code quality while maintaning
+the rapid velocity that bleeding-edge projects require.
 
 \subsection{Motivation}
-This project was motivated by the need to systematically assess
-software quality in popular open source projects. By analyzing
-established projects with active communities, we can:
-\begin{itemize}
-  \item Understand best practices in open source development
-  \item Identify patterns that correlate with project success
-  \item Provide quantitative insights into development velocity and reliability
-  \item Establish benchmarks for software quality metrics
-\end{itemize}
+The motiviation for this project was the need to systematically assess
+the software quality of popular open source projects. In analyzing
+established projects with highly active communities, we can identify
+best practices in the open source community, identify patterns that
+correlate with project success, provide insights into development
+velocity, maintainability , and reliability, and establish reusable
+benchmarks for software quality.
 
 \subsection{Project Objectives}
-The primary objectives of this project were to:
-\begin{enumerate}
-  \item Collect comprehensive software quality metrics from two major
-    open source projects
-  \item Analyze these metrics to assess project health and development practices
-  \item Compare metrics across projects to identify trends and patterns
-  \item Provide actionable insights based on quantitative analysis
-\end{enumerate}
+The primary objectives of this project were to collect software quality
+metrics from two major open source projects over a timespan of one
+month, analyze
+these metrics to assess project health, compare these metrics across projects
+to identify trends and patterns, and provide actionable insights based on
+quantitative analysis.
 
 \subsection{Selected Projects}
 
 \subsubsection{LangChain (langchain-ai/langchain)}
-LangChain is a framework for developing applications powered by large
-language models (LLMs). [TODO: Add details about the project - stars,
-contributors, primary language, use cases]
-
-Key characteristics:
-\begin{itemize}
-  \item \textbf{Repository:} github.com/langchain-ai/langchain
-  \item \textbf{Primary Language:} Python
-  \item \textbf{Stars:} [TODO]
-  \item \textbf{Contributors:} [TODO]
-  \item \textbf{Domain:} AI/ML Infrastructure
-\end{itemize}
+LangChain is a highly popular framework for developing durable and
+feature rich applications powered by large
+language models (LLMs). The project is built in Python, has 128k
+stars, 20k forks, and 3,812 active contributors.
 
 \subsubsection{Intel XPU Backend for Triton
 (intel/intel-xpu-backend-for-triton)}
-[TODO: Add description and key characteristics of the Intel project]
+Intel XPU Backend for Triton is an out-of-tree backend module for
+Triton designed to provide
+high-performance GPU computing on Intel GPUs for PyTorch and
+standalone usage. The project
+targets Intel Data Center GPU Max Series, Flex Series, and Arc GPUs,
+supporting Ubuntu
+operating systems. As a compiler backend, it uses LLVM to generate
+optimized code for Intel
+GPUs, enabling developers to write high-performance kernels using
+Triton's Python-based
+domain-specific language. The project is actively maintained as part
+of Intel's deep learning
+ecosystem and provides an alternative backend for the Triton
+framework. This project has 222 stars, 78 forks, and
+538 active contributors.
 
 \section{Related Work}
 
-Software quality measurement in continuous integration and delivery
-environments has been extensively studied from both internal and
-external metrics perspectives. This section synthesizes relevant
-research that informs our methodological approach and metric selection.
+The measurement of software quality metrics in continuous integration
+and deployment
+environments has been extensively studied from both internal and external
+metric perspectives. This section identifies relevant research that
+informs the methodology
+and metrics selection criteria used within this paper.
 
 \subsection{Internal Metrics and Static Analysis}
 
@@ -361,98 +365,57 @@ visualization to track how dependency updates and code modifications
 influence security posture over time, transforming point-in-time
 vulnerability reports into continuous security metrics.
 
-\subsection{Positioning of This Work}
-
-Our study builds upon this foundation by applying DORA metrics to
-assess two prominent open source projects: LangChain and Intel XPU
-Backend for Triton. While Wilkes et al. established DORA measurement
-methodologies and baseline statistics across hundreds of projects,
-our work contributes:
-
-\begin{enumerate}
-  \item \textbf{Domain-Specific Analysis:} Focused examination of
-    AI/ML infrastructure (LangChain) and compiler backend (Intel XPU)
-    projects, domains underrepresented in existing DORA research
-  \item \textbf{Methodological Evolution:} Documentation of the
-    complete research journey including failed approaches (GitHub
-    Actions integration, OpenTelemetry collection), providing
-    insights into practical constraints researchers face when
-    attempting automated metrics collection
-  \item \textbf{Manual Data Collection Validation:} Demonstration
-    that meaningful DORA metrics can be extracted through systematic
-    manual processes when automated instrumentation is infeasible,
-    addressing the reality that many researchers lack repository write access
-  \item \textbf{Performance Classification Application:} Application
-    of DORA's elite/high/medium/low performance classifications to
-    real projects, providing concrete examples of how these
-    thresholds map to observable development practices
-\end{enumerate}
-
-Unlike studies focusing on internal metrics (static analysis, test
-coverage), our work concentrates exclusively on external delivery
-performance metrics that reflect team productivity and reliability
-from a customer perspective. This aligns with the DevOps philosophy
-that delivery speed and stability are paramount quality indicators,
-complementing but not replacing traditional code-level quality measurements.
-
 \section{Methodology}
 
-This project evolved through three distinct methodological phases,
-each representing a strategic pivot in response to technical and
-practical constraints. This section documents the complete evolution
+This project evolved through three distinct phases, each representing an
+operational pivot in the metric collection methodology in response to technical
+and time-based constraints. This section documents the evolution of this study
 from initial planning through final implementation, providing insight
-into the decision-making process and tradeoffs encountered.
+into future decision-making during the design and execution of any metrics
+collection activities.
 
 \subsection{Phase 1: Original Plan - Static Code Analysis via GitHub Actions}
 
 \subsubsection{Initial Objectives}
-The original methodology aimed to collect internal code-level quality
-metrics by integrating custom GitHub Actions workflows into the
-target repositories. These workflows would trigger static analysis
-tools on each commit or pull request to extract:
-
-\begin{itemize}
-  \item \textbf{Lines of Code (LOC):} Total, source, comment, and
-    blank lines measured via tools like cloc or tokei
-  \item \textbf{Cyclomatic Complexity:} Code path complexity measured
-    via Radon (Python) or similar language-specific analyzers
-  \item \textbf{Code Coverage:} Percentage of code exercised by
-    tests, extracted from pytest-cov or coverage.py reports
-  \item \textbf{Technical Debt:} Estimated remediation time
-    calculated via SonarQube or CodeClimate analysis
-  \item \textbf{Maintainability Index:} Composite metric combining
-    complexity, LOC, and comment density
-\end{itemize}
+The original methodology aimed to collect internal quality metrics within
+the code by integrating custom GitHub Actions workflows into target
+repositories. These workflows
+would trigger static code analysis tools on each commit or pull
+request to extract time-based
+internal metrics. The metrics chosen for this analysis were Lines Of
+Code (LOC), representing the source, comment, and blank lines
+measured via tools like cloc of tokei. Cyclomatic Complexity would be
+measured code path complexity measured via radon for Python.
+Code Coverage would be measured via a tool like pytest-cov, computed
+from the percentage of code excercised by tests.
+Technical debt would be estimated by remediation time, as calculated
+from SonarQube or CodeClimate analysis.
+Maintainability index would be computed as a composite metrics
+combining complexity, LOC, and comment density.
 
 \subsubsection{Planned Implementation}
-The approach would involve:
-\begin{enumerate}
-  \item Creating custom GitHub Actions workflows (.github/workflows/metrics.yml)
-  \item Installing static analysis tools in the workflow environment
-  \item Running analysis on each commit or PR
-  \item Publishing metrics to a centralized database or observability platform
-\end{enumerate}
+The planned implementation of the static collection of metrics via
+workflows involved creating custom GitHub Actions workflows,
+installing the custom static analysis tools in the workflow
+environment, running the analysis on each commit or pull request,
+and publishing the metrics to a centralized database or observability platform.
 
 \subsubsection{Abandonment Rationale}
-This approach was abandoned before implementation due to its invasive nature:
-
-\begin{enumerate}
-  \item \textbf{Repository Modification Requirements:} Adding custom
-    GitHub Actions workflows requires forking repositories or
-    obtaining maintainer approval to modify .github/workflows/ directory
-  \item \textbf{Complexity for Established Projects:} Large, active
-    projects like LangChain have existing CI/CD pipelines;
-    integrating custom actions risks conflicts with established workflows
-  \item \textbf{Maintainer Approval Barriers:} External researchers
-    cannot reasonably request that production repositories add custom
-    observability workflows for academic studies
-  \item \textbf{Scalability Concerns:} Each target repository would
-    require custom workflow configuration tailored to its language,
-    build system, and testing framework
-\end{enumerate}
-
-The invasiveness of modifying production repositories necessitated a
-less intrusive approach.
+This approach was abandonded during implementation due to its
+invasive nature. Adding custom GitHub
+actions and workflows to projects required forking repositories on a
+per-branch basis, resulting
+in excessive modification of the source code repository to collect
+metrics. Large projects like
+Langchain also have existing CI/CD pipelines, so integrating custom
+Actions involved risking
+compatability conflicts with existing workflows, which could pollute
+the accuracy of collected software
+quality metrics. Each target repository would also required custom
+workflows tailored to it's language,
+build system, and testing framework. The invasiveness of this
+approach required a pivot to a more
+observant solution.
 
 \subsection{Phase 2: First Pivot - DORA Metrics via OpenTelemetry}
 
