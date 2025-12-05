@@ -1,0 +1,101 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Background}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Motivation}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Project Objectives}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Selected Projects}{4}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}LangChain (langchain-ai/langchain)}{4}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Intel XPU Backend for Triton (intel/intel-xpu-backend-for-triton)}{5}{subsubsection.1.4.2}%
+\contentsline {section}{\numberline {2}Related Work}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Internal Metrics and Static Analysis}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}External Metrics and DevOps Performance}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Traceability and Security Measurement}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Positioning of This Work}{7}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Methodology}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Phase 1: Original Plan - Static Code Analysis via GitHub Actions}{8}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Initial Objectives}{8}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Planned Implementation}{9}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Abandonment Rationale}{9}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Phase 2: First Pivot - DORA Metrics via OpenTelemetry}{10}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Revised Approach}{10}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Technical Architecture}{10}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Target Metrics}{11}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Challenges Encountered}{11}{subsubsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.3}Phase 3: Final Pivot - Manual DORA Metrics from GitHub Web UI}{12}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Rationale for Final Approach}{12}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}DORA Metrics Framework}{13}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Data Collection Process}{13}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Data Structure}{14}{subsubsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.4}Analysis Methodology}{15}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Metric Calculation}{15}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Deployment Frequency Calculation}{15}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Lead Time Calculation}{15}{subsubsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.4}Change Failure Rate Calculation}{15}{subsubsection.3.4.4}%
+\contentsline {subsubsection}{\numberline {3.4.5}Time to Restore Calculation}{16}{subsubsection.3.4.5}%
+\contentsline {subsubsection}{\numberline {3.4.6}Performance Classification}{16}{subsubsection.3.4.6}%
+\contentsline {section}{\numberline {4}Results}{16}{section.4}%
+\contentsline {subsection}{\numberline {4.1}LangChain Analysis}{16}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Data Overview}{16}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Deployment Frequency}{17}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Lead Time for Changes}{17}{subsubsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.4}Change Failure Rate}{18}{subsubsection.4.1.4}%
+\contentsline {subsubsection}{\numberline {4.1.5}Time to Restore Service}{19}{subsubsection.4.1.5}%
+\contentsline {subsubsection}{\numberline {4.1.6}Overall Performance}{19}{subsubsection.4.1.6}%
+\contentsline {subsection}{\numberline {4.2}Intel XPU Backend for Triton Analysis}{19}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Data Overview}{19}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Deployment Frequency}{20}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Lead Time for Changes}{20}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.4}Change Failure Rate}{20}{subsubsection.4.2.4}%
+\contentsline {subsubsection}{\numberline {4.2.5}Time to Restore Service}{21}{subsubsection.4.2.5}%
+\contentsline {subsubsection}{\numberline {4.2.6}Overall Performance}{21}{subsubsection.4.2.6}%
+\contentsline {subsection}{\numberline {4.3}Comparative Analysis}{22}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Discussion}{22}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Key Findings}{22}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Development Velocity}{22}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Code Quality and Reliability}{22}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Incident Response}{22}{subsubsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.2}Project Comparison}{23}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Similarities}{23}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Differences}{23}{subsubsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.3}Industry Benchmarking}{23}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Limitations and Threats to Validity}{23}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Data Collection Limitations}{23}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Metric Calculation Assumptions}{23}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Generalizability}{24}{subsubsection.5.4.3}%
+\contentsline {section}{\numberline {6}Lessons Learned}{24}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Technical Challenges}{24}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Repository Access and Invasiveness Tradeoffs}{24}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}API and Permission Constraints}{25}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}Data Completeness vs. Access Constraints}{25}{subsubsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.2}Project Pivoting}{26}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Adaptive Methodology as Research Strategy}{26}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Value of DORA Metrics for External Research}{26}{subsubsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.3}Best Practices Identified}{27}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Future Work}{27}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Extended Data Collection}{27}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Enhanced Metrics}{28}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Machine Learning Applications}{28}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Tool Development}{28}{subsection.7.4}%
+\contentsline {section}{\numberline {8}Conclusion}{28}{section.8}%
+\contentsline {section}{\numberline {A}Phase 1 Planned Configuration (GitHub Actions)}{30}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Planned GitHub Actions Workflow}{30}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Planned Quality Gate Enforcement}{32}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Planned Tool Configurations}{35}{subsection.A.3}%
+\contentsline {subsubsection}{\numberline {A.3.1}Radon Configuration}{35}{subsubsection.A.3.1}%
+\contentsline {subsubsection}{\numberline {A.3.2}Pytest Configuration}{35}{subsubsection.A.3.2}%
+\contentsline {subsubsection}{\numberline {A.3.3}Ruff Configuration}{36}{subsubsection.A.3.3}%
+\contentsline {subsubsection}{\numberline {A.3.4}Mypy Configuration}{37}{subsubsection.A.3.4}%
+\contentsline {subsection}{\numberline {A.4}Planned Semantic Versioning Integration}{38}{subsection.A.4}%
+\contentsline {subsection}{\numberline {A.5}Abandonment Rationale - Detailed}{40}{subsection.A.5}%
+\contentsline {section}{\numberline {B}Data Collection Scripts}{42}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}GitHub Web UI Navigation}{42}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}CSV Data Organization}{43}{subsection.B.2}%
+\contentsline {section}{\numberline {C}Analysis Source Code}{44}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}Key Functions}{44}{subsection.C.1}%
+\contentsline {subsection}{\numberline {C.2}Usage Example}{46}{subsection.C.2}%
+\contentsline {section}{\numberline {D}Raw Data Samples}{47}{appendix.D}%
+\contentsline {subsection}{\numberline {D.1}LangChain Repository Data}{47}{subsection.D.1}%
+\contentsline {subsection}{\numberline {D.2}Intel XPU Backend Data}{47}{subsection.D.2}%
+\contentsline {section}{\numberline {E}OpenTelemetry Configuration Files}{48}{appendix.E}%
+\contentsline {subsection}{\numberline {E.1}Docker Compose Configuration}{48}{subsection.E.1}%
+\contentsline {subsection}{\numberline {E.2}OpenTelemetry Collector Configuration}{49}{subsection.E.2}%
+\contentsline {subsection}{\numberline {E.3}Performance Classification Logic}{51}{subsection.E.3}%
