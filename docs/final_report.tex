@@ -199,7 +199,6 @@ A Study of LangChain and Intel XPU Backend for Triton}
   performance in open source development environments.
 \end{abstract}
 
-\tableofcontents
 \newpage
 
 \section{Introduction}
@@ -211,19 +210,6 @@ for proactively monitoring and improving development processes. As open
 source projects grow in complexity and importance, the ability to identify and
 quantify software quality becomes increasingly important for maintainers,
 contributors, and organizations depending on these projects.
-
-Software quality metrics are essential for driving data-driven
-decisions regarding the development, maintenance, and deployment
-of modern open source software. The predictive relationship between
-internal metrics such as code complexity, size, structure, and external
-user-facing metrics such as reliability, maintainability, and performance
-enables teams to use measurable code properties as leading indicators of
-software quality. Internal metrics are available early in the
-software development
-lifecycle, and allow teams to identify potential quality issues before
-they manifest as failures that directly impact external users. This predictive
-relationship empowers teams to take a proactive approach to
-corrective action to improve code quality before downstream failures occur.
 
 The importance of routine, repeatable quality measurement can be extended
 to frameworks such as Goal-Question-Metrics (GQM) and the
@@ -305,7 +291,7 @@ by style issues,
 opposed to defects such as test failures. This study described how
 static code analysis in
 CI/CD pipelines can be utilized to identify defects and warnings
-within the code base prior to deplyoment.
+within the code base prior to deployment.
 
 \cite{sakamoto2010open} developed the Open Code Coverage Framework (OCCF)
 to formalize coverage measurement across different programming
@@ -319,7 +305,7 @@ software quality metrics across a host of different programming languages.
 Yu et al. \cite{yu2024roadmap} examined the visualization of metrics
 collected through the CI/CD process. They interviewed 22 participants with
 visualizations of 14 base metrics. Their key finding was 86\% of participants
-appreciated the visualization of dashboarded CI-data, but found a majority of
+appreciated the visualization of dashboard CI-data, but found a majority of
 participants complained about information overload, highlighting the need
 to focus on key metrics rather than all obtainable metrics.
 
@@ -340,7 +326,7 @@ project under analysis.
 \subsection{Security Measurement}
 
 Zhuravchak et al. \cite{zhuravchak2025security} addressed temporal
-security measurement by utilizing a persistant visualization of security
+security measurement by utilizing a persistent visualization of security
 trends across project builds. Their approach combined Trivy scanning,
 GitHub actions automation,
 and Chart.js to visualize how dependency updates and code modification influence
@@ -362,7 +348,7 @@ longer active, and has been replaced with the OpenTelemetry community.
 OpenTelemetry \cite{opentelemetry2021} provides vendor-neutral
 logging, tracing, and metrics collection
 through the OpenTelemetry Logging Protocol (OTLP). The OpenTelemetry
-GitHub reciever
+GitHub receiver
 \cite{opentelemetry-github-receiver} enables automated scrapping of
 version control system (VCS) metrics via GitHub's API, enabling
 continuous automated measurement of
@@ -372,7 +358,7 @@ Kalliamvakou et al.
 feasibility of extracting
 development process metrics from VCS, though they identified
 challenges in data completeness.
-This project leveraged the OpenTelemetry GitHub reciever to collect
+This project leveraged the OpenTelemetry GitHub receiver to collect
 VCS metrics aligned with the OpenTelemetry
 semantic conventions v1.37.0.
 
@@ -398,7 +384,7 @@ Code (LOC), representing the source, comment, and blank lines
 measured via tools like cloc of tokei. Cyclomatic Complexity would be
 measured code path complexity measured via radon for Python.
 Code Coverage would be measured via a tool like pytest-cov, computed
-from the percentage of code excercised by tests.
+from the percentage of code exercised by tests.
 Technical debt would be estimated by remediation time, as calculated
 from SonarQube or CodeClimate analysis.
 Maintainability index would be computed as a composite metrics
@@ -412,7 +398,7 @@ environment, running the analysis on each commit or pull request,
 and publishing the metrics to a centralized database or observability platform.
 
 \subsubsection{Abandonment Rationale}
-This approach was abandonded during implementation due to its
+This approach was abandoned during implementation due to its
 invasive nature. Adding custom GitHub
 actions and workflows to projects required forking repositories on a
 per-branch basis, resulting
@@ -432,7 +418,7 @@ observant solution.
 
 \subsubsection{Revised Approach}
 To avoid modification to the target repository, the collection
-methdology was pivoted
+methodology was pivoted
 to utilizing the Open Telemetry collectors to scrape DORA metrics
 from GitHub. This non-invasive
 approach automated metric collection through the use of GitHub's
@@ -498,13 +484,13 @@ a GitHub PAT with organization access, approved by organization administrators.
 \subsubsection{Rationale for Final Approach}
 Since automated collection of detailed metrics was prohibited due to
 permissions issues,
-a simplier approach of scraping metrics from the GitHub Insights page was chosen
+a simpler approach of scraping metrics from the GitHub Insights page was chosen
 as the preferred data collection strategy. This approach leveraged
 publicly accessible
 GitHub repository insights through the web interface. While less
 automated and less detailed
 than the scraped metrics, this approach did not require specific
-permisisons granted by
+permissions granted by
 organizational administrators.
 
 \subsubsection{Data Collection Process}
@@ -548,7 +534,7 @@ A Python-based metrics collection pipeline was constructed that loads
 and preprocesses
 scrapped metrics data, converts them into columnar CSV data,
 calculates DORA metrics using
-industry-standard forumlas, performs statistical analysis, classifies
+industry-standard formulas, performs statistical analysis, classifies
 DORA performance,
 and generates visualizations for each metric.
 
@@ -649,7 +635,7 @@ category of 1-7 days.
 Change failure rate was estimated by using keyword matching on
 failure terms such as "bug", "error", "fix", "broken", "crash",
 "fail", "regression", and "exception". Out of 69 collected issues,
-16 were classified as bug-releated, representing 23.2\% of the total
+16 were classified as bug-related, representing 23.2\% of the total
 population. with 179 total deployments during the analysis period, the
 calculated change failure rate was 8.94\%. This rate falls within the elite
 performance category according to the DORA standard, which classifies
@@ -665,7 +651,7 @@ rates between
 
 \subsubsection{Time to Restore Service}
 The time to restore service (MTTR) metric could not be calculated
-due to limitations occuring collecting related issues and merged
+due to limitations occurring collecting related issues and merged
 pull requests. Estimation of MTTR requires collecting an opened issue, and
 identifying the time when the issue was resolved through a pull request and
 merge approval event. Future work could improve bug-fix pair identification
@@ -703,7 +689,7 @@ included 104 merged pull requests, 17 opened pull requests, 73
 closed pull requests, and 42 opened issues.
 
 \subsubsection{Deployment Frequency}
-The mean deployment frequency was 3.59 deplyoments per day with a median
+The mean deployment frequency was 3.59 deployments per day with a median
 of 9.0 deployments per day, totaling to 25.10 average deployments per week.
 The maximum number of deployments in a single day was 28. According to the DORA
 standard, this frequency classifies as an elite performer, achieving
