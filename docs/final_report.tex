@@ -174,7 +174,7 @@
 % Title information
 \title{Software Quality Metrics Analysis of Open Source Projects: \\
 A Study of LangChain and Intel XPU Backend for Triton}
-\author{Garrett Gruss \\ Southern Methodist University}
+\author{Garrett Gruss \\ Southern Methodist University \\ CS8314-795B-1257}
 \date{\today}
 
 \begin{document}
@@ -364,6 +364,25 @@ combines Trivy scanning, GitHub Actions automation, and Chart.js
 visualization to track how dependency updates and code modifications
 influence security posture over time, transforming point-in-time
 vulnerability reports into continuous security metrics.
+
+\subsection{OpenTelemetry and Automated Metrics Collection}
+
+OpenTelemetry \cite{opentelemetry2021} provides vendor-neutral
+observability instrumentation for collecting and exporting telemetry
+data across distributed systems. The OpenTelemetry GitHub receiver
+\cite{opentelemetry-github-receiver} enables automated scraping of
+version control system (VCS) metrics via GitHub's GraphQL and REST
+APIs, supporting continuous measurement of development practices
+without manual data extraction. Kalliamvakou et al.
+\cite{kalliamvakou2014promises} demonstrated the feasibility of
+deriving development process metrics from version control systems,
+though they identified challenges in data completeness and
+interpretation that automated collection frameworks like
+OpenTelemetry help address. This project leverages the OpenTelemetry
+GitHub receiver to collect VCS metrics aligned with OpenTelemetry
+semantic conventions v1.37.0, ensuring standardized telemetry
+representation across platforms while enabling real-time insights
+into software delivery performance.
 
 \section{Methodology}
 

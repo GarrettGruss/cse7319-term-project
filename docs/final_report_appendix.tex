@@ -319,75 +319,6 @@ minor_tags = ["feat"]
 patch_tags = ["fix", "perf"]
 \end{lstlisting}
 
-\subsection{Abandonment Rationale - Detailed}
-
-This comprehensive GitHub Actions approach was abandoned due to
-several critical barriers:
-
-\begin{enumerate}
-  \item \textbf{Repository Modification Complexity}
-    \begin{itemize}
-      \item Adding workflows requires write access to
-        \texttt{.github/workflows/} directory
-      \item Target repositories (LangChain, Intel XPU Backend) have
-        existing CI/CD infrastructure
-      \item Risk of conflicts with existing workflows, branch
-        protection rules, and required checks
-      \item Need to modify \texttt{.gitignore}, add
-        \texttt{pyproject.toml}, and create metrics directories
-    \end{itemize}
-
-  \item \textbf{Maintainer Approval Barriers}
-    \begin{itemize}
-      \item External researchers cannot submit PRs that add
-        observability workflows for academic purposes
-      \item Maintainers would reject workflows that export metrics to
-        external platforms (security/privacy)
-      \item Request would require detailed justification, privacy
-        impact assessment, and legal review
-      \item No precedent for academic metric collection in production
-        repositories
-    \end{itemize}
-
-  \item \textbf{Per-Repository Customization Requirements}
-    \begin{itemize}
-      \item Different projects use different languages (Python, C++,
-        Rust), requiring tool variations
-      \item Test frameworks vary: pytest, unittest, cargo test, gtest, etc.
-      \item Build systems differ: setuptools, poetry, cargo, CMake,
-        requiring custom metric extraction
-      \item Each repository would need custom quality gate thresholds
-        based on project maturity
-    \end{itemize}
-
-  \item \textbf{Fork Limitations}
-    \begin{itemize}
-      \item Forking allows workflow addition but creates isolation
-        from production development
-      \item Forks do not receive upstream commits in real-time,
-        metrics become stale
-      \item Fork metrics do not reflect actual project health, only
-        snapshot quality
-      \item Cannot access organizational secrets, runners, or
-        internal deployment metrics
-    \end{itemize}
-
-  \item \textbf{Computational and Financial Costs}
-    \begin{itemize}
-      \item GitHub Actions minutes are limited for free accounts
-        (2,000 minutes/month)
-      \item Running comprehensive quality analysis on large codebases
-        consumes significant minutes
-      \item LangChain repository has 150+ contributors with dozens of
-        daily commits
-      \item Would require paid GitHub plan (\$4-\$21/user/month) for
-        adequate compute quota
-    \end{itemize}
-\end{enumerate}
-
-These constraints led to the pivot toward less invasive approaches in
-Phase 2 and Phase 3.
-
 \section{Data Collection Scripts}
 
 The data collection process involved manually extracting data from
@@ -452,10 +383,6 @@ msg,hash,date_rel,date_abs
 \end{lstlisting}
 
 \section{Analysis Source Code}
-
-The complete analysis pipeline is available in
-\texttt{examples/dora\_metrics.py}. The script implements all DORA
-metric calculations and generates visualizations.
 
 \subsection{Key Functions}
 

@@ -59,4 +59,23 @@ Y.~Zhuravchak, D.~Zhuravchak, A.~Zhuravchak, and I.~Opirskyy, ``Security
   \emph{CSDP'2025: Cyber Security and Data Protection}, Lviv, Ukraine, July
   2025, pp. 272--281.
 
+\bibitem{opentelemetry2021}
+\BIBentryALTinterwordspacing
+{OpenTelemetry Authors}, ``{OpenTelemetry} specification,'' Cloud Native
+  Computing Foundation, 2021, accessed: 2025-04-19. [Online]. Available:
+  \url{https://opentelemetry.io/docs/specs/otel/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{opentelemetry-github-receiver}
+{OpenTelemetry Collector Contributors}, ``{GitHub} receiver,''
+  \url{https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/githubreceiver/README.md},
+  2024, openTelemetry Collector Contrib Repository. Accessed: 2025-04-19.
+
+\bibitem{kalliamvakou2014promises}
+E.~Kalliamvakou, G.~Gousios, K.~Blincoe, L.~Singer, D.~M. German, and
+  D.~Damian, ``The promises and perils of mining {GitHub},'' in
+  \emph{Proceedings of the 11th Working Conference on Mining Software
+  Repositories}, ser. MSR 2014.\hskip 1em plus 0.5em minus 0.4em\relax
+  Hyderabad, India: ACM, 2014, pp. 92--101.
+
 \end{thebibliography}
