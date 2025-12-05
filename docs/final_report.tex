@@ -174,9 +174,7 @@
 % Title information
 \title{Software Quality Metrics Analysis of Open Source Projects: \\
 A Study of LangChain and Intel XPU Backend for Triton}
-\author{[Your Name] \\
-  [Course Number] \\
-[University Name]}
+\author{Garrett Gruss \\ Southern Methodist University}
 \date{\today}
 
 \begin{document}
@@ -287,7 +285,7 @@ framework. This project has 222 stars, 78 forks, and
 538 active contributors.
 
 \section{Related Work}
-
+% TODO: Related work is all AI generated, need to rewrite.
 The measurement of software quality metrics in continuous integration
 and deployment
 environments has been extensively studied from both internal and external
@@ -420,38 +418,25 @@ observant solution.
 \subsection{Phase 2: First Pivot - DORA Metrics via OpenTelemetry}
 
 \subsubsection{Revised Approach}
-To avoid repository modifications, the project pivoted to collecting
-DORA (DevOps Research and Assessment) metrics using OpenTelemetry's
-GitHub receiver. This non-invasive approach automated metrics
-collection through GitHub's GraphQL and REST APIs without requiring
-any changes to target repositories.
-
-\subsubsection{Technical Architecture}
-The planned system deployed three components via Docker Compose:
-
-\begin{enumerate}
-  \item \textbf{OpenTelemetry Collector (otelcol-contrib):} Scrapes
-    GitHub repositories every 60 seconds using the GitHub receiver
-    with Personal Access Token (PAT) authentication via bearer token extension
-  \item \textbf{OpenObserve:} Stores time-series metrics on port
-    5080, receiving OTLP metrics at \texttt{/api/default/} endpoint
-    with SQL-based querying for dashboard visualization
-  \item \textbf{Docker Networking:} Bridge network
-    (\texttt{otel-network}) with persistent storage
-    (\texttt{openobserve-data} volume) for metric retention
-\end{enumerate}
+To avoid modification to the target repository, the collection
+methdology was pivoted
+to utilizing the Open Telemetry collectors to scrape DORA metrics
+from GitHub. This non-invasive
+approach automated metric collection through the use of GitHub's
+GraphQL and REST APIs without requiring
+change to the target repositories. The planned system was deployed
+through docker Compose
+using an OpenTelemetry Collector container that scraped GitHub
+repositories every 60 seconds and
+an OpenObserve metrics aggregation and visualization service that
+collected the streamed metrics.
 
 \begin{figure}[H]
   \centering
-  % TODO: Add architecture diagram showing OTel Collector ->
-  % OpenObserve pipeline
+  \includegraphics[width=0.9\textwidth]{system-architecture.png}
   \caption{OpenTelemetry DORA Metrics Architecture (Phase 2 Approach)}
   \label{fig:otel-architecture}
 \end{figure}
-
-The GitHub receiver supports flexible search queries (e.g.,
-\texttt{org:<ORG>}, \texttt{is:private}, \texttt{is:pr is:open})
-enabling targeted collection across repositories and pull request states.
 
 \subsubsection{Target Metrics}
 The GitHub receiver was configured to collect nine VCS (Version
@@ -483,68 +468,22 @@ conventions v1.37.0:
 \end{itemize}
 
 \subsubsection{Challenges Encountered}
-While less invasive than GitHub Actions, the OpenTelemetry approach
-encountered critical authentication and permissions obstacles:
-
-\begin{enumerate}
-  \item \textbf{GitHub API Authentication:} GitHub PAT tokens require
-    specific repository scopes (\texttt{repo}, \texttt{read:org}) and
-    organization approval for accessing organizational repositories
-  \item \textbf{Permission Model Constraints:} Public repositories
-    provide limited data through unauthenticated API access; detailed
-    PR metrics require authenticated requests
-  \item \textbf{Rate Limiting:} GitHub API rate limits (5,000
-      requests/hour for authenticated users, 60/hour for
-    unauthenticated) constrained continuous polling across multiple repositories
-  \item \textbf{Organizational Barriers:} Accessing repositories
-    under organizational accounts (langchain-ai, intel) requires PAT
-    tokens approved by organization administrators
-  \item \textbf{Data Completeness Gaps:} Change Failure Rate
-    calculation required GitHub Actions workflow status integration,
-    which was not available through the standard GitHub receiver
-\end{enumerate}
-
-Despite successful initial testing with personal repositories, the
-permissions required to continuously poll organizational repositories
-proved prohibitive for external researchers without organizational affiliation.
+While less invasive than GitHub Actions, the OpenTelemetry approach encountered permissions
+issues when scraping metrics from public repositories. The OpenTelemetry collector requires
+a GitHub PAT token with specific organization access to \textbf{repo} and \text{read:org}.
+Public repositories limit provided data through unauthorized API access, prohibiting the collection
+of detailed PR metrics required to compute DORA. Accessing langchain-ai and intel repositories requires
+a GitHub PAT with organization access, approved by organization administrators.
 
 \subsection{Phase 3: Final Pivot - Manual DORA Metrics from GitHub Web UI}
 
 \subsubsection{Rationale for Final Approach}
-With automated API collection blocked by permissions constraints, the
-project adopted a pragmatic manual data collection strategy. This
-approach leveraged publicly accessible GitHub repository insights
-available through the web interface, requiring no authentication or
-repository access permissions. While less automated than previous
-approaches, this method provided:
-
-\begin{itemize}
-  \item \textbf{Universal Access:} No authentication requirements or
-    organizational approvals needed
-  \item \textbf{Data Availability:} Public repositories expose
-    comprehensive PR and issue history through web UI
-  \item \textbf{DORA Compatibility:} Sufficient data granularity to
-    calculate industry-standard DORA metrics
-  \item \textbf{Reproducibility:} Any researcher can replicate this
-    methodology for public repositories
-\end{itemize}
-
-\subsubsection{DORA Metrics Framework}
-The four key DORA metrics, established by the DevOps Research and
-Assessment team, serve as the analytical foundation:
-
-\begin{enumerate}
-  \item \textbf{Deployment Frequency (DF):} How often an organization
-    successfully releases to production (proxied by merged PR rate)
-  \item \textbf{Lead Time for Changes (LT):} The time it takes for a
-    commit to get into production (measured as PR open-to-merge duration)
-  \item \textbf{Change Failure Rate (CFR):} The percentage of
-    deployments causing a failure in production (calculated from bug
-    issue frequency)
-  \item \textbf{Time to Restore Service (MTTR):} How long it takes to
-    recover from a failure in production (measured as bug report to
-    fix merge duration)
-\end{enumerate}
+Since automated collection of detailed metrics was prohibited due to permissions issues,
+a simplier approach of scraping metrics from the GitHub Insights page was chosen
+as the preferred data collection strategy. This approach leveraged publicly accessible
+GitHub repository insights through the web interface. While less automated and less detailed
+than the scraped metrics, this approach did not require specific permisisons granted by
+organizational administrators.
 
 \subsubsection{Data Collection Process}
 Data was manually extracted from GitHub's web interface using the
@@ -589,6 +528,23 @@ msg,hash,date_rel,date_abs
 
 \subsection{Analysis Methodology}
 
+\subsubsection{DORA Metrics Framework}
+The four key DORA metrics, established by the DevOps Research and
+Assessment team, serve as the analytical foundation:
+
+\begin{enumerate}
+  \item \textbf{Deployment Frequency (DF):} How often an organization
+    successfully releases to production (proxied by merged PR rate)
+  \item \textbf{Lead Time for Changes (LT):} The time it takes for a
+    commit to get into production (measured as PR open-to-merge duration)
+  \item \textbf{Change Failure Rate (CFR):} The percentage of
+    deployments causing a failure in production (calculated from bug
+    issue frequency)
+  \item \textbf{Time to Restore Service (MTTR):} How long it takes to
+    recover from a failure in production (measured as bug report to
+    fix merge duration)
+\end{enumerate}
+% Need to reword below this section.
 \subsubsection{Metric Calculation}
 We developed a Python-based analysis pipeline (\texttt{dora\_metrics.py}) that:
 \begin{enumerate}
