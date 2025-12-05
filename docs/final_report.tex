@@ -287,7 +287,6 @@ framework. This project has 222 stars, 78 forks, and
 538 active contributors.
 
 \section{Related Work}
-% TODO: Related work is all AI generated, need to rewrite.
 The measurement of software quality metrics in continuous integration
 and deployment
 environments has been studied from both internal and external
@@ -297,92 +296,85 @@ and metrics selection criteria used within this paper.
 
 \subsection{Internal Metrics and Static Analysis}
 
-Research on internal software metrics has focused on automating
-quality measurement within CI/CD pipelines. Zampetti et al.
-\cite{zampetti2017static} investigated how open source projects
-integrate static code analysis tools (Checkstyle, PMD, FindBugs) into
-continuous integration workflows, finding that 97\% of build warnings
-and 6\% of build failures were triggered by style issues rather than
-bug detection. This demonstrates that teams use internal metrics as
-quality gates to enforce maintainability standards. Their finding
-that developers typically fix issues rather than suppress warnings
-validates the effectiveness of enforcing internal code quality
-requirements within automated pipelines.
+Zampetti et al.
+\cite{zampetti2017static} investigated how open source projects utilize static
+code analysis tools such as Checkstyle, PMD, and FindBugs into their
+pipelines. Zampetti et al.
+found 97\% of build warnings and 6\% of build failures were triggered
+by style issues,
+opposed to defects such as test failures. This study described how
+static code analysis in
+CI/CD pipelines can be utilized to identify defects and warnings
+within the code base prior to deplyoment.
 
-Complementing static analysis, test coverage represents a critical
-internal metric that serves as a leading indicator for external
-quality attributes. Sakamoto et al. \cite{sakamoto2010open} developed
-the Open Code Coverage Framework (OCCF) to address inconsistencies in
-coverage measurement across programming languages. By abstracting
-common concepts using abstract syntax trees, their framework reduced
-implementation requirements by approximately 90\% while supporting
-multiple coverage types (statement, decision, branch, path). This
-work highlights the importance of consistent measurement definitions
-when establishing predictive models between internal and external metrics.
+\cite{sakamoto2010open} developed the Open Code Coverage Framework (OCCF)
+to formalize coverage measurement across different programming
+languages. Their framework
+reduced implementation requirements by roughly 90\% while supporting
+multiple coverage
+types such as statement, decision, branch, and path. This study
+provided a framework for
+software quality metrics across a host of different programming languages.
 
-Yu et al. \cite{yu2024roadmap} examined metrics visualization in CI
-environments through interviews with 22 participants across five
-industrial projects. They cataloged 14 base metrics spanning version
-control, source code, static analysis, artifacts, testing,
-performance, and issue tracking. Their finding that 86\% of
-participants found CI-generated data useful for quality evaluation,
-but also identified challenges with dashboard information overload,
-underscores the need for focused metric selection rather than
-comprehensive collection.
+Yu et al. \cite{yu2024roadmap} examined the visualization of metrics
+collected through the CI/CD process. They interviewed 22 participants with
+visualizations of 14 base metrics. Their key finding was 86\% of participants
+appreciated the visualization of dashboarded CI-data, but found a majority of
+participants complained about information overload, highlighting the need
+to focus on key metrics rather than all obtainable metrics.
 
 \subsection{External Metrics and DevOps Performance}
 
-The DevOps Research and Assessment (DORA) metrics have emerged as
-industry-standard indicators of software delivery performance. Wilkes
-et al. \cite{wilkes2023framework} presented a framework for
-automatically extracting DORA metrics (Deployment Frequency, Lead
-Time for Changes, Mean Time to Recover, Change Failure Rate) from
-project repositories without requiring specific CI/CD tools. Their
-analysis of 304 popular GitHub open source projects established
-performance baselines: top-quartile projects achieve 116.2
+The DevOps Research and Assessment (DORA) metrics framework has emerged
+as an industry-standard indicator of cloud native software delivery performance.
+Wilkes et al. \cite{wilkes2023framework} presented a framework for
+automatically extracting DORA metrics such as Deployment Frequency, Lead
+Time for Changes, Mean Time to Recover, Change Failure Rate. Their analysis of
+304 GitHub projects established performance baselines: top-quartile
+projects achieve 116.2
 deployments per year with 5.1-day lead times, while bottom-quartile
-projects show 6.6 deployments per year with 140.6-day lead times.
-These metrics align with the Putnam/Myers framework's external
-metrics of time, quality, and productivity, providing quantifiable
-measures of software delivery performance.
+projects show 6.6 deployments per year with 140.6-day lead times. These metrics
+provide a useful baseline for the DORA performance of any future
+project under analysis.
 
-\subsection{Traceability and Security Measurement}
-
-Beyond delivery metrics, research has addressed specialized external
-quality dimensions. Stahl et al. \cite{stahl2016continuous}
-documented the Eiffel framework for real-time traceability throughout
-CI/CD pipelines, using JSON-based event messages organized as a
-directed acyclic graph to capture relationships between requirements,
-commits, builds, tests, and deployments. This automated approach
-produces more reliable data than manual traceability maintenance by
-capturing actual relationships rather than documented intentions.
+\subsection{Security Measurement}
 
 Zhuravchak et al. \cite{zhuravchak2025security} addressed temporal
-security measurement by proposing a lightweight system that persists
-and visualizes vulnerability trends across builds. Their approach
-combines Trivy scanning, GitHub Actions automation, and Chart.js
-visualization to track how dependency updates and code modifications
-influence security posture over time, transforming point-in-time
-vulnerability reports into continuous security metrics.
+security measurement by utilizing a persistant visualization of security
+trends across project builds. Their approach combined Trivy scanning,
+GitHub actions automation,
+and Chart.js to visualize how dependency updates and code modification influence
+the security posture of the system over time.
 
-\subsection{OpenTelemetry and Automated Metrics Collection}
+\subsection{Traceability Automated Metrics Collection}
+
+Stahl et al. \cite{stahl2016continuous} documented the Eiffel
+framework for standardized traceability throughout CI/CD pipelines.
+The Eiffel framework
+uses a JSON-based schema to organize event messages into a directed
+acyclic graph (DAG). This
+approach produces traceable events that can be standardized across
+the organization to provide
+deep insights into the performance of distributed projects.
+Unfortunately, the Eiffel framework is no
+longer active, and has been replaced with the OpenTelemetry community.
 
 OpenTelemetry \cite{opentelemetry2021} provides vendor-neutral
-observability instrumentation for collecting and exporting telemetry
-data across distributed systems. The OpenTelemetry GitHub receiver
-\cite{opentelemetry-github-receiver} enables automated scraping of
-version control system (VCS) metrics via GitHub's GraphQL and REST
-APIs, supporting continuous measurement of development practices
-without manual data extraction. Kalliamvakou et al.
-\cite{kalliamvakou2014promises} demonstrated the feasibility of
-deriving development process metrics from version control systems,
-though they identified challenges in data completeness and
-interpretation that automated collection frameworks like
-OpenTelemetry help address. This project leverages the OpenTelemetry
-GitHub receiver to collect VCS metrics aligned with OpenTelemetry
-semantic conventions v1.37.0, ensuring standardized telemetry
-representation across platforms while enabling real-time insights
-into software delivery performance.
+logging, tracing, and metrics collection
+through the OpenTelemetry Logging Protocol (OTLP). The OpenTelemetry
+GitHub reciever
+\cite{opentelemetry-github-receiver} enables automated scrapping of
+version control system (VCS) metrics via GitHub's API, enabling
+continuous automated measurement of
+internal code quality metrics without manual data extraction.
+Kalliamvakou et al.
+\cite{kalliamvakou2014promises} demonstrated the methodology and
+feasibility of extracting
+development process metrics from VCS, though they identified
+challenges in data completeness.
+This project leveraged the OpenTelemetry GitHub reciever to collect
+VCS metrics aligned with the OpenTelemetry
+semantic conventions v1.37.0.
 
 \section{Methodology}
 

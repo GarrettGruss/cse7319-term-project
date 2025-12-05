@@ -47,17 +47,17 @@ B.~Wilkes, A.~M.~P. Milani, and M.-A. Storey, ``A framework for automating the
   (ICSME)}.\hskip 1em plus 0.5em minus 0.4em\relax Bogotá, Colombia: IEEE,
   2023, pp. 62--72.
 
-\bibitem{stahl2016continuous}
-D.~Ståhl, K.~Hallén, and J.~Bosch, ``Continuous integration and delivery
-  traceability in industry: Needs and practices,'' in \emph{2016 42nd Euromicro
-  Conference on Software Engineering and Advanced Applications (SEAA)}.\hskip
-  1em plus 0.5em minus 0.4em\relax Limassol, Cyprus: IEEE, 2016, pp. 68--72.
-
 \bibitem{zhuravchak2025security}
 Y.~Zhuravchak, D.~Zhuravchak, A.~Zhuravchak, and I.~Opirskyy, ``Security
   regression visualization in {CI/CD} using {Trivy} and {GitHub Actions},'' in
   \emph{CSDP'2025: Cyber Security and Data Protection}, Lviv, Ukraine, July
   2025, pp. 272--281.
+
+\bibitem{stahl2016continuous}
+D.~Ståhl, K.~Hallén, and J.~Bosch, ``Continuous integration and delivery
+  traceability in industry: Needs and practices,'' in \emph{2016 42nd Euromicro
+  Conference on Software Engineering and Advanced Applications (SEAA)}.\hskip
+  1em plus 0.5em minus 0.4em\relax Limassol, Cyprus: IEEE, 2016, pp. 68--72.
 
 \bibitem{opentelemetry2021}
 \BIBentryALTinterwordspacing
