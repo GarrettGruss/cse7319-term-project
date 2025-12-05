@@ -49,41 +49,41 @@
 \contentsline {section}{\numberline {5}Discussion}{21}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Key Findings}{21}{subsection.5.1}%
 \contentsline {subsubsection}{\numberline {5.1.1}Development Velocity}{21}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Code Quality and Reliability}{22}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2}Code Quality and Reliability}{21}{subsubsection.5.1.2}%
 \contentsline {subsubsection}{\numberline {5.1.3}Incident Response}{22}{subsubsection.5.1.3}%
 \contentsline {subsection}{\numberline {5.2}Project Comparison}{22}{subsection.5.2}%
 \contentsline {subsubsection}{\numberline {5.2.1}Similarities}{22}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Differences}{23}{subsubsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.3}Industry Benchmarking}{23}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Ease of Comparison Using DORA Metrics}{23}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Limitations and Threats to Validity}{24}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Data Collection Limitations}{24}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Metric Calculation Assumptions}{24}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Generalizability}{25}{subsubsection.5.5.3}%
-\contentsline {section}{\numberline {6}Lessons Learned}{25}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Technical Challenges}{25}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Best Practices Identified}{26}{subsection.6.2}%
-\contentsline {section}{\numberline {7}Conclusion}{26}{section.7}%
-\contentsline {section}{\numberline {A}Phase 1 Planned Configuration (GitHub Actions)}{28}{appendix.A}%
-\contentsline {subsection}{\numberline {A.1}Planned GitHub Actions Workflow}{29}{subsection.A.1}%
-\contentsline {subsection}{\numberline {A.2}Planned Quality Gate Enforcement}{31}{subsection.A.2}%
-\contentsline {subsection}{\numberline {A.3}Planned Tool Configurations}{33}{subsection.A.3}%
-\contentsline {subsubsection}{\numberline {A.3.1}Radon Configuration}{33}{subsubsection.A.3.1}%
-\contentsline {subsubsection}{\numberline {A.3.2}Pytest Configuration}{34}{subsubsection.A.3.2}%
-\contentsline {subsubsection}{\numberline {A.3.3}Ruff Configuration}{35}{subsubsection.A.3.3}%
-\contentsline {subsubsection}{\numberline {A.3.4}Mypy Configuration}{36}{subsubsection.A.3.4}%
-\contentsline {subsection}{\numberline {A.4}Planned Semantic Versioning Integration}{37}{subsection.A.4}%
-\contentsline {subsection}{\numberline {A.5}Abandonment Rationale - Detailed}{39}{subsection.A.5}%
-\contentsline {section}{\numberline {B}Data Collection Scripts}{41}{appendix.B}%
-\contentsline {subsection}{\numberline {B.1}GitHub Web UI Navigation}{41}{subsection.B.1}%
-\contentsline {subsection}{\numberline {B.2}CSV Data Organization}{42}{subsection.B.2}%
-\contentsline {section}{\numberline {C}Analysis Source Code}{43}{appendix.C}%
-\contentsline {subsection}{\numberline {C.1}Key Functions}{43}{subsection.C.1}%
-\contentsline {subsection}{\numberline {C.2}Usage Example}{44}{subsection.C.2}%
-\contentsline {section}{\numberline {D}Raw Data Samples}{45}{appendix.D}%
-\contentsline {subsection}{\numberline {D.1}LangChain Repository Data}{45}{subsection.D.1}%
-\contentsline {subsection}{\numberline {D.2}Intel XPU Backend Data}{46}{subsection.D.2}%
-\contentsline {section}{\numberline {E}OpenTelemetry Configuration Files}{47}{appendix.E}%
-\contentsline {subsection}{\numberline {E.1}Docker Compose Configuration}{47}{subsection.E.1}%
-\contentsline {subsection}{\numberline {E.2}OpenTelemetry Collector Configuration}{48}{subsection.E.2}%
-\contentsline {subsection}{\numberline {E.3}Performance Classification Logic}{49}{subsection.E.3}%
+\contentsline {subsubsection}{\numberline {5.2.2}Differences}{22}{subsubsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.3}Industry Benchmarking}{22}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Practical Value of DORA Metrics}{23}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Limitations and Threats to Validity}{23}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Data Collection Limitations}{23}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Metric Calculation Assumptions}{23}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Generalizability}{24}{subsubsection.5.5.3}%
+\contentsline {section}{\numberline {6}Lessons Learned}{24}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Technical Challenges}{24}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Best Practices}{24}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Conclusion}{25}{section.7}%
+\contentsline {section}{\numberline {A}Phase 1 Planned Configuration (GitHub Actions)}{26}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Planned GitHub Actions Workflow}{26}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Planned Quality Gate Enforcement}{29}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Planned Tool Configurations}{31}{subsection.A.3}%
+\contentsline {subsubsection}{\numberline {A.3.1}Radon Configuration}{31}{subsubsection.A.3.1}%
+\contentsline {subsubsection}{\numberline {A.3.2}Pytest Configuration}{32}{subsubsection.A.3.2}%
+\contentsline {subsubsection}{\numberline {A.3.3}Ruff Configuration}{33}{subsubsection.A.3.3}%
+\contentsline {subsubsection}{\numberline {A.3.4}Mypy Configuration}{34}{subsubsection.A.3.4}%
+\contentsline {subsection}{\numberline {A.4}Planned Semantic Versioning Integration}{35}{subsection.A.4}%
+\contentsline {subsection}{\numberline {A.5}Abandonment Rationale - Detailed}{37}{subsection.A.5}%
+\contentsline {section}{\numberline {B}Data Collection Scripts}{39}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}GitHub Web UI Navigation}{39}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}CSV Data Organization}{40}{subsection.B.2}%
+\contentsline {section}{\numberline {C}Analysis Source Code}{40}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}Key Functions}{40}{subsection.C.1}%
+\contentsline {subsection}{\numberline {C.2}Usage Example}{42}{subsection.C.2}%
+\contentsline {section}{\numberline {D}Raw Data Samples}{43}{appendix.D}%
+\contentsline {subsection}{\numberline {D.1}LangChain Repository Data}{43}{subsection.D.1}%
+\contentsline {subsection}{\numberline {D.2}Intel XPU Backend Data}{44}{subsection.D.2}%
+\contentsline {section}{\numberline {E}OpenTelemetry Configuration Files}{44}{appendix.E}%
+\contentsline {subsection}{\numberline {E.1}Docker Compose Configuration}{44}{subsection.E.1}%
+\contentsline {subsection}{\numberline {E.2}OpenTelemetry Collector Configuration}{46}{subsection.E.2}%
+\contentsline {subsection}{\numberline {E.3}Performance Classification Logic}{47}{subsection.E.3}%

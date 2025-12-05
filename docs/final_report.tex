@@ -771,95 +771,66 @@ and change failure rate
 \subsection{Key Findings}
 
 \subsubsection{Development Velocity}
-Both projects demonstrate elite-level deployment frequency, with
-LangChain averaging 5.97 deployments per day and Intel XPU Backend
-averaging 3.59 per day. These rates indicate mature CI/CD pipelines
-and team practices that support multiple daily releases. LangChain's
-6-day median lead time (high performance tier) suggests a balanced
-approach between velocity and code review thoroughness, while Intel
-XPU Backend's insufficient lead time data prevents definitive
-assessment but the elite deployment frequency indicates efficient
-merge workflows.
+Both projects achieve elite-level deployment frequency: LangChain at
+5.97 deployments per day, Intel XPU Backend at 3.59 per day. These
+rates indicate mature CI/CD pipelines supporting multiple daily
+releases. LangChain's 6-day median lead time balances velocity with
+code review thoroughness. Intel XPU Backend lacks sufficient lead
+time data but demonstrates efficient merge workflows through high
+deployment frequency.
 
 \subsubsection{Code Quality and Reliability}
-Both projects achieved elite-level change failure rates: LangChain at
-8.94\% and Intel XPU Backend at 10.58\%, both well below the 15\%
-elite threshold. These low failure rates combined with high
-deployment frequency indicate robust testing practices, effective
-code review processes, and comprehensive CI/CD quality gates. The
-ability to deploy frequently while maintaining low defect rates
-demonstrates organizational maturity in balancing velocity with quality.
+Both projects achieve elite-level change failure rates below the 15\%
+threshold: LangChain at 8.94\%, Intel XPU Backend at 10.58\%. High
+deployment frequency combined with low failure rates indicates robust
+testing, effective code review, and comprehensive CI/CD quality
+gates, demonstrating mature velocity-quality balance.
 
 \subsubsection{Incident Response}
-Time to restore service could not be calculated for either project
-due to data collection limitations in linking bug reports to fix PRs.
-This metric requires explicit references between issues and pull
-requests or authenticated API access to retrieve detailed event
-timelines. The absence of this metric represents a gap in the
-analysis but does not diminish the validity of the three successfully
-measured DORA metrics.
+Time to restore service could not be calculated due to limitations in
+linking bug reports to fix PRs without authenticated API access. This
+gap does not diminish the validity of the three successfully measured
+DORA metrics.
 
 \subsection{Project Comparison}
 
 \subsubsection{Similarities}
-Both projects exhibit elite-level deployment frequency and change
-failure rates, indicating shared commitment to continuous integration
-practices and quality assurance. Both maintain active development
-with daily merge activity and demonstrate the ability to sustain high
-velocity without compromising quality. The similar performance
-profiles suggest that these patterns represent best practices in open
-source development regardless of project domain or size.
+Both projects achieve elite-level deployment frequency and change
+failure rates with daily merge activity, sustaining high velocity
+without compromising quality. This pattern represents open source
+best practices regardless of domain or size.
 
 \subsubsection{Differences}
-LangChain demonstrates slightly higher deployment frequency (5.97 vs
-3.59 per day) and provided sufficient data for lead time analysis,
-while Intel XPU Backend had insufficient opened PR data for reliable
-lead time calculation. However, a notable finding is Intel XPU
-Backend's remarkably high activity relative to its community size:
-despite having only 222 stars (0.17\% of LangChain's 128k) and 538
-contributors (14\% of LangChain's 3,812), Intel XPU Backend achieves
-60\% of LangChain's deployment frequency. This suggests exceptional
-productivity and development velocity within Intel's smaller,
-focused team, possibly reflecting the advantages of corporate-backed
-development with dedicated engineering resources. The projects also
-differ in domain: LangChain as an AI framework faces different
-quality demands than Intel XPU Backend as a compiler infrastructure
-project, which may influence development patterns and quality
-assurance practices.
+LangChain shows higher deployment frequency (5.97 vs 3.59 per day)
+and sufficient data for lead time analysis, while Intel XPU Backend
+lacks adequate PR data for lead time calculation. Notably, Intel XPU
+Backend achieves 60\% of LangChain's deployment frequency despite
+having only 0.17\% of the stars (222 vs 128k) and 14\% of
+contributors (538 vs 3,812), suggesting exceptional productivity in
+Intel's smaller, corporate-backed team. Domain differences (AI
+framework vs compiler infrastructure) may influence development
+patterns and quality practices.
 
 \subsection{Industry Benchmarking}
-The findings align with Wilkes et al.'s analysis of 304 GitHub
-projects, which established top-quartile performance at 116.2
-deployments per year (0.32 per day) with 5.1-day lead times.
-LangChain exceeds this benchmark significantly with 2,180 annual
-deployments, while Intel XPU Backend achieves 1,310 annual
-deployments, placing both in the top percentile of open source
-projects. Both projects' elite change failure rates (under 15\%)
-match the DORA 2023 State of DevOps Report's elite performer
-classification. These results confirm that both projects operate at
-or above industry-leading performance levels.
+Both projects significantly exceed Wilkes et al.'s top-quartile
+benchmark of 116.2 annual deployments (0.32 per day): LangChain with
+2,180 annual deployments and Intel XPU Backend with 1,310, placing
+both in the top percentile. Elite change failure rates (under 15\%)
+match DORA 2023 elite performer classification, confirming
+industry-leading performance.
 
-\subsection{Ease of Comparison Using DORA Metrics}
-A key advantage of DORA metrics is their simplicity in both
-explanation and calculation, making them highly effective for
-relative analysis across projects. Unlike internal code metrics that
-require language-specific tooling and domain expertise to interpret,
-DORA metrics provide standardized, quantifiable measurements that
-enable direct comparison between projects regardless of technology
-stack, team size, or domain. The straightforward calculation
-formulas—merges per day for deployment frequency, time between PR
-creation and merge for lead time, and bug ratio for change failure
-rate—require only basic temporal data available through any version
-control system. This simplicity facilitated rapid comparison between
-LangChain and Intel XPU Backend despite their different domains (AI
-framework vs. compiler infrastructure), community sizes (128k vs. 222
-stars), and architectural approaches. The standardized DORA
-performance classifications (elite/high/medium/low) further
-simplified interpretation, allowing immediate assessment of project
-health without requiring baseline establishment or normalization.
-This ease of comparison makes DORA metrics particularly valuable for
-portfolio analysis, competitive benchmarking, and longitudinal trend
-monitoring across diverse open source projects.
+\subsection{Practical Value of DORA Metrics}
+DORA metrics enable rapid comparison across projects through simple
+calculation and standardized classification. Unlike internal code
+metrics requiring language-specific tooling, DORA metrics use basic
+temporal data from any version control system: merges per day,
+PR-to-merge time, and bug ratios. This facilitated direct comparison
+between LangChain and Intel XPU Backend despite domain, size, and
+architecture differences. Standardized performance tiers
+(elite/high/medium/low) enable immediate project assessment without
+baseline establishment. Practical applications include portfolio
+analysis, competitive benchmarking, and trend monitoring across
+diverse projects.
 
 \subsection{Limitations and Threats to Validity}
 
@@ -891,101 +862,57 @@ monitoring across diverse open source projects.
 
 \subsection{Technical Challenges}
 
-The three-phase evolution of this project revealed fundamental
-constraints in external software quality research. The initial GitHub
-Actions approach, while promising maximum data richness through
-code-level metrics, proved too invasive for production
-repositories—requiring workflow modifications, maintainer approvals,
-and creating compatibility risks with existing CI/CD pipelines. The
-subsequent OpenTelemetry pivot eliminated invasiveness but
-encountered insurmountable API authentication barriers, as GitHub's
-permission model requires organization-level PAT approval and imposes
-rate limits that make continuous monitoring impractical for external
-researchers. The final manual collection approach, though
-labor-intensive and limited to PR/issue metadata, proved universally
-accessible without special permissions. This progression illustrates
-a fundamental inverse relationship between metric depth and research
-feasibility: obtaining rich internal code metrics requires invasive
-access that external researchers cannot reasonably obtain, while
-non-invasive approaches face authentication gatekeeping or yield only
-surface-level process metrics. The experience underscores that for
-external research on production open source projects, non-invasive
-observability using publicly available data remains the only
-pragmatic approach, and frameworks like DORA that can be derived from
-public GitHub data provide the most feasible path to meaningful
-software quality assessment.
+External software quality research faces an inverse relationship
+between metric depth and feasibility. GitHub Actions provided rich
+code-level metrics but required invasive repository modifications.
+OpenTelemetry eliminated invasiveness but hit API authentication
+barriers requiring organizational approval. Manual collection from
+public GitHub data proved universally accessible but limited to
+PR/issue metadata. For external research, non-invasive observation
+using publicly available data remains the only pragmatic approach.
+DORA metrics derived from public GitHub data provide meaningful
+quality assessment without privileged access.
 
-\subsection{Best Practices Identified}
+\subsection{Best Practices}
 
-Through three methodological iterations, several best practices
-emerged for conducting software quality research on external
-projects. Researchers should design data collection strategies with
-minimal access assumptions, assuming no repository access,
-authentication, or organizational cooperation from the outset.
-Non-invasive observation must be prioritized over active
-instrumentation to avoid modifying target systems, instead leveraging
-publicly available observability through GitHub's Insights, PR
-history, and issue tracking. Industry-standard frameworks like DORA
-and SPACE enhance result interpretability and enable meaningful
-benchmarking without requiring custom baselines. When manual
-collection becomes necessary, effort should be invested in automating
-the analysis pipeline rather than collection itself to ensure
-reproducibility. Incremental validation by testing approaches on
-personal or accessible repositories before attempting large-scale
-collection helps identify barriers early. Finally, transparent
-documentation of methodological pivots and failed approaches provides
-significant value to future researchers facing similar constraints,
-transforming setbacks into shared knowledge.
+Design data collection assuming no repository access or
+authentication. Prioritize non-invasive observation using public
+GitHub Insights, PR history, and issue tracking. Use industry-standard
+frameworks like DORA for interpretability and benchmarking without
+custom baselines. Automate analysis pipelines rather than collection
+for reproducibility. Test approaches on accessible repositories
+before large-scale collection. Document methodological pivots to
+inform future researchers.
 
 \section{Conclusion}
 
-This project successfully analyzed software quality metrics for two
-prominent open source projects using DORA metrics derived from GitHub
-data. Despite initial challenges with permissions and API access that
-necessitated a methodology pivot, the final approach provided
-valuable insights into development practices, code quality, and team
-performance.
+This study analyzed software quality metrics for two open source
+projects using DORA metrics from public GitHub data. Both LangChain
+(5.97 daily deployments, 8.94\% failure rate) and Intel XPU Backend
+(3.59 daily deployments, 10.58\% failure rate) achieve elite-level
+performance, exceeding industry benchmarks and demonstrating that
+high velocity does not require compromising quality.
 
-Both LangChain and Intel XPU Backend for Triton achieved elite-level
-performance in deployment frequency and change failure rate,
-demonstrating that high-velocity development does not necessitate
-compromising quality. LangChain's 5.97 daily deployments with 8.94\%
-failure rate and Intel XPU Backend's 3.59 daily deployments with
-10.58\% failure rate significantly exceed industry benchmarks,
-placing both projects in the top percentile of open source software
-development. These findings validate DORA metrics as practical
-indicators of team maturity and process effectiveness in distributed
-open source environments. The three-phase methodological
-evolution—from invasive GitHub Actions to API-based automation to
-manual collection—reveals the practical constraints facing external
-software quality research, demonstrating that meaningful quality
-assessment remains possible using only publicly available data when
-appropriate frameworks are selected.
+DORA metrics provide simple, standardized measurements enabling
+direct comparison across projects regardless of domain, size, or
+architecture. This study's comparison between an AI framework and
+compiler infrastructure demonstrates practical applicability for
+portfolio analysis, competitive benchmarking, and trend monitoring.
+The methodology is reproducible for any public GitHub repository.
 
-The analysis demonstrates that DORA metrics serve as effective
-indicators of software project health that are simple to explain,
-straightforward to calculate, and highly valuable for relative
-analysis across diverse projects. The standardized nature of DORA
-metrics enabled direct comparison between LangChain and Intel XPU
-Backend despite significant differences in domain, community size,
-and technical architecture—a comparison that would have been
-substantially more complex using internal code metrics requiring
-language-specific tooling and domain expertise. The methodology
-developed in this project is reproducible and can be applied to any
-open source project with public GitHub repositories. Future work
-should explore correlating DORA metric trends with internal code
-quality metrics such as cyclomatic complexity, test coverage, and
-technical debt to identify whether changes in process-level
-performance metrics (DORA) relate to shifts in code-level quality
-indicators. This correlation analysis could establish predictive
-relationships between deployment practices and code maintainability,
-enabling teams to use easily-measured DORA metrics as leading
-indicators for internal quality degradation.
+External research on production systems requires non-invasive
+approaches using public data. DORA metrics derived from GitHub
+provide meaningful quality assessment without privileged access.
+Future work should correlate DORA trends with internal metrics
+(cyclomatic complexity, test coverage, technical debt) to establish
+predictive relationships between deployment practices and code
+maintainability, enabling DORA metrics as leading indicators for
+quality degradation.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
-% Include Appendix A from separate file
-\input{final_report_appendix_a}
+% Include Appendix from separate file
+\input{final_report_appendix}
 
 \end{document}
