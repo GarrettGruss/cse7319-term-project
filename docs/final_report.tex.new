@@ -183,14 +183,12 @@ A Study of LangChain and Intel XPU Backend for Triton}
 
 \begin{abstract}
   This report presents a study of software quality metrics pertaining to two
-  popular open source projects: Langchain-ai/langchain and
-  intel/intel-xpu-backend-for-triton.
-  The initial goal of this study was to collect discrete internal
-  quality metrics
-  such as lines of code and cyclomatic complexity over time, but the
-  project pivoted
+  popular open source projects: Langchain-ai/langhain and
+  intel/intel-xpu-backend-for-trition.
+  The intial goal of this study was to collect discrete internal quality metrics
+  such as lines of code, cyclomatic complexity over time, the project pivoted
   to focus on DORA (DevOps Research and Assessment) metrics due to permissions
-  issues. Pull requests, issues, and merge patterns over a timeframe of one
+  issues. pull requests, issues, and merge patterns over a timeframe of one
   month were collected from GitHub project insights. These metrics were used
   to calculate deployment frequency, lead time for changes, change failure rate
   and time to restore service. This study demonstrates the value of
@@ -208,7 +206,7 @@ A Study of LangChain and Intel XPU Backend for Triton}
 
 The automated measurement of software quality metrics is essential
 for proactively monitoring and improving development processes. As open
-source projects grow in complexity and importance, the ability to identify and
+source projects grow in complexity and importance, the ability to identify
 quantify software quality becomes increasingly important for maintainers,
 contributors, and organizations depending on these projects.
 
@@ -225,31 +223,31 @@ they manifest as failures that directly impact external users. This predictive
 relationship empowers teams to take a proactive approach to
 corrective action to improve code quality before downstream failures occur.
 
-The importance of routine, repeatable quality measurement can be extended
+The importance of routine, repeatable quality measurement can be Extended
 to frameworks such as Goal-Question-Metrics (GQM) and the
 Quality Improvement Paradigm (QIP). These frameworks formalize
-the process of translating organizational goals into measurable
+the process of translating organizational goals into measureable
 indicators, enabling corrective action and discrete quality tracking.
-In modern DevOps environments, team velocity can necessitate
+In modern DevOps environments, team velocity can neccessitate
 multiple deployments per day, issue resolutions, and defect
 identifications. This rapid velocity
-and continuous integration and deployment can be modeled and tracked
+and continuous integration and deployment can be modeled and tracking
 using metrics like the DORA framework's deployment
 frequency, lead time for changes, change failure rate, and time to restore
 service have become industry standards for assessing team performance and
-delivery capability. For open source projects composed of
+delivery capability. For open source projects composing of
 distributed teams collaborating across
 the globe, the automated collection of quality metrics becomes essential
-to manage the project's health, productivity, and code quality while maintaining
+to manage the project's health, productivity, and code quality while maintaning
 the rapid velocity that bleeding-edge projects require.
 
 \subsection{Motivation}
-The motivation for this project was the need to systematically assess
+The motiviation for this project was the need to systematically assess
 the software quality of popular open source projects. In analyzing
 established projects with highly active communities, we can identify
 best practices in the open source community, identify patterns that
 correlate with project success, provide insights into development
-velocity, maintainability, and reliability, and establish reusable
+velocity, maintainability , and reliability, and establish reusable
 benchmarks for software quality.
 
 \subsection{Project Objectives}
@@ -409,7 +407,7 @@ in excessive modification of the source code repository to collect
 metrics. Large projects like
 Langchain also have existing CI/CD pipelines, so integrating custom
 Actions involved risking
-compatibility conflicts with existing workflows, which could pollute
+compatability conflicts with existing workflows, which could pollute
 the accuracy of collected software
 quality metrics. Each target repository would also required custom
 workflows tailored to it's language,
@@ -624,7 +622,7 @@ multiple deploys per day.
 \subsubsection{Lead Time for Changes}
 lead time for changes was estimated using temporal proximity matching
 between opened and merged PRs. The analysis across 162 matched PR
-pairs revealed
+paris relvealed
 a median lead time of 6.00 days and a mean of 4.98 days. The distribution showed
 a 25th percentile of 2.00 days and a 90th percentile of 7.00 days.
 Five pull requests
@@ -798,7 +796,7 @@ estimating which issue corresponded with a closed pull request.
 Both projects achieved elite-level deployment frequency and change
 failure rates during daily development and merge activity. This
 pattern describes open
-source best practices regardless of domain or size.
+source best practices regardless of domain size.
 
 \subsubsection{Differences}
 Both projects shared an elite DORA classification, despite
@@ -824,7 +822,7 @@ between LangChain and Intel XPU Backend despite differences in domain, size, and
 architecture. Standardized performance tiers
 (elite/high/medium/low) enable immediate project assessment and
 visualization, without requiring
-a complex explanation of the intent and meaning behind the metrics.
+a complex exaplanation of the intent and meaning behind the metrics.
 Practical applications include portfolio
 analysis, competitive benchmarking, and trend monitoring.
 
@@ -850,7 +848,7 @@ difference in
 popularity. DORA metrics provide a simple and standardized metric for
 direct comparison
 across projects regardless of domain, size, or architecture. This study's
-comparison between an AI framework and compiler infrastructure demonstrates
+comparison between an AI framework and compilier infrastructure demonstrate
 practical application for project benchmarking, comparison, and trend analysis.
 
 Future work should focus on correlating DORA trends with internal
@@ -860,7 +858,7 @@ relationships between code quality and production quality. DORA
 metrics can be utilized
 as leading indicators of quality degradation, and cross-domain
 comparison with internal metrics
-can be used to trace defects within the system to degradation of
+can be used to trace defects within the system to degredation of
 system behavior.
 
 \bibliographystyle{IEEEtran}
