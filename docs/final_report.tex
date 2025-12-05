@@ -468,21 +468,30 @@ conventions v1.37.0:
 \end{itemize}
 
 \subsubsection{Challenges Encountered}
-While less invasive than GitHub Actions, the OpenTelemetry approach encountered permissions
-issues when scraping metrics from public repositories. The OpenTelemetry collector requires
-a GitHub PAT token with specific organization access to \textbf{repo} and \text{read:org}.
-Public repositories limit provided data through unauthorized API access, prohibiting the collection
-of detailed PR metrics required to compute DORA. Accessing langchain-ai and intel repositories requires
+While less invasive than GitHub Actions, the OpenTelemetry approach
+encountered permissions
+issues when scraping metrics from public repositories. The
+OpenTelemetry collector requires
+a GitHub PAT token with specific organization access to \textbf{repo}
+and \text{read:org}.
+Public repositories limit provided data through unauthorized API
+access, prohibiting the collection
+of detailed PR metrics required to compute DORA. Accessing
+langchain-ai and intel repositories requires
 a GitHub PAT with organization access, approved by organization administrators.
 
 \subsection{Phase 3: Final Pivot - Manual DORA Metrics from GitHub Web UI}
 
 \subsubsection{Rationale for Final Approach}
-Since automated collection of detailed metrics was prohibited due to permissions issues,
+Since automated collection of detailed metrics was prohibited due to
+permissions issues,
 a simplier approach of scraping metrics from the GitHub Insights page was chosen
-as the preferred data collection strategy. This approach leveraged publicly accessible
-GitHub repository insights through the web interface. While less automated and less detailed
-than the scraped metrics, this approach did not require specific permisisons granted by
+as the preferred data collection strategy. This approach leveraged
+publicly accessible
+GitHub repository insights through the web interface. While less
+automated and less detailed
+than the scraped metrics, this approach did not require specific
+permisisons granted by
 organizational administrators.
 
 \subsubsection{Data Collection Process}
@@ -544,16 +553,15 @@ Assessment team, serve as the analytical foundation:
     recover from a failure in production (measured as bug report to
     fix merge duration)
 \end{enumerate}
-% Need to reword below this section.
+
 \subsubsection{Metric Calculation}
-We developed a Python-based analysis pipeline (\texttt{dora\_metrics.py}) that:
-\begin{enumerate}
-  \item Loads and preprocesses CSV data
-  \item Calculates each DORA metric using industry-standard formulas
-  \item Performs statistical analysis (mean, median, percentiles)
-  \item Classifies performance according to DORA benchmarks
-  \item Generates visualizations for each metric
-\end{enumerate}
+A Python-based metrics collection pipeline was constructed that loads
+and preprocesses
+scrapped metrics data, converts them into columnar CSV data,
+calculates DORA metrics using
+industry-standard forumlas, performs statistical analysis, classifies
+DORA performance,
+and generates visualizations for each metric.
 
 \subsubsection{Deployment Frequency Calculation}
 \begin{equation}
@@ -584,8 +592,8 @@ For each bug-fix pair $(b, f)$:
 Aggregate metric: median($MTTR_{b,f}$)
 
 \subsubsection{Performance Classification}
-We classified metrics according to the 2023 DORA State of DevOps
-Report standards:
+DORA performance was classified according to the 2023 DORA State of
+DevOps Report standards.
 
 \begin{table}[H]
   \centering
@@ -596,13 +604,13 @@ Report standards:
     \textbf{Metric}      & \textbf{Elite} & \textbf{High} &
     \textbf{Medium} & \textbf{Low} \\ \midrule
     Deployment Frequency & Multiple/day   & Weekly        & Monthly
-    & < Monthly    \\
-    Lead Time            & < 1 day        & 1-7 days      & 1-4 weeks
-    & > 1 month    \\
+    & $<$ Monthly    \\
+    Lead Time            & $<$ 1 day        & 1-7 days      & 1-4 weeks
+    & $>$ 1 month    \\
     Change Failure Rate  & 0-15\%         & 16-30\%       & 31-45\%
-    & > 45\%       \\
-    Time to Restore      & < 1 hour       & < 1 day       & 1-7 days
-    & > 1 week     \\ \bottomrule
+    & $>$ 45\%       \\
+    Time to Restore      & $<$ 1 hour       & < 1 day       & 1-7 days
+    & $>$ 1 week     \\ \bottomrule
   \end{tabular}
 \end{table}
 
@@ -611,24 +619,22 @@ Report standards:
 \subsection{LangChain Analysis}
 
 \subsubsection{Data Overview}
-The analysis of the LangChain project was conducted over a 30-day
-period from October 29, 2025 to November 27, 2025. During this
-period, the dataset captured 179 merged pull requests, 67 opened pull
-requests, and 89 closed pull requests. Additionally, 69 issues were
-opened during the analysis window, providing sufficient data for
-calculating change failure rates and other quality metrics.
+Analysis of LangChain-ai/Langchain was conducted over
+a 30-day period from October 29, 2025 to November 27, 2025.
+During this period, 179 merged pull requests, 67 opened pull requests,
+89 closed pull requests, and 69 issues were captured and analyzed.
 
 \subsubsection{Deployment Frequency}
-The LangChain project demonstrated a high rate of deployment activity
-during the analysis period. The mean deployment frequency was 5.97
-deployments per day, with a median of 8.5 deployments per day,
-resulting in approximately 41.77 deployments per week. The maximum
-number of deployments observed in a single day was 46. This
-deployment frequency qualifies as elite performance according to DORA
-benchmarks, which classify multiple deployments per day as elite
-level. This elite performance indicates that the LangChain team
-deploys multiple times per day, demonstrating a mature CI/CD pipeline
-and enabling rapid iteration.
+The LangChain project demonstrated high rate of deployment activity during the
+analysis period. The mean deployment frequency was 5.97, with a
+median of 8.5 deployments
+per day, resulting in 41.77 deployments per week on average. This
+deployment frequency
+classifies the project as an elite performer according to the DORA
+benchmark. This elite
+deployment frequency represents a mature CI/CD pipeline and team
+mentality resulting in
+multiple deploys per day.
 
 \begin{figure}[H]
   \centering
@@ -638,31 +644,28 @@ and enabling rapid iteration.
 \end{figure}
 
 \subsubsection{Lead Time for Changes}
-Lead time was estimated using temporal proximity matching between
-opened and merged PRs, as direct PR hash matching was unavailable.
-The analysis revealed a median lead time of 6.00 days and a mean of
-4.98 days across 162 matched PR pairs. The distribution showed a 25th
-percentile of 2.00 days and a 90th percentile of 7.00 days. Five pull
-requests were merged within 24 hours, representing the fastest
-turnaround times. According to DORA performance standards, this
-median lead time of 6.00 days falls within the high performance
-category (1-7 days). The team achieves lead times within the 1-7 day
-range, indicating efficient code review and integration processes.
-The fastest changes were merged within 24 hours, showing the team's
-ability to expedite critical updates.
+lead time for changes was estimated using temporal proximity matching
+between opened and merged PRs. The analysis across 162 matched PR
+paris relvealed
+a median lead time of 6.00 days and a mean of 4.98 days. The distribution showed
+a 25th percentile of 2.00 days and a 90th percentile of 7.00 days.
+Five pull requests
+were merged within 24 hours, representing the quickest turnaround
+times. According to DORA
+performance standards, the median lead time of 6.00 days falls within
+the high performance
+category of 1-7 days.
 
 \subsubsection{Change Failure Rate}
-Bug-related issues were identified using keyword matching on issue
-titles and descriptions, searching for terms including bug, error,
-fix, broken, crash, fail, regression, and exception. Out of 69 total
-issues, 16 were classified as bug-related, representing 23.2\% of all
-issues. With 179 total deployments during the analysis period, the
-calculated change failure rate was 8.94\%. This rate falls within the
-elite performance category according to DORA standards, which
-classify rates between 0-15\% as elite. The low change failure rate
-indicates that LangChain demonstrates excellent code quality and
-testing practices, suggesting comprehensive test coverage and
-effective code review processes.
+Change failure rate was estimated by using keyword matching on
+failure terms such as "bug", "error", "fix", "broken", "crash",
+"fail", "regression", and "exception". Out of 69 collected issues,
+16 were classified as bug-releated, representing 23.2\% of the total
+population. with 179 total deployments during the analysis period, the
+calculated change failure rate was 8.94\%. This rate falls within the elite
+performance category according to the DORA standard, which classifies
+rates between
+0-15\% as elite.
 
 \begin{figure}[H]
   \centering
@@ -672,15 +675,13 @@ effective code review processes.
 \end{figure}
 
 \subsubsection{Time to Restore Service}
-The Time to Restore Service (MTTR) metric could not be calculated due
-to data limitations. Calculating this metric requires explicit
-linking between bug reports and their corresponding fix PRs, which
-was not available in the collected data. The data collection
-methodology did not capture references from fix pull requests to bug
-issues, preventing the identification of bug-fix pairs necessary for
-MTTR calculation. Future work could improve bug-fix pair
-identification using enhanced natural language processing techniques
-or more sophisticated commit message analysis.
+The time to restore service (MTTR) metric could not be calculated
+due to limitations occuring collecting related issues and merged
+pull requests. Estimation of MTTR requires collecting an opened issue, and
+identifying the time when the issue was resolved through a pull request and
+merge approval event. Future work could improve bug-fix pair identification
+using a properly authenticated GitHub PAT connected to an open-Telemetry
+GitHub scraper.
 
 \subsubsection{Overall Performance}
 \begin{table}[H]
@@ -709,43 +710,33 @@ or more sophisticated commit message analysis.
 \subsubsection{Data Overview}
 The Intel XPU Backend for Triton project was analyzed over a 29-day
 period from November 4, 2025 to December 2, 2025. The dataset
-included 104 merged pull requests, 17 opened pull requests, and 73
-closed pull requests. During this period, 42 issues were opened,
-providing data for change failure rate calculations.
+included 104 merged pull requests, 17 opened pull requests, 73
+closed pull requests, and 42 opened issues.
 
 \subsubsection{Deployment Frequency}
-The Intel XPU Backend for Triton project maintained a steady
-deployment pace throughout the analysis period. The mean deployment
-frequency was 3.59 deployments per day, with a median of 9.0
-deployments per day, totaling approximately 25.10 deployments per
-week. The maximum number of deployments in a single day reached 28.
-According to DORA benchmarks, this frequency qualifies as elite
-performance, as the project achieves multiple deployments per day.
-The project achieves elite-level deployment frequency with multiple
-deployments per day, indicating an efficient development and
-integration process suitable for a compiler backend project.
+The mean deployment frequency was 3.59 deplyoments per day with a median
+of 9.0 deployments per day, totaling to 25.10 average deployments per week.
+The maximum number of deployments in a single day was 28. According to the DORA
+standard, this frequency classifies as an elite performer, achieving
+multiple deployments
+per day.
 
 \subsubsection{Lead Time for Changes}
-Lead time data was insufficient for reliable analysis, with only 3
-PRs providing matching between opened and merged events. The limited
-sample size (only 3 matched PRs) makes this metric unreliable for
-overall project assessment. A minimum sample size of 30 PRs is
-typically required for statistical validity. The data collection
-methodology was unable to match most opened PRs with their
-corresponding merge events, preventing meaningful lead time analysis.
-Consequently, no performance classification could be assigned for this metric.
+lead time for changes was estimated using temporal proximity matching
+between opened and merged PRs. However, the metrics collected were
+statistically insufficient, with only
+3 matching pull requests identified. The limited sample size makes this metric
+unreliable for overall DORA assessment.
 
 \subsubsection{Change Failure Rate}
-Bug-related issues were identified using keyword matching across
-issue titles and descriptions. Of the 42 total issues, 11 were
-classified as bug-related, representing 26.2\% of all issues. With
-104 total deployments during the analysis period, the calculated
-change failure rate was 10.58\%. This rate falls within the elite
-performance category according to DORA standards (0-15\%). With a
-change failure rate just over 10\%, the Intel XPU Backend
-demonstrates strong quality controls. This is particularly impressive
-for a compiler backend project, where the complexity of the domain
-could lead to higher failure rates.
+Bug-related issues were identified using keyword matching. Of the total
+42 issues collected, 11 were classified as defect-related,
+representing 26.2\% of the total
+issue population. With 104 total deployments during the analysis
+period, the calculated
+failure rate was 10.58\%. According to the DORA standard, this rate
+falls within the elite
+performance category of 0-15\%.
 
 \subsubsection{Time to Restore Service}
 The Time to Restore Service metric could not be calculated due to
@@ -798,7 +789,7 @@ and change failure rate
     \\ \bottomrule
   \end{tabular}
 \end{table}
-
+% Need to reword below this section.
 \section{Discussion}
 
 \subsection{Key Findings}
